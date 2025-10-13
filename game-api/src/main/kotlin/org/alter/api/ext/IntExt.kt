@@ -1,7 +1,7 @@
 package org.alter.api.ext
 
-import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.CacheManager.getObject
+import dev.openrune.ServerCacheManager.getItem
+import dev.openrune.ServerCacheManager.getObject
 import org.alter.game.fs.DefinitionSet
 import org.alter.game.model.item.Item
 import kotlin.math.ceil

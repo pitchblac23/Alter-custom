@@ -1,6 +1,8 @@
 package org.alter.api
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
+import dev.openrune.cache.CLIENTSCRIPT
+import dev.openrune.filesystem.Cache
 import org.alter.game.Server
 
 
@@ -21,6 +23,14 @@ class ClientScript(identifier: String = "", id: Int = -1) {
      * The unique ID of the client script. If not set (-1), it is determined by looking up the identifier.
      * If the identifier lookup fails, it defaults back to -1 indicating that no valid script was found.
      */
-    var id: Int = if (id == -1) Server.cacheProvider.findScriptId(identifier) else id
+    var id: Int = if (id == -1) findScriptId(Server.cache,identifier) else id
         private set
+}
+
+
+fun findScriptId(cache: Cache, name: String): Int {
+    val cacheName = "[clientscript,$name]"
+    return cache.archiveId(CLIENTSCRIPT, cacheName).also { id ->
+        if (id == -1) println("Unable to find script: $cacheName")
+    }
 }

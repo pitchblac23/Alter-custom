@@ -1,13 +1,13 @@
 package org.alter.game.info
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
+import dev.openrune.server.impl.item.ItemRenderDataManager
 import org.alter.game.model.AnimationSet
 import org.alter.game.model.ForcedMovement
 import org.alter.game.model.Tile
 import org.alter.game.model.appearance.Gender
 import org.alter.game.model.entity.Player
 import org.alter.game.model.move.MovementType
-import org.alter.renderAnimations
 
 class PlayerInfo(var player: Player) {
     val info = player.playerInfo.avatar.extendedInfo
@@ -25,7 +25,7 @@ class PlayerInfo(var player: Player) {
                 if (obj == null) {
                     info.setWornObj(i, -1, -1, -1)
                 } else {
-                    val config = CacheManager.getItem(obj.id)
+                    val config = ServerCacheManager.getItem(obj.id)
                     if (config == null) {
                         info.setWornObj(i, -1, -1, -1)
                         continue
@@ -36,16 +36,16 @@ class PlayerInfo(var player: Player) {
             }
             val weapon = player.equipment[3]
             if (weapon != null) {
-                val renderAnimationSet = CacheManager.getItem(weapon.id)?.renderAnimations
+                val renderAnimationSet = ItemRenderDataManager.getItemRenderAnimationByItem(weapon.id)
                 if (renderAnimationSet != null) {
                     animSequance = AnimationSet(
-                        readyAnim = renderAnimationSet[0],
-                        turnAnim = renderAnimationSet[1],
-                        walkAnim = renderAnimationSet[2],
-                        walkAnimBack = renderAnimationSet[3],
-                        walkAnimLeft = renderAnimationSet[4],
-                        walkAnimRight = renderAnimationSet[5],
-                        runAnim = renderAnimationSet[6]
+                        readyAnim = renderAnimationSet.readyAnim,
+                        turnAnim = renderAnimationSet.turnAnim,
+                        walkAnim = renderAnimationSet.walkAnim,
+                        walkAnimBack = renderAnimationSet.walkAnimBack,
+                        walkAnimLeft = renderAnimationSet.walkAnimLeft,
+                        walkAnimRight = renderAnimationSet.walkAnimRight,
+                        runAnim = renderAnimationSet.runAnim
                     )
                 }
             }
@@ -54,7 +54,7 @@ class PlayerInfo(var player: Player) {
                 info.setColour(i, player.appearance.colors[i])
             }
         } else {
-            val def = CacheManager.getNpc(player.getTransmogId())?: return
+            val def = ServerCacheManager.getNpc(player.getTransmogId())?: return
             animSequance = AnimationSet(
                 readyAnim = def.standAnim,
                 walkAnim = def.walkAnim,

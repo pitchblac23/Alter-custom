@@ -1,6 +1,6 @@
 package org.alter.game.action
 
-import dev.openrune.cache.CacheManager.getAnim
+import dev.openrune.ServerCacheManager.getAnim
 import org.alter.game.action.NpcDeathAction.reset
 import org.alter.game.info.NpcInfo
 import org.alter.game.model.LockState
@@ -63,8 +63,8 @@ object NpcDeathAction {
          */
         deathAnimation.forEach { anim ->
             val def = getAnim(anim)?: return
-            npc.animate(def.id, def.lengthInCycles)
-            wait(def.lengthInCycles)
+            npc.animate(def.id, def.animationLength)
+            wait(def.animationLength)
         }
         world.plugins.executeNpcDeath(npc)
         world.plugins.anyNpcDeath.forEach {

@@ -1,7 +1,7 @@
 package org.alter.game
 
 import dev.openrune.OsrsCacheProvider
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
@@ -139,8 +139,7 @@ class Server {
          */
         individualStopwatch.reset().start()
         cache = Cache.load(filestore)
-        cacheProvider = OsrsCacheProvider(cache,gameProperties.get<Int>("revision")!!)
-        CacheManager.init(cacheProvider)
+        ServerCacheManager.init(cache)
         logger.info{"Loaded filestore from path ${filestore} in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."}
 
         val world = World(gameContext, devContext)
@@ -228,7 +227,6 @@ class Server {
 
     companion object {
         val logger = KotlinLogging.logger {}
-        lateinit var cacheProvider : OsrsCacheProvider
         lateinit var cache : Cache
     }
 }

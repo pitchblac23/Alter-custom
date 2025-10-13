@@ -1,6 +1,6 @@
 package org.alter.plugins.content.items.lootingbag
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import org.alter.api.*
 import org.alter.api.ClientScript
 import org.alter.api.CommonClientScripts

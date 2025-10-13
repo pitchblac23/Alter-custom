@@ -6,7 +6,6 @@ import org.alter.api.ext.getAttackStyle
 import org.alter.api.ext.getEquipment
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.hasWeaponType
-import org.alter.attackSpeed
 import org.alter.game.model.combat.*
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn
@@ -103,7 +102,7 @@ object CombatConfigs {
         if (pawn is Player) {
             val default = PLAYER_DEFAULT_ATTACK_SPEED
             val weapon = pawn.getEquipment(EquipmentType.WEAPON) ?: return default
-            return Math.max(MIN_ATTACK_SPEED, weapon.getDef().attackSpeed)
+            return Math.max(MIN_ATTACK_SPEED, weapon.getDef().weapon!!.attackSpeed)
         }
 
         throw IllegalArgumentException("Invalid pawn type.")

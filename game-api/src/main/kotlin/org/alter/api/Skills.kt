@@ -1,6 +1,6 @@
 package org.alter.api
 
-import dev.openrune.cache.CacheManager.getEnum
+import dev.openrune.ServerCacheManager.getEnum
 import org.alter.game.model.World
 
 /**

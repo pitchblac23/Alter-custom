@@ -1,7 +1,7 @@
 package org.alter.game.model
 
-import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.CacheManager.getNpc
+import dev.openrune.ServerCacheManager.getItem
+import dev.openrune.ServerCacheManager.getNpc
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
@@ -618,10 +618,11 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
         id: Int,
         type: ExamineEntityType,
     ) {
+        //TODO NEW EXAMINES
         val examine =
             when (type) {
                 ExamineEntityType.ITEM -> getItem(id)?.examine
-                ExamineEntityType.NPC -> getNpc(id)?.examine
+                ExamineEntityType.NPC -> "TODO ADD EXMAINES"
                 ExamineEntityType.OBJECT -> ObjectExamineHolder.EXAMINES.get(id)
             }
 

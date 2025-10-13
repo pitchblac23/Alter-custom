@@ -1,8 +1,9 @@
 package org.alter.game.model.entity
 
-import dev.openrune.cache.CacheManager
-import dev.openrune.cache.CacheManager.getObject
+import dev.openrune.ServerCacheManager
+import dev.openrune.ServerCacheManager.getObject
 import dev.openrune.definition.type.ObjectType
+import dev.openrune.types.ObjectServerType
 import gg.rsmod.util.toStringHelper
 import org.alter.game.model.Tile
 import org.alter.game.model.World
@@ -74,7 +75,7 @@ abstract class GameObject : Entity {
 
     constructor(id: Int, type: Int, rot: Int, tile: Tile) : this(id, (type shl 2) or rot, tile)
 
-    fun getDef(): ObjectType = getObject(id) ?: run {
+    fun getDef(): ObjectServerType = getObject(id) ?: run {
         println("Object $id not found, using default NPC 0")
         getObject(0)!!
     }
@@ -93,7 +94,7 @@ abstract class GameObject : Entity {
         val def = getDef()
 
         if (def.varbit != -1) {
-            val varbitDef = CacheManager.getVarbit(def.varbit)?: return id
+            val varbitDef = ServerCacheManager.getVarbit(def.varbit)?: return id
             val state = player.varps.getBit(varbitDef.varp, varbitDef.startBit, varbitDef.endBit)
             return def.transforms!![state]
         }

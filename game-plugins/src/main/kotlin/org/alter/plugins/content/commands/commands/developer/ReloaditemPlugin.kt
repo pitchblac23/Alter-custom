@@ -1,6 +1,6 @@
 package org.alter.plugins.content.commands.commands.developer
 
-import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.ServerCacheManager.itemSize
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*

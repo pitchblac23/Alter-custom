@@ -1,7 +1,7 @@
 package org.alter.plugins.content.commands.commands.admin
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
-import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.ServerCacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.itemSize
 import org.alter.api.ext.*
 import org.alter.game.Server
 import org.alter.game.model.World

@@ -1,7 +1,7 @@
 package org.alter.game.service.xtea
 
 import com.google.gson.Gson
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
 import dev.openrune.cache.MAPS
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties

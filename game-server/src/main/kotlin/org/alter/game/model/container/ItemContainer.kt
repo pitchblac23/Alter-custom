@@ -1,6 +1,6 @@
 package org.alter.game.model.container
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.ServerCacheManager.getItem
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.container.key.ContainerKey
 import org.alter.game.model.item.Item

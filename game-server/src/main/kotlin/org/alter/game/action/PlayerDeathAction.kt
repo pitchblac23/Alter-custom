@@ -1,6 +1,6 @@
 package org.alter.game.action
 
-import dev.openrune.cache.CacheManager.getAnim
+import dev.openrune.ServerCacheManager.getAnim
 import net.rsprot.protocol.game.outgoing.sound.MidiJingle
 import org.alter.game.model.attr.KILLER_ATTR
 import org.alter.game.model.entity.Player
@@ -46,7 +46,7 @@ object PlayerDeathAction {
         player.resetFacePawn()
         wait(2)
         player.animate(deathAnim.id)
-        wait(deathAnim.lengthInCycles + 1)
+        wait(deathAnim.animationLength + 1)
         player.getSkills().restoreAll()
         player.animate(-1)
         if (instancedMap == null) {

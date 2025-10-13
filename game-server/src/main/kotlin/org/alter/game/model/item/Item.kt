@@ -1,7 +1,7 @@
 package org.alter.game.model.item
 
-import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getItem
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import gg.rsmod.util.toStringHelper
 import org.bson.Document
 

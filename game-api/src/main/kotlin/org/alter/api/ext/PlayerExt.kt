@@ -1,7 +1,8 @@
 package org.alter.api.ext
 
-import dev.openrune.cache.CacheManager
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.ServerCacheManager
+import dev.openrune.ServerCacheManager.getItem
+import dev.openrune.server.impl.item.WeaponTypes
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull
@@ -33,8 +34,6 @@ import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.model.timer.SKULL_ICON_DURATION_TIMER
 import org.alter.game.rsprot.RsModIndexedObjectProvider
 import org.alter.game.rsprot.RsModObjectProvider
-import org.alter.rscm.RSCM
-import org.alter.weaponType
 import kotlin.math.floor
 
 /**
@@ -620,7 +619,7 @@ fun Player.syncVarp(id: Int) {
 }
 
 fun Player.getVarbit(id: Int): Int {
-    val def = CacheManager.getVarbit(id)!!
+    val def = ServerCacheManager.getVarbit(id)!!
     return varps.getBit(def.varp, def.startBit, def.endBit)
 }
 
@@ -649,7 +648,7 @@ fun Player.setVarbit(
     if (attr.has(CHANGE_LOGGING) && getVarbit(id) != value) {
         message("Varbit: $id was changed from: ${getVarbit(id)} to $value")
     }
-    val def = CacheManager.getVarbit(id)!!
+    val def = ServerCacheManager.getVarbit(id)!!
     varps.setBit(def.varp, def.startBit, def.endBit, value)
 }
 
@@ -661,7 +660,7 @@ fun Player.sendTempVarbit(
     id: Int,
     value: Int,
 ) {
-    val def = CacheManager.getVarbit(id)!!
+    val def = ServerCacheManager.getVarbit(id)!!
     val state = BitManipulation.setBit(varps.getState(def.varp), def.startBit, def.endBit, value)
     val message = if (state in -Byte.MAX_VALUE..Byte.MAX_VALUE) VarpSmall(def.varp, state) else VarpLarge(def.varp, state)
     write(message)
@@ -671,7 +670,7 @@ fun Player.toggleVarbit(id: Int) {
     if (attr.has(CHANGE_LOGGING)) {
         message("Varbit toggle: $id was changed from: ${getVarbit(id)} to ${getVarbit(id) xor 1}")
     }
-    val def = CacheManager.getVarbit(id)!!
+    val def = ServerCacheManager.getVarbit(id)!!
     varps.setBit(def.varp, def.startBit, def.endBit, getVarbit(id) xor 1)
 }
 
@@ -835,8 +834,8 @@ fun Player.sendWeaponComponentInformation() {
         val definition = getItem(weapon.id)!!
         name = definition.name
 
-        panel = 0.coerceAtLeast(WeaponType.valueOf(definition.weaponType).id)
-        setComponentText(593, 3, "Category: " + WeaponCategory.get(definition.category))
+        panel = 0.coerceAtLeast(definition.weapon!!.weaponType.varbitState)
+        setComponentText(593, 3, "Category: " + definition.weapon!!.weaponType.displayName)
     } else {
         name = "Unarmed"
         panel = 0

@@ -1,6 +1,7 @@
 package org.alter.game.model.collision
 
 import dev.openrune.definition.type.ObjectType
+import dev.openrune.types.ObjectServerType
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.GameObject
 import org.rsmod.routefinder.collision.CollisionFlagMap
@@ -46,13 +47,13 @@ public fun CollisionFlagMap.add(coords: Tile, mask: Int): Unit =
 public fun CollisionFlagMap.remove(coords: Tile, mask: Int): Unit =
     remove(coords.x, coords.z, coords.height, mask)
 
-public fun CollisionFlagMap.addLoc(loc: GameObject, type: ObjectType): Unit =
+public fun CollisionFlagMap.addLoc(loc: GameObject, type: ObjectServerType): Unit =
     toggleLoc(loc, type, add = true)
 
-public fun CollisionFlagMap.removeLoc(loc: GameObject, type: ObjectType): Unit =
+public fun CollisionFlagMap.removeLoc(loc: GameObject, type: ObjectServerType): Unit =
     toggleLoc(loc, type, add = false)
 
-public fun CollisionFlagMap.toggleLoc(loc: GameObject, type: ObjectType, add: Boolean) {
+public fun CollisionFlagMap.toggleLoc(loc: GameObject, type: ObjectServerType, add: Boolean) {
     toggleLoc(
         coords = loc.tile,
         width = type.sizeX,

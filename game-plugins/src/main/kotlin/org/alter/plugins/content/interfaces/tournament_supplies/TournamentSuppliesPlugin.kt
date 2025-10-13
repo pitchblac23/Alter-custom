@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.tournament_supplies
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*

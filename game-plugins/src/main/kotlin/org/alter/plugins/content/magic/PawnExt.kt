@@ -1,6 +1,6 @@
 package org.alter.plugins.content.magic
 
-import dev.openrune.cache.CacheManager.getAnim
+import dev.openrune.ServerCacheManager.getAnim
 import org.alter.api.ext.getWildernessLevel
 import org.alter.api.ext.message
 import org.alter.game.model.LockState
@@ -60,7 +60,7 @@ fun Pawn.teleport(
 
         type.endAnimation?.let {
             val def = getAnim(it)
-            wait(def!!.getAnimationLength())
+            wait(def!!.animationLength)
         }
 
         animate(-1)

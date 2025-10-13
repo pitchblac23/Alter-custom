@@ -1,6 +1,6 @@
 package org.alter.game.model.skill
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
 import org.alter.game.model.World
 import org.bson.Document
 import javax.print.Doc
@@ -193,7 +193,7 @@ class SkillSet(val maxSkills: Int) {
 
     companion object {
 
-        fun getSkillName(skill: Int) = CacheManager.getEnum(680)!!.getString(skill)
+        fun getSkillName(skill: Int) = ServerCacheManager.getEnum(680)!!.getString(skill)
 
         /**
          * The maximum amount of xp that can be set on a skill.

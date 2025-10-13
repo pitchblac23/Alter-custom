@@ -1,7 +1,7 @@
 package org.alter.plugins.content.magic
 
-import dev.openrune.cache.CacheManager.getEnumOrDefault
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getEnumOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.alter.api.Skills
 import org.alter.api.ext.getSpellbook

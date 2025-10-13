@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.gameframe.xpdrops
 
-import dev.openrune.cache.CacheManager.getEnumOrDefault
+import dev.openrune.ServerCacheManager.getEnumOrDefault
 import kotlin.math.roundToInt
 import org.alter.api.*
 import org.alter.api.ClientScript

@@ -1,7 +1,7 @@
 package org.alter.plugins.content.commands.commands.developer
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
-import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.ServerCacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.itemSize
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*
@@ -37,7 +37,7 @@ class GetitemstypePlugin(
                 val items_name = def.name.lowercase()
                 // val items_examine = def.examine?.lowercase()
                 if (!def.isPlaceholder && items_name != "null") {
-                    if (def.equipSlot.equals(item_name)) {
+                    if (def.equipment!!.equipSlot.equals(item_name)) {
                         items_list.add(def.id)
                     }
                 }

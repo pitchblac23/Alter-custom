@@ -1,7 +1,7 @@
 package org.alter.plugins.content.items.mystery_box
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
-import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.ServerCacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.itemSize
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*

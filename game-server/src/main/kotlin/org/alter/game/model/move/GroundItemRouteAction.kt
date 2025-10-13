@@ -1,6 +1,6 @@
 package org.alter.game.model.move
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.ServerCacheManager.getItem
 import org.alter.game.model.attr.GROUNDITEM_PICKUP_TRANSACTION
 import org.alter.game.model.attr.INTERACTING_GROUNDITEM_ATTR
 import org.alter.game.model.attr.INTERACTING_ITEM

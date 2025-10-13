@@ -1,11 +1,11 @@
 package org.alter.game.action
 
-import dev.openrune.cache.CacheManager.getItem
-import org.alter.equipType
+
+import dev.openrune.ServerCacheManager.getItem
 import org.alter.game.info.PlayerInfo
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
-import org.alter.skillReqs
+
 
 /**
  * This class is responsible for handling armor equip and unequip related
@@ -91,13 +91,17 @@ object EquipAction {
             println("Invalid Item for: ${item.id}")
             return Result.INVALID_ITEM
         }
+        if (def.equipment == null) {
+            println("Invalid Item Equipment for: ${item.id}")
+            return Result.INVALID_ITEM
+        }
         val plugins = p.world.plugins
 
         // Resets interaction when an item is equipped.
         // This logic does not apply to un-equipping items.
         p.resetFacePawn()
 
-        if (def.equipSlot < 0) {
+        if (def.equipment!!.equipSlot < 0) {
             if (plugins.executeItem(p, item.id, 2)) {
                 return Result.PLUGIN
             }
@@ -108,11 +112,11 @@ object EquipAction {
             return Result.PLUGIN
         }
 
-        val levelRequirements = def.skillReqs
+        val levelRequirements = def.equipment?.requirements
         if (levelRequirements != null) {
             var failed = false
             for (entry in levelRequirements.entries) {
-                val skill = entry.key.toInt()
+                val skill = SKILL_NAMES.indexOf(entry.key.lowercase())
                 val level = entry.value
 
                 if (p.getSkills().getBaseLevel(skill) < level) {
@@ -129,8 +133,8 @@ object EquipAction {
             }
         }
 
-        val equipSlot = def.equipSlot
-        val equipType = def.equipType
+        val equipSlot = def.equipment!!.equipSlot
+        val equipType = def.equipment!!.equipType
         val replace = p.equipment[equipSlot]
         val stackable = def.stackable
 
@@ -194,7 +198,7 @@ object EquipAction {
                     p.writeMessage("Item definition not found for id=${equip.id}")
                     return Result.INVALID_ITEM
                 }
-                if (otherDef.equipType == equipSlot && otherDef.equipType != 0) {
+                if (otherDef.equipment!!.equipType == equipSlot && otherDef.equipment!!.equipType != 0) {
                     unequip.add(i)
                 }
             }

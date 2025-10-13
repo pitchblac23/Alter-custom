@@ -1,8 +1,9 @@
 package org.alter.game.model.entity
 
-import dev.openrune.cache.CacheManager.getNpc
-import dev.openrune.cache.CacheManager.getVarbit
+import dev.openrune.ServerCacheManager.getNpc
+import dev.openrune.ServerCacheManager.getVarbit
 import dev.openrune.definition.type.NpcType
+import dev.openrune.types.NpcServerType
 import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
 import org.alter.game.info.NpcInfo
@@ -106,7 +107,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     /**
      * Gets the [NpcType] corresponding to our [id].
      */
-    val def: NpcType = getNpc(id) ?: run {
+    val def: NpcServerType = getNpc(id) ?: run {
         println("NPC $id not found, using default NPC 0")
         getNpc(0)!!
     }

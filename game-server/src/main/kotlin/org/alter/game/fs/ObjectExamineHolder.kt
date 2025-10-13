@@ -1,8 +1,8 @@
 package org.alter.game.fs
 
-import dev.openrune.cache.CacheManager.getItems
-import dev.openrune.cache.CacheManager.itemSize
-import dev.openrune.cache.CacheManager.objectSize
+import dev.openrune.ServerCacheManager.getItems
+import dev.openrune.ServerCacheManager.itemSize
+import dev.openrune.ServerCacheManager.objectSize
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 

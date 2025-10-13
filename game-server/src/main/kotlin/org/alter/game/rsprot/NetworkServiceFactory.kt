@@ -1,6 +1,6 @@
 package org.alter.game.rsprot
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
 import dev.openrune.filesystem.Cache
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled

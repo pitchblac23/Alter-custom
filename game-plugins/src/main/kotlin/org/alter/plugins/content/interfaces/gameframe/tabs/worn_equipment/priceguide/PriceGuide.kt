@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.priceguide
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import org.alter.api.ClientScript
 import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination

@@ -1,6 +1,7 @@
 package org.alter.game.model.instance
 
 import dev.openrune.definition.type.ObjectType
+import dev.openrune.types.ObjectServerType
 import org.alter.game.model.Area
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile
@@ -273,13 +274,13 @@ class InstancedMapAllocator {
     }
 }
 
-fun ObjectType.getRotatedWidth(obj: GameObject): Int =
+fun ObjectServerType.getRotatedWidth(obj: GameObject): Int =
     when {
         (obj.rot and 0x1) == 1 -> sizeY
         else -> sizeX
     }
 
-fun ObjectType.getRotatedLength(obj: GameObject): Int =
+fun ObjectServerType.getRotatedLength(obj: GameObject): Int =
     when {
         (obj.rot and 0x1) == 1 -> sizeX
         else -> sizeY

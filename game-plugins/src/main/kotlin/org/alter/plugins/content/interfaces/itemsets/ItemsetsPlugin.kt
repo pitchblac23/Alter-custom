@@ -1,7 +1,7 @@
 package org.alter.plugins.content.interfaces.itemsets
 
-import dev.openrune.cache.CacheManager.getEnumOrDefault
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getEnumOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*

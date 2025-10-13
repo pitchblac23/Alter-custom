@@ -1,6 +1,7 @@
 package org.alter.game.model.entity
 
-import dev.openrune.cache.CacheManager.varpSize
+import dev.openrune.ServerCacheManager.varpSize
+import dev.openrune.types.getInt
 import gg.rsmod.util.toStringHelper
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.rsprot.protocol.api.Session
@@ -19,7 +20,7 @@ import net.rsprot.protocol.game.outgoing.sound.SynthSound
 import net.rsprot.protocol.game.outgoing.varp.VarpLarge
 import net.rsprot.protocol.game.outgoing.varp.VarpSmall
 import net.rsprot.protocol.message.OutgoingGameMessage
-import org.alter.bonuses
+import org.alter.ParamMapper
 import org.alter.game.model.*
 import org.alter.game.model.appearance.Appearance
 import org.alter.game.model.attr.CURRENT_SHOP_ATTR
@@ -490,7 +491,23 @@ open class Player(world: World) : Pawn(world) {
         for (i in 0 until equipment.capacity) {
             val item = equipment[i] ?: continue
             val def = item.getDef()
-            def.bonuses.forEachIndexed { index, bonus -> equipmentBonuses[index] += bonus }
+            val bonuses = intArrayOf(
+                def.params!!.getInt(ParamMapper.item.STAB_ATTACK_BONUS),
+                def.params!!.getInt(ParamMapper.item.SLASH_ATTACK_BONUS),
+                def.params!!.getInt(ParamMapper.item.CRUSH_ATTACK_BONUS),
+                def.params!!.getInt(ParamMapper.item.MAGIC_ATTACK_BONUS),
+                def.params!!.getInt(ParamMapper.item.RANGED_ATTACK_BONUS),
+                def.params!!.getInt(ParamMapper.item.STAB_DEFENCE_BONUS),
+                def.params!!.getInt(ParamMapper.item.SLASH_DEFENCE_BONUS),
+                def.params!!.getInt(ParamMapper.item.CRUSH_DEFENCE_BONUS),
+                def.params!!.getInt(ParamMapper.item.MAGIC_DEFENCE_BONUS),
+                def.params!!.getInt(ParamMapper.item.RANGED_DEFENCE_BONUS),
+                def.params!!.getInt(ParamMapper.item.MELEE_STRENGTH),
+                def.params!!.getInt(ParamMapper.item.RANGED_STRENGTH_BONUS),
+                def.params!!.getInt(ParamMapper.item.MAGIC_DAMAGE_STRENGTH) / 10,
+                def.params!!.getInt(ParamMapper.item.PRAYER_BONUS),
+            )
+            bonuses.forEachIndexed { index, bonus -> equipmentBonuses[index] += bonus }
         }
     }
 

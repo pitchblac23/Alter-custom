@@ -1,7 +1,7 @@
 package org.alter.api.ext
 
-import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.CacheManager.getNpc
+import dev.openrune.ServerCacheManager.getItem
+import dev.openrune.ServerCacheManager.getNpc
 import net.rsprot.protocol.game.incoming.resumed.ResumePauseButton
 import org.alter.api.ClientScript
 import org.alter.api.CommonClientScripts

@@ -1,6 +1,6 @@
 package org.alter.plugins.content.mechanics.shops
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import org.alter.api.ext.message
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player

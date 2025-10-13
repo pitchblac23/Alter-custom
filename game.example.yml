@@ -36,14 +36,7 @@ services:
 
   - class: org.alter.game.service.game.ItemMetadataService
 
-  - class: org.alter.game.service.game.NpcMetadataService
-
   - class: org.alter.game.service.game.ObjectMetadataService
-
-  - class: org.alter.service.DumpEntityIdService
-    cache-path: "../data/cache/"
-    output-path: "../game-api/src/main/kotlin/org/alter/api/cfg/"
-    dump: false # Should keep in mind that this can fail. (Aka. On crash fuck up any of the dumping into files
 
   - class: org.alter.game.service.rsa.RsaService
 

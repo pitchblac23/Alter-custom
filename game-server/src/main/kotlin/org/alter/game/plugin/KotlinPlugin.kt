@@ -1,8 +1,8 @@
 package org.alter.game.plugin
 
-import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.CacheManager.getNpc
-import dev.openrune.cache.CacheManager.getObject
+import dev.openrune.ServerCacheManager.getItem
+import dev.openrune.ServerCacheManager.getNpc
+import dev.openrune.ServerCacheManager.getObject
 import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.Server
 import org.alter.game.event.Event

@@ -1,6 +1,6 @@
 package org.alter.plugins.content.items.consumables.food
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getItemOrDefault
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.ext.hasEquipped

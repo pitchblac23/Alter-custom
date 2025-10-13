@@ -1,7 +1,7 @@
 package org.alter.plugins.content.commands.commands.developer
 
-import dev.openrune.cache.CacheManager.getVarbits
-import dev.openrune.cache.CacheManager.varbitSize
+import dev.openrune.ServerCacheManager.getVarbits
+import dev.openrune.ServerCacheManager.varbitSize
 import dev.openrune.definition.type.VarBitType
 import org.alter.api.*
 import org.alter.api.cfg.*

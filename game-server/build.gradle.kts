@@ -11,6 +11,7 @@ application {
 val lib = rootProject.project.libs
 dependencies {
     implementation(project(":cache"))
+    implementation("dev.or2:server-utils:0.7")
     with(lib) {
         implementation(projects.util)
         runtimeOnly(projects.gamePlugins)
@@ -42,41 +43,9 @@ sourceSets {
 @Suppress("ktlint:standard:max-line-length")
 tasks.register("install") {
     description = "Install Alter"
-    val cacheList =
-        listOf(
-            "/cache/main_file_cache.dat2",
-            "/cache/main_file_cache.idx0",
-            "/cache/main_file_cache.idx1",
-            "/cache/main_file_cache.idx2",
-            "/cache/main_file_cache.idx3",
-            "/cache/main_file_cache.idx4",
-            "/cache/main_file_cache.idx5",
-            "/cache/main_file_cache.idx7",
-            "/cache/main_file_cache.idx8",
-            "/cache/main_file_cache.idx9",
-            "/cache/main_file_cache.idx10",
-            "/cache/main_file_cache.idx11",
-            "/cache/main_file_cache.idx12",
-            "/cache/main_file_cache.idx13",
-            "/cache/main_file_cache.idx14",
-            "/cache/main_file_cache.idx15",
-            "/cache/main_file_cache.idx17",
-            "/cache/main_file_cache.idx18",
-            "/cache/main_file_cache.idx19",
-            "/cache/main_file_cache.idx20",
-            "/cache/main_file_cache.idx255",
-            "xteas.json",
-        )
-    cacheList.forEach {
-        val file = File("${rootProject.projectDir}/data/$it")
-        if (!file.exists()) {
-            throw GradleException(
-                "\u001B[45m \u001B[30m Missing file! : $file. Go back to: https://github.com/AlterRSPS/Alter and read how to setup plz >____> It's so easy to set this up and you failed at it wtfff?!?!. \u001B[0m",
-            )
-        }
-    }
+
     dependsOn("runRsaService")
-    dependsOn("decryptMap")
+    dependsOn(":cache:freshCache")
 
     doLast {
         copy {
@@ -97,13 +66,6 @@ tasks.register<JavaExec>("runRsaService") {
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set("org.alter.game.service.rsa.RsaService")
     args = listOf("16", "1024", "./data/rsa/key.pem") // radix, bitcount, rsa pem file
-}
-tasks.register<JavaExec>("decryptMap") {
-    description = "Will decrypt world map and remove xteas"
-    group = "application"
-    workingDir = rootProject.projectDir
-    classpath = sourceSets["main"].runtimeClasspath
-    mainClass.set("org.alter.game.service.mapdecrypter.decryptMap")
 }
 
 task<Copy>("extractDependencies") {
@@ -160,6 +122,7 @@ tasks.register<Tar>("myShadowDistTar") {
         rename("game.example.yml", "game.yml")
     }
 }
+
 tasks.named("build") {
     finalizedBy("extractDependencies")
 }

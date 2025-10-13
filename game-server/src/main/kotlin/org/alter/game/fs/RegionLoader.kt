@@ -1,6 +1,6 @@
 package org.alter.game.fs
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
 import dev.openrune.definition.util.readShortSmart
 import dev.openrune.definition.util.readSmart
 import io.netty.buffer.ByteBuf

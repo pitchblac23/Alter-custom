@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import dev.openrune.cache.CacheManager
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.ServerCacheManager
+import dev.openrune.ServerCacheManager.getItem
 import dev.openrune.definition.type.ItemType
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
@@ -40,168 +40,7 @@ class ItemMetadataService : Service {
 
     var ms: Long = 0
     fun loadAll() {
-        val stopwatch = Stopwatch.createStarted().reset().start()
-        val loaderOptions = LoaderOptions()
-        loaderOptions.codePointLimit = 10 * 1024 * 1024 // 10 MB
-        val yamlFactory =
-            YAMLFactory.builder()
-                .loaderOptions(loaderOptions)
-                .build()
-        val mapper = YAMLMapper(yamlFactory)
 
-        val path = Paths.get("../data/cfg/items")
-
-        try {
-            /**
-             * Loads item examine text from an external CSV file and assigns it to item definitions.
-             *
-             * The file is expected to be located at `../data/cfg/objs.csv` and should contain item IDs
-             * paired with their respective examine text, separated by commas.
-             *
-             * - The first value in each line is treated as the item ID.
-             * - The remaining text after the first comma is treated as the examine description.
-             * - The examine text is assigned to the corresponding item definition if the ID is valid.
-             *
-             * This ensures that item examine information gets loaded from an external source at runtime.
-             */
-            Paths.get("../data/cfg/objs.csv").toFile().forEachLine { line ->
-                val parts = line.split(",")
-                if (parts.size >= 2) {
-                    val id = parts[0].toIntOrNull()
-                    val examine = line.substringAfter(',').trim()
-                    if (id != null) {
-                        val item = getItem(id)
-                        if (item != null) {
-                            item.examine = examine
-                        }
-                    }
-                }
-            }
-
-            /**
-             * Initializes item definitions by loading cached item configurations and updating specific attributes.
-             *
-             * - Adjusts item weight by dividing the cached value by 1000.
-             * - Sets the attack speed using a validated parameter (ID 14).
-             * - Determines the weapon type for equippable items in the weapon slot (equipSlot 3) based on their category.
-             * - Assigns the equip type from the item's appearance override.
-             * - Populates item bonuses using a predefined set of validated parameters.
-             *
-             * This process ensures that item attributes are properly loaded and validated from cache for use in gameplay.
-             */
-            CacheManager.getItems().forEach { (_, item) ->
-                val def = getItem(item.id) ?: return@forEach
-
-                def.weight /= 1000
-                def.extra["equipType"] = def.appearanceOverride1
-
-                def.extra["attackSpeed"] = def.getValidatedParam(
-                    ParamMapper.item.ATTACK_RATE,
-                    7
-                ) // Just in case the Attack Rate would be not configurated in cache.
-
-                if (def.equipSlot == 3) {
-                    def.extra["weaponType"] = WeaponCategory.get(def, def.category)
-                }
-
-                def.extra["bonuses"] =
-                    intArrayOf(
-                        def.getValidatedParam(ParamMapper.item.STAB_ATTACK_BONUS),
-                        def.getValidatedParam(ParamMapper.item.SLASH_ATTACK_BONUS),
-                        def.getValidatedParam(ParamMapper.item.CRUSH_ATTACK_BONUS),
-                        def.getValidatedParam(ParamMapper.item.MAGIC_ATTACK_BONUS),
-                        def.getValidatedParam(ParamMapper.item.RANGED_ATTACK_BONUS),
-                        def.getValidatedParam(ParamMapper.item.STAB_DEFENCE_BONUS),
-                        def.getValidatedParam(ParamMapper.item.SLASH_DEFENCE_BONUS),
-                        def.getValidatedParam(ParamMapper.item.CRUSH_DEFENCE_BONUS),
-                        def.getValidatedParam(ParamMapper.item.MAGIC_DEFENCE_BONUS),
-                        def.getValidatedParam(ParamMapper.item.RANGED_DEFENCE_BONUS),
-                        def.getValidatedParam(ParamMapper.item.MELEE_STRENGTH),
-                        def.getValidatedParam(ParamMapper.item.RANGED_STRENGTH_BONUS),
-                        def.getValidatedParam(ParamMapper.item.MAGIC_DAMAGE_STRENGTH) / 10,
-                        def.getValidatedParam(ParamMapper.item.PRAYER_BONUS),
-                    )
-
-                if (def.params?.containsKey(ParamMapper.item.PRIMARY_SKILL.toString()) == true) {
-                    def.extra["skillReqs"] = Byte2ByteOpenHashMap().apply {
-                        put(
-                            def.getValidatedParam(ParamMapper.item.PRIMARY_SKILL).toByte(),
-                            def.getValidatedParam(ParamMapper.item.PRIMARY_LEVEL).toByte()
-                        )
-                        put(
-                            def.getValidatedParam(ParamMapper.item.SECONDARY_SKILL).toByte(),
-                            def.getValidatedParam(ParamMapper.item.SECONDARY_LEVEL).toByte()
-                        )
-                        put(
-                            def.getValidatedParam(ParamMapper.item.TERTIARY_SKILL).toByte(),
-                            def.getValidatedParam(ParamMapper.item.TERTIARY_LEVEL).toByte()
-                        )
-                        put(
-                            def.getValidatedParam(ParamMapper.item.QUATERNARY_SKILL).toByte(),
-                            def.getValidatedParam(ParamMapper.item.QUATERNARY_LEVEL).toByte()
-                        )
-                    }
-                }
-            }
-
-            /**
-             * Loads and assigns render animations to item definitions from external JSON files.
-             *
-             * - `bas_mappings.json` maps animation identifiers to their corresponding animation data (e.g., ready, walk, run animations).
-             * - `item_bas.json` maps item IDs to the animation identifiers used in the mappings.
-             *
-             * The process:
-             * - Each item ID from `item_bas.json` is matched to its animation data from `bas_mappings.json`.
-             * - If a matching animation is found, it populates the item's render animations array with the relevant animation IDs.
-             *
-             * This ensures that items have appropriate movement and action animations during gameplay.
-             */
-            val animationMap: Map<String, AnimationData> =
-                mapper.readValue(File("../data/cfg/items/renderAnimations/bas_mappings.json").readText())
-            val valueMap: Map<Int, Int> = ObjectMapper().apply {
-                findAndRegisterModules()
-            }.readValue(File("../data/cfg/items/renderAnimations/item_bas.json").readText())
-            valueMap.forEach { (item, animMap) ->
-                val animation = animationMap[animMap.toString()] ?: return@forEach
-                val def = getItem(item)?: return@forEach
-                def.extra["renderAnimations"] = intArrayOf(
-                    animation.readyAnim,
-                    animation.turnAnim,
-                    animation.walkAnim,
-                    animation.walkAnimBack,
-                    animation.walkAnimLeft,
-                    animation.walkAnimRight,
-                    animation.runAnim,
-                )
-            }
-
-            /**
-             * Loads item override metadata from all files within the "itemOverrides" directory.
-             *
-             * - The directory is resolved relative to the provided path.
-             * - Files are processed in parallel for efficient loading.
-             * - Each file is deserialized into a `Metadata` object and passed to the `load` function.
-             *
-             * This process ensures that custom item attributes or behaviors are loaded at runtime.
-             *
-             * @TODO Add better context as to why file could not be loaded.
-             * @TODO Add support for remaining [`def`] properties override method.
-             */
-            Files.walk(path.resolve("itemOverrides")).parallel().filter { it.toFile().isFile }.forEach { file ->
-                if (file.fileName.toString().contains("FileExample.yml")) return@forEach
-
-                val content = file.toFile().readText()
-                content.split(Regex("(?m)^---\\s*$"))
-                    .filter { it.isNotBlank() }.forEach { document ->
-                        val data = mapper.readValue(document, Metadata::class.java)
-                        load(data)
-                    }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        ms = stopwatch.elapsed(TimeUnit.MILLISECONDS)
     }
 
     fun load(item: Metadata) {
@@ -240,10 +79,6 @@ class ItemMetadataService : Service {
              *
              *  TODO def.equipSound = equipment.equipSound
              */
-            if (slots != null) {
-                def.equipSlot = slots.slot
-                def.extra["equipType"] = slots.secondary
-            }
 
             if (equipment.skillReqs != null) {
                 val reqs = Byte2ByteOpenHashMap()

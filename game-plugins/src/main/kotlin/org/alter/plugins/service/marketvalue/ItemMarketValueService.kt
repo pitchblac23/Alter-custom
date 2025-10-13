@@ -1,7 +1,7 @@
 package org.alter.plugins.service.marketvalue
 
-import dev.openrune.cache.CacheManager.getItemOrDefault
-import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.ServerCacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.itemSize
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging

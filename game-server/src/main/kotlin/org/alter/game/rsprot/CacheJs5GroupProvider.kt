@@ -1,6 +1,6 @@
 package org.alter.game.rsprot
 
-import dev.openrune.cache.CacheManager
+import dev.openrune.ServerCacheManager
 import dev.openrune.filesystem.Cache
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled

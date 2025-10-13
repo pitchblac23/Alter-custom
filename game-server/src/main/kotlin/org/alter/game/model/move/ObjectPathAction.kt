@@ -1,6 +1,6 @@
 package org.alter.game.model.move
 
-import dev.openrune.cache.CacheManager.getObject
+import dev.openrune.ServerCacheManager.getObject
 import gg.rsmod.util.AabbUtil
 import gg.rsmod.util.DataConstants
 import net.rsprot.protocol.game.outgoing.misc.player.SetMapFlag

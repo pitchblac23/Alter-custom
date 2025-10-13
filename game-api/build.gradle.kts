@@ -9,6 +9,7 @@ plugins {
 }
 
 dependencies {
+    implementation("dev.or2:server-utils:0.7")
     implementation(project(":cache"))
     implementation(project(":game-server"))
     implementation(project(":util"))

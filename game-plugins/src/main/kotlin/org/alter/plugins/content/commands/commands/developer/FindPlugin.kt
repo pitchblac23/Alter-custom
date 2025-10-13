@@ -1,12 +1,12 @@
 package org.alter.plugins.content.commands.commands.developer
 
-import dev.openrune.cache.CacheManager
-import dev.openrune.cache.CacheManager.getItemOrDefault
-import dev.openrune.cache.CacheManager.getNpcs
-import dev.openrune.cache.CacheManager.getObjects
-import dev.openrune.cache.CacheManager.itemSize
-import dev.openrune.cache.CacheManager.npcSize
-import dev.openrune.cache.CacheManager.objectSize
+import dev.openrune.ServerCacheManager
+import dev.openrune.ServerCacheManager.getItemOrDefault
+import dev.openrune.ServerCacheManager.getNpcs
+import dev.openrune.ServerCacheManager.getObjects
+import dev.openrune.ServerCacheManager.itemSize
+import dev.openrune.ServerCacheManager.npcSize
+import dev.openrune.ServerCacheManager.objectSize
 import gg.rsmod.util.Stopwatch
 import java.util.concurrent.TimeUnit
 import org.alter.api.*
@@ -51,7 +51,7 @@ class FindPlugin(
                     val stopwatch = Stopwatch.createStarted()
                     when (entity) {
                         "item", "i" -> {
-                            val itemDefs = (0 until itemSize()).map { CacheManager.getItems().get(it) }.map { it?.id to it?.name }.toTypedArray()
+                            val itemDefs = (0 until itemSize()).map { ServerCacheManager.getItems().get(it) }.map { it?.id to it?.name }.toTypedArray()
                             val list = search(keyword, itemDefs)
                             list.forEach {
                                 var name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)

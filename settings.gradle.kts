@@ -25,6 +25,7 @@ include(":game-plugins")
 include(":game-api")
 include(":game-server")
 include(":plugins")
+include(":cache")
 
 includePlugins(project(":plugins"))
 fun includePlugins(pluginProject: ProjectDescriptor) {
@@ -46,3 +47,5 @@ fun searchPlugin(parentName: String, pluginRoot: Path, currentPath: Path) {
     val pluginName = relativePath.toString().replace(File.separator, ":")
     include("$parentName:$pluginName")
 }
+
+include("cache")

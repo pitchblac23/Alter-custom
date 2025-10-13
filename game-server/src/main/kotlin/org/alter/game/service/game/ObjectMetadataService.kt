@@ -1,5 +1,6 @@
 package org.alter.game.service.game
 
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
@@ -18,6 +19,7 @@ class ObjectMetadataService : Service {
     private lateinit var path: Path
 
     override fun init(
+        cache: Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,

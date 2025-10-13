@@ -1,5 +1,6 @@
 package org.alter.game.service.rsa
 
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.alter.game.model.World
@@ -38,6 +39,7 @@ class RsaService : Service {
     private var radix = -1
 
     override fun init(
+        cache: Cache,
         server: org.alter.game.Server,
         world: World,
         serviceProperties: ServerProperties,
@@ -56,7 +58,7 @@ class RsaService : Service {
                 createPair(bitCount = serviceProperties.getOrDefault("bit-count", 2048))
                 println("Please follow the instructions on console and continue once you've done so.")
                 scanner.next()
-                init(server, world, serviceProperties)
+                init(cache,server, world, serviceProperties)
             } else {
                 throw RuntimeException("Private RSA key was not found! Please follow the instructions on console.")
             }

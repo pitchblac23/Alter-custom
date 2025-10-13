@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.priceguide
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import org.alter.api.ClientScript
 import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination
@@ -75,7 +75,7 @@ object PriceGuide {
         val guideContainer = p.attr[GUIDE_CONTAINER] ?: return
         val invContainer = p.attr[TEMP_INV_CONTAINER] ?: return
 
-        if (!getItem(item).isTradeable) {
+        if (!getItemOrDefault(item).isTradeable) {
             p.message("You cannot trade that item.")
             return
         }
@@ -109,7 +109,7 @@ object PriceGuide {
         for (i in 0 until invContainer.capacity) {
             val item = invContainer[i] ?: continue
 
-            if (!getItem(item.id).isTradeable) {
+            if (!getItemOrDefault(item.id).isTradeable) {
                 anyUntradeables = true
                 continue
             }
@@ -217,7 +217,7 @@ object PriceGuide {
         p: Player,
         item: Int,
     ) {
-        val def = getItem(item)
+        val def = getItemOrDefault(item)
         val valueService = p.world.getService(ItemMarketValueService::class.java)
         val cost = valueService?.get(item) ?: def.cost
 
@@ -243,7 +243,7 @@ object PriceGuide {
         val costs = Array(size = guideContainer.capacity) { 0 }
         guideContainer.forEachIndexed { index, item ->
             if (item != null) {
-                val cost = valueService?.get(item.id) ?: getItem(item.id).cost
+                val cost = valueService?.get(item.id) ?: getItemOrDefault(item.id).cost
                 costs[index] = cost
             }
         }

@@ -1,6 +1,7 @@
 package org.alter.game.service.game
 
 import dev.openrune.cache.CacheManager.getNpcs
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import org.alter.game.Server
 import org.alter.game.fs.DefinitionSet
@@ -18,6 +19,7 @@ class NpcMetadataService : Service {
     private lateinit var path: Path
 
     override fun init(
+        cache: Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,

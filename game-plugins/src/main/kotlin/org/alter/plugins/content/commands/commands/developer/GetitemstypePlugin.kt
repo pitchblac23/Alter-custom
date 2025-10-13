@@ -1,6 +1,6 @@
 package org.alter.plugins.content.commands.commands.developer
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.api.*
 import org.alter.api.cfg.*
@@ -33,7 +33,7 @@ class GetitemstypePlugin(
                 args[0].toInt() // Search trough and if it matches in examine / name add to array and spawn all to bank | $ For spaces
 
             for (i in 0 until itemSize()) {
-                val def = getItem(Item(i).toUnnoted().id)
+                val def = getItemOrDefault(Item(i).toUnnoted().id)
                 val items_name = def.name.lowercase()
                 // val items_examine = def.examine?.lowercase()
                 if (!def.isPlaceholder && items_name != "null") {

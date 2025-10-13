@@ -126,7 +126,7 @@ object GroundItemRouteAction {
         } else {
             val handled = p.world.plugins.executeGroundItem(p, groundItem.item, opt)
             if (!handled && p.world.devContext.debugItemActions) {
-                val definition = getItem(groundItem.item)
+                val definition = getItem(groundItem.item)?: return
                 p.writeMessage("Unhandled ground item action: [item=${groundItem.item}, option=[$opt, ${definition.options[opt - 1]}]]")
             }
         }

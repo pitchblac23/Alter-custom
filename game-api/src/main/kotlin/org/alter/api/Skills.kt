@@ -38,7 +38,7 @@ object Skills {
         world: World,
         skill: Int,
     ): String {
-        val enum = getEnum(680)
+        val enum = getEnum(680)!!
         return enum.getString(skill)
     }
 

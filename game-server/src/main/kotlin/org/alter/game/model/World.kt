@@ -2,6 +2,7 @@ package org.alter.game.model
 
 import dev.openrune.cache.CacheManager.getItem
 import dev.openrune.cache.CacheManager.getNpc
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -434,7 +435,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun spawn(item: GroundItem) {
         val tile = item.tile
         val chunk = chunks.getOrCreate(tile)
-        val def = getItem(item.item)
+        val def = getItem(item.item)?: return
         if (def.stackable) {
             val oldItem =
                 chunk.getEntities<GroundItem>(tile, EntityType.GROUND_ITEM).firstOrNull {
@@ -619,8 +620,8 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     ) {
         val examine =
             when (type) {
-                ExamineEntityType.ITEM -> getItem(id).examine
-                ExamineEntityType.NPC -> getNpc(id).examine
+                ExamineEntityType.ITEM -> getItem(id)?.examine
+                ExamineEntityType.NPC -> getNpc(id)?.examine
                 ExamineEntityType.OBJECT -> ObjectExamineHolder.EXAMINES.get(id)
             }
 
@@ -662,6 +663,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
      */
     internal fun loadServices(
         server: Server,
+        cache : Cache,
         gameProperties: ServerProperties,
     ) {
         val stopwatch = Stopwatch.createUnstarted()
@@ -678,7 +680,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
             }
 
             stopwatch.reset().start()
-            service.init(server, this, ServerProperties().loadMap(properties))
+            service.init(cache,server, this, ServerProperties().loadMap(properties))
             stopwatch.stop()
 
             services.add(service)

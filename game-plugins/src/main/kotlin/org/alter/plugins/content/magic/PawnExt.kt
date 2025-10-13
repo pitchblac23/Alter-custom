@@ -60,7 +60,7 @@ fun Pawn.teleport(
 
         type.endAnimation?.let {
             val def = getAnim(it)
-            wait(def.cycleLength)
+            wait(def!!.getAnimationLength())
         }
 
         animate(-1)

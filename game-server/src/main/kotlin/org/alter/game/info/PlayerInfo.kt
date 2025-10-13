@@ -7,6 +7,7 @@ import org.alter.game.model.Tile
 import org.alter.game.model.appearance.Gender
 import org.alter.game.model.entity.Player
 import org.alter.game.model.move.MovementType
+import org.alter.renderAnimations
 
 class PlayerInfo(var player: Player) {
     val info = player.playerInfo.avatar.extendedInfo
@@ -25,12 +26,17 @@ class PlayerInfo(var player: Player) {
                     info.setWornObj(i, -1, -1, -1)
                 } else {
                     val config = CacheManager.getItem(obj.id)
+                    if (config == null) {
+                        info.setWornObj(i, -1, -1, -1)
+                        continue
+                    }
+
                     info.setWornObj(i, obj.id, config.appearanceOverride1, config.appearanceOverride2)
                 }
             }
             val weapon = player.equipment[3]
             if (weapon != null) {
-                val renderAnimationSet = CacheManager.getItem(weapon.id).renderAnimations
+                val renderAnimationSet = CacheManager.getItem(weapon.id)?.renderAnimations
                 if (renderAnimationSet != null) {
                     animSequance = AnimationSet(
                         readyAnim = renderAnimationSet[0],
@@ -48,7 +54,7 @@ class PlayerInfo(var player: Player) {
                 info.setColour(i, player.appearance.colors[i])
             }
         } else {
-            val def = CacheManager.getNpc(player.getTransmogId())
+            val def = CacheManager.getNpc(player.getTransmogId())?: return
             animSequance = AnimationSet(
                 readyAnim = def.standAnim,
                 walkAnim = def.walkAnim,

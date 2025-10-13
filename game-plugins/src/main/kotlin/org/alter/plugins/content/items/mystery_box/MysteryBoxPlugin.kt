@@ -1,6 +1,6 @@
 package org.alter.plugins.content.items.mystery_box
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.api.*
 import org.alter.api.cfg.*
@@ -34,10 +34,10 @@ class MysteryBoxPlugin(
         onItemOption("item.mystery_box", 2) {
             val itemLimit = itemSize()
             var item = world.random(0..itemLimit)
-            var itemDef = getItem(item)
+            var itemDef = getItemOrDefault(item)
             do {
                 item = world.random(0..itemLimit)
-                itemDef = getItem(item)
+                itemDef = getItemOrDefault(item)
             } while (
                 itemDef.name.isEmpty() ||
                 itemDef.name.lowercase() == "null" ||
@@ -56,7 +56,7 @@ class MysteryBoxPlugin(
             repeat(700) {
                 val getItemRange = itemSize()
                 var getRandId = world.random(0..getItemRange)
-                val itemDefs = getItem(getRandId)
+                val itemDefs = getItemOrDefault(getRandId)
                 if (!itemDefs.isPlaceholder && !itemDefs.noted && itemDefs.name != "" && itemDefs.name.isNotEmpty() && itemDefs.name != "null") {
                     player.bank.add(getRandId, 10000)
                 }

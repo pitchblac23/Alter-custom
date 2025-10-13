@@ -1,6 +1,6 @@
 package org.alter.plugins.content.items.lootingbag
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import org.alter.api.*
 import org.alter.api.ClientScript
 import org.alter.api.CommonClientScripts
@@ -326,7 +326,7 @@ class LootingBagPlugin(
 
         container.forEachIndexed { index, item ->
             if (item != null) {
-                prices[index] = marketService?.get(item.id) ?: getItem(item.id).cost
+                prices[index] = marketService?.get(item.id) ?: getItemOrDefault(item.id).cost
             }
         }
 

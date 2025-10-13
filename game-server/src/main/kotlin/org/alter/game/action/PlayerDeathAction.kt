@@ -32,7 +32,7 @@ object PlayerDeathAction {
 
     private suspend fun QueueTask.death(player: Player) {
         val world = player.world
-        val deathAnim = getAnim(DEATH_ANIMATION)
+        val deathAnim = getAnim(DEATH_ANIMATION)?: return
         val instancedMap = world.instanceAllocator.getMap(player.tile)
         player.write(MidiJingle(90))
         player.damageMap.getMostDamage()?.let { killer ->
@@ -46,7 +46,7 @@ object PlayerDeathAction {
         player.resetFacePawn()
         wait(2)
         player.animate(deathAnim.id)
-        wait(deathAnim.cycleLength + 1)
+        wait(deathAnim.lengthInCycles + 1)
         player.getSkills().restoreAll()
         player.animate(-1)
         if (instancedMap == null) {

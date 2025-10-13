@@ -1,6 +1,7 @@
 package org.alter.game.model.item
 
 import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import gg.rsmod.util.toStringHelper
 import org.bson.Document
 
@@ -44,7 +45,7 @@ class Item(val id: Int, var amount: Int = 1) {
      */
     fun getName(): String = toUnnoted().getDef().name
 
-    fun getDef() = getItem(id)
+    fun getDef() = getItem(id)?: getItemOrDefault(0)
 
     /**
      * Returns true if [attr] contains any value.

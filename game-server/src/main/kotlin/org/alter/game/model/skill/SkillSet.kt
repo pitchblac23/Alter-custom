@@ -193,7 +193,7 @@ class SkillSet(val maxSkills: Int) {
 
     companion object {
 
-        fun getSkillName(skill: Int) = CacheManager.getEnum(680).getString(skill)
+        fun getSkillName(skill: Int) = CacheManager.getEnum(680)!!.getString(skill)
 
         /**
          * The maximum amount of xp that can be set on a skill.

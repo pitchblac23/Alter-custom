@@ -299,7 +299,7 @@ class ItemContainer(val key: ContainerKey) : Iterable<Item?> {
         forceNoStack: Boolean = false,
         beginSlot: Int = -1,
     ): ItemTransaction {
-        val def = getItem(item)
+        val def = getItem(item)?: return ItemTransaction(amount,0,emptyList())
 
         /*
          * Should the item stack?

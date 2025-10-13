@@ -1,7 +1,8 @@
 package org.alter.plugins.service.marketvalue
 
-import dev.openrune.cache.CacheManager.getItems
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import dev.openrune.cache.CacheManager.itemSize
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
@@ -16,13 +17,14 @@ class ItemMarketValueService : Service {
     private val values = Int2IntOpenHashMap()
 
     override fun init(
+        cache : Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,
     ) {
         val items = itemSize()
         for (i in 0 until items) {
-            val def = getItems().get(i) ?: continue
+            val def = getItemOrDefault(i) ?: continue
 
             if (!def.noted && def.name.isNotBlank()) {
                 values[i] = def.cost

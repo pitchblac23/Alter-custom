@@ -1,7 +1,7 @@
 package org.alter.plugins.content.magic
 
-import dev.openrune.cache.CacheManager.getEnum
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getEnumOrDefault
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import org.alter.api.Skills
 import org.alter.api.ext.getSpellbook
@@ -100,34 +100,34 @@ object MagicSpells {
     fun isLoaded(): Boolean = metadata.isNotEmpty()
 
     fun loadSpellRequirements(world: World) {
-        val spellBookEnums = getEnum(SPELLBOOK_POINTER_ENUM)
+        val spellBookEnums = getEnumOrDefault(SPELLBOOK_POINTER_ENUM)
         val spellBooks = spellBookEnums.values.values.map { it as Int }
         spellBooks.forEach { spellBook ->
-            val spellBookEnum = getEnum(spellBook)
+            val spellBookEnum = getEnumOrDefault(spellBook)
             val spellItems = spellBookEnum.values.values.map { it as Int }
 
             for (item in spellItems) {
-                val itemDef = getItem(item)
+                val itemDef = getItemOrDefault(item)
                 val params = itemDef.params ?: continue
 
-                val spellbook = params[SPELL_SPELLBOOK_KEY] as Int
-                val name = params[SPELL_NAME_KEY] as String
-                val lvl = params[SPELL_LVL_REQ_KEY] as Int
-                val componentHash = params[SPELL_COMPONENT_HASH_KEY] as Int
-                val spellType = params[SPELL_TYPE_KEY] as Int
+                val spellbook = params[SPELL_SPELLBOOK_KEY.toString()] as Int
+                val name = params[SPELL_NAME_KEY.toString()] as String
+                val lvl = params[SPELL_LVL_REQ_KEY.toString()] as Int
+                val componentHash = params[SPELL_COMPONENT_HASH_KEY.toString()] as Int
+                val spellType = params[SPELL_TYPE_KEY.toString()] as Int
 
                 val interfaceId = componentHash shr 16
                 val component = componentHash and 0xFFFF
                 val runes = mutableListOf<Item>()
 
-                if (params.containsKey(SPELL_RUNE1_ID_KEY)) {
-                    runes.add(Item(params[SPELL_RUNE1_ID_KEY] as Int, params[SPELL_RUNE1_AMT_KEY] as Int))
+                if (params.containsKey(SPELL_RUNE1_ID_KEY.toString())) {
+                    runes.add(Item(params[SPELL_RUNE1_ID_KEY.toString()] as Int, params[SPELL_RUNE1_AMT_KEY.toString()] as Int))
                 }
-                if (params.containsKey(SPELL_RUNE2_ID_KEY)) {
-                    runes.add(Item(params[SPELL_RUNE2_ID_KEY] as Int, params[SPELL_RUNE2_AMT_KEY] as Int))
+                if (params.containsKey(SPELL_RUNE2_ID_KEY.toString())) {
+                    runes.add(Item(params[SPELL_RUNE2_ID_KEY.toString()] as Int, params[SPELL_RUNE2_AMT_KEY.toString()] as Int))
                 }
-                if (params.containsKey(SPELL_RUNE3_ID_KEY)) {
-                    runes.add(Item(params[SPELL_RUNE3_ID_KEY] as Int, params[SPELL_RUNE3_AMT_KEY] as Int))
+                if (params.containsKey(SPELL_RUNE3_ID_KEY.toString())) {
+                    runes.add(Item(params[SPELL_RUNE3_ID_KEY.toString()] as Int, params[SPELL_RUNE3_AMT_KEY.toString()] as Int))
                 }
 
                 val spell = SpellMetadata(interfaceId, component, item, spellbook, spellType, name, lvl, runes)

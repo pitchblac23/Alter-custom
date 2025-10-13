@@ -1,6 +1,6 @@
 package org.alter.game.service.game
 
-import dev.openrune.cache.filestore.definition.data.ItemType
+import dev.openrune.definition.type.ItemType
 
 enum class WeaponCategory(val id: List<Int>, val weaponType: Int) {
     BOW(listOf(64, 106),3),

@@ -1,6 +1,6 @@
 package org.alter.game.model.collision
 
-import dev.openrune.cache.filestore.definition.data.ObjectType
+import dev.openrune.definition.type.ObjectType
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.GameObject
 import org.rsmod.routefinder.collision.CollisionFlagMap

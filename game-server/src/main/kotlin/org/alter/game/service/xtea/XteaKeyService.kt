@@ -3,6 +3,7 @@ package org.alter.game.service.xtea
 import com.google.gson.Gson
 import dev.openrune.cache.CacheManager
 import dev.openrune.cache.MAPS
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
@@ -29,6 +30,7 @@ class XteaKeyService : Service, XteaProvider {
         get() = keys.keys.toIntArray()
 
     override fun init(
+        cache: Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,
@@ -43,7 +45,7 @@ class XteaKeyService : Service, XteaProvider {
             )
         }
 
-        loadKeys(world)
+        loadKeys(cache,world)
     }
 
     fun get(region: Int): IntArray {
@@ -54,7 +56,7 @@ class XteaKeyService : Service, XteaProvider {
         return keys[region]!!
     }
 
-    private fun loadKeys(world: World) {
+    private fun loadKeys(cache: Cache,world: World) {
         /*
          * Get the total amount of valid regions and which keys we are missing.
          */
@@ -62,7 +64,6 @@ class XteaKeyService : Service, XteaProvider {
         var totalRegions = 0
         val missingKeys = mutableListOf<Int>()
 
-        val cache = CacheManager.cache
         for (regionId in 0 until maxRegions) {
             val x = regionId shr 8
             val z = regionId and 0xFF

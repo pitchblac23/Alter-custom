@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.gameframe.xpdrops
 
-import dev.openrune.cache.CacheManager.getEnum
+import dev.openrune.cache.CacheManager.getEnumOrDefault
 import kotlin.math.roundToInt
 import org.alter.api.*
 import org.alter.api.ClientScript
@@ -49,7 +49,7 @@ class XpSettingsComponentsPlugin(
         val GOAL_COMPONENT_ID = 33
         val TRACKER_SET = 30
 
-        val skillEnum = getEnum(681)
+        val skillEnum = getEnumOrDefault(681)
 
         listOf(
             Pair(POSITION_DROPDOWN_ID, Varbit.EXPERIENCE_TRACKER_POSITION),
@@ -99,7 +99,7 @@ class XpSettingsComponentsPlugin(
             val slot = player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL)
             when {
                 slot in 0..23 -> {
-                    val skillEnum = getEnum(681)
+                    val skillEnum = getEnumOrDefault(681)
                     player.setVarp(
                         261,
                         player.getSkills()[skillEnum.getInt(player.getVarbit(Varbit.EXPERIENCE_TRACKER_CONFIGURED_SKILL))].xp.roundToInt(),

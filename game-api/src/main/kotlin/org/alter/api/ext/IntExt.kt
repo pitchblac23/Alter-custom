@@ -85,9 +85,9 @@ fun Int.toItem(): Item = Item(this)
 
 fun Int.getItemName(lowercase: Boolean = false): String {
     return if (lowercase) {
-        getItem(this).name.lowercase()
+        getItem(this)!!.name.lowercase()
     } else {
-        getItem(this).name
+        getItem(this)!!.name
     }
 }
 
@@ -96,9 +96,9 @@ fun Int.getObjName(
     lowercase: Boolean = false,
 ): String {
     return if (lowercase) {
-        getObject(this).name!!.lowercase()
+        getObject(this)!!.name!!.lowercase()
     } else {
-        getObject(this).name!!
+        getObject(this)!!.name!!
     }
 }
 

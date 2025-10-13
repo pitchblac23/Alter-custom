@@ -1,5 +1,6 @@
 package org.alter.plugins.service.restapi
 
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import org.alter.game.Server
 import org.alter.game.model.World
@@ -10,6 +11,7 @@ import spark.Spark.stop
 
 class RestApiService : Service {
     override fun init(
+        cache : Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,

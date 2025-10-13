@@ -62,9 +62,9 @@ object NpcDeathAction {
          * @TODO add interruption for this block if we would want to execute a plugin during it's death animation
          */
         deathAnimation.forEach { anim ->
-            val def = getAnim(anim)
-            npc.animate(def.id, def.cycleLength)
-            wait(def.cycleLength)
+            val def = getAnim(anim)?: return
+            npc.animate(def.id, def.lengthInCycles)
+            wait(def.lengthInCycles)
         }
         world.plugins.executeNpcDeath(npc)
         world.plugins.anyNpcDeath.forEach {

@@ -1,6 +1,6 @@
 package org.alter.plugins.content.commands.commands.admin
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import dev.openrune.cache.CacheManager.itemSize
 import org.alter.api.ext.*
 import org.alter.game.Server
@@ -28,7 +28,7 @@ class ItemPlugin(
                 val item = values[0].toInt()
                 val amount = if (values.size > 1) Math.min(Int.MAX_VALUE.toLong(), values[1].parseAmount()).toInt() else 1
                 if (item < itemSize()) {
-                    val def = getItem(Item(item).toUnnoted().id)
+                    val def = getItemOrDefault(Item(item).toUnnoted().id)
                     val result = player.inventory.add(item = item, amount = amount, assureFullInsertion = false)
                     player.message(
                         "You have spawned <col=801700>${DecimalFormat().format(result.completed)} x ${def.name}</col></col> ($item).",

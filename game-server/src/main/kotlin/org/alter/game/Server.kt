@@ -1,6 +1,8 @@
 package org.alter.game
 
+import dev.openrune.OsrsCacheProvider
 import dev.openrune.cache.CacheManager
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -31,6 +33,8 @@ import java.util.concurrent.TimeUnit
  */
 @OptIn(ExperimentalStdlibApi::class)
 class Server {
+
+
     /**
      * The properties specific to our API.
      */
@@ -134,7 +138,9 @@ class Server {
          * Load the file store.
          */
         individualStopwatch.reset().start()
-        CacheManager.init(filestore, gameContext.revision)
+        cache = Cache.load(filestore)
+        cacheProvider = OsrsCacheProvider(cache,gameProperties.get<Int>("revision")!!)
+        CacheManager.init(cacheProvider)
         logger.info{"Loaded filestore from path ${filestore} in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."}
 
         val world = World(gameContext, devContext)
@@ -147,12 +153,12 @@ class Server {
         /*
          * Load the services required to run the server.
          */
-        world.loadServices(this, gameProperties)
+        world.loadServices(this, cache,gameProperties)
 
         val groupProvider = CacheJs5GroupProvider()
-        groupProvider.load()
+        groupProvider.load(cache)
         val port = gameProperties.getOrDefault("game-port", 43594)
-        val network = NetworkServiceFactory(groupProvider, world, listOf(port), listOf(OldSchoolClientType.DESKTOP))
+        val network = NetworkServiceFactory(groupProvider, world, cache,listOf(port), listOf(OldSchoolClientType.DESKTOP))
         world.network = network.build()
 
         world.init()
@@ -183,6 +189,7 @@ class Server {
          */
         individualStopwatch.reset().start()
         world.plugins.init(
+            cache = cache,
             server = this,
             world = world,
             jarPluginsDirectory = gameProperties.getOrDefault("plugin-packed-path", "../plugins"),
@@ -221,5 +228,7 @@ class Server {
 
     companion object {
         val logger = KotlinLogging.logger {}
+        lateinit var cacheProvider : OsrsCacheProvider
+        lateinit var cache : Cache
     }
 }

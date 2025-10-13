@@ -1,5 +1,6 @@
 package org.alter.game.plugin
 
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import io.github.classgraph.ClassGraph
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -414,12 +415,13 @@ class PluginRepository(
      * Initiates and populates all our plugins.
      */
     fun init(
+        cache : Cache,
         server: Server,
         world: World,
         jarPluginsDirectory: String,
     ) {
         loadPlugins(server, jarPluginsDirectory)
-        loadServices(server, world)
+        loadServices(cache,server, world)
         spawnEntities()
     }
 
@@ -510,11 +512,12 @@ class PluginRepository(
      * Load and initialise [Service]s given to us by [KotlinPlugin]s.
      */
     private fun loadServices(
+        cache: Cache,
         server: Server,
         world: World,
     ) {
         services.forEach { service ->
-            service.init(server, world, ServerProperties())
+            service.init(cache,server, world, ServerProperties())
             world.services.add(service)
         }
 

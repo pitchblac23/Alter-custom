@@ -293,10 +293,13 @@ object ObjectPathAction {
         return Tile(nearestX, nearestZ, objectTile.height)
     }
     private fun faceObj(
-        pawn: Pawn,
+        pawn: Player,
         obj: GameObject,
     ) {
-        val def = getObject(obj.id)
+        val def = getObject(obj.id) ?: run {
+            pawn.writeMessage("Object definition not found for id=${obj.id}")
+            return
+        }
         val rot = obj.rot
         val type = obj.type
 

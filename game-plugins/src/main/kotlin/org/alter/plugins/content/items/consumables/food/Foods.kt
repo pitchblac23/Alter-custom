@@ -1,6 +1,6 @@
 package org.alter.plugins.content.items.consumables.food
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import org.alter.api.EquipmentType
 import org.alter.api.Skills
 import org.alter.api.ext.hasEquipped
@@ -52,7 +52,7 @@ object Foods {
             }
 
         val oldHp = p.getSkills().getCurrentLevel(Skills.HITPOINTS)
-        val foodName = getItem(getRSCM(food.item)).name
+        val foodName = getItemOrDefault(getRSCM(food.item)).name
 
         p.animate(anim)
         p.playSound(EAT_FOOD_SOUND)

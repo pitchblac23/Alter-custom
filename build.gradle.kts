@@ -34,6 +34,7 @@ allprojects {
         implementation(lib.jbcrypt)
         implementation(lib.gson)
         implementation(lib.netty.all)
+        implementation("dev.or2:all:2.2.3")
         implementation(lib.kotlinx.serialization.core)
         testImplementation(lib.junit)
         testImplementation(lib.kotlin.test.junit)

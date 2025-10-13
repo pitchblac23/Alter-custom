@@ -224,7 +224,10 @@ abstract class KotlinPlugin(
         logic: (Plugin).() -> Unit,
     ) {
         val opt = option.lowercase()
-        val def = getItem(getRSCM(item))
+        val def = getItem(getRSCM(item))?: run {
+            println("Object not found for id=$item")
+            return
+        }
         val option = def.interfaceOptions.indexOfFirst { it?.lowercase() == opt }
         check(option != -1) {
             "Option \"$option\" not found for item $item [options=${
@@ -282,7 +285,10 @@ abstract class KotlinPlugin(
         logic: (Plugin).() -> Unit,
     ) {
         val opt = option.lowercase()
-        val def = getObject(obj)
+        val def = getObject(obj)?: run {
+            println("Object not found for id=$obj")
+            return
+        }
         val slot = def.actions.indexOfFirst { it?.lowercase() == opt }
 
         check(
@@ -297,51 +303,39 @@ abstract class KotlinPlugin(
     }
 
 
-    fun itemHasGroundOption(
-        item: String,
-        option: String,
-    ): Boolean {
-        val slot =
-            getItem(getRSCM(item)).interfaceOptions.indexOfFirst {
-                it?.lowercase() == option.lowercase()
-            }
-        return slot != -1
+    fun itemHasGroundOption(item: String, option: String): Boolean {
+        val def = getItem(getRSCM(item)) ?: run {
+            println("Item not found: $item")
+            return false
+        }
+        return def.options.any { it?.equals(option, ignoreCase = true) == true }
     }
 
-    fun itemHasInventoryOption(
-        item: String,
-        option: String,
-    ): Boolean {
-        val slot =
-            getItem(getRSCM(item)).interfaceOptions.indexOfFirst {
-                it?.lowercase() == option.lowercase()
-            }
-        return slot != -1
+    fun itemHasInventoryOption(item: String, option: String): Boolean {
+        val def = getItem(getRSCM(item)) ?: run {
+            println("Item not found: $item")
+            return false
+        }
+        return def.interfaceOptions.any { it?.equals(option, ignoreCase = true) == true }
     }
 
-    fun objHasOption(
-        obj: String,
-        option: String,
-    ): Boolean {
-        val slot =
-            getObject(getRSCM(obj)).actions.indexOfFirst {
-                it?.lowercase() == option.lowercase()
-            }
-        return slot != -1
+    fun objHasOption(obj: String, option: String): Boolean {
+        val def = getObject(getRSCM(obj)) ?: run {
+            println("Object not found: $obj")
+            return false
+        }
+        return def.actions.any { it?.equals(option, ignoreCase = true) == true }
     }
 
     /**
-     * Checks if a [Npc] has [option]
+     * Checks if a [Npc] has [option].
      */
-    fun npcHasOption(
-        npc: String,
-        option: String,
-    ): Boolean { // TODO ADVO what is this for?
-        val slot =
-            getNpc(getRSCM(npc)).actions.indexOfFirst {
-                it?.lowercase() == option.lowercase()
-            }
-        return slot != -1
+    fun npcHasOption(npc: String, option: String): Boolean {
+        val def = getNpc(getRSCM(npc)) ?: run {
+            println("NPC not found: $npc")
+            return false
+        }
+        return def.actions.any { it?.equals(option, ignoreCase = true) == true }
     }
 
     /**
@@ -362,7 +356,10 @@ abstract class KotlinPlugin(
     ) {
         val opt = option.lowercase()
         val rNpc = getRSCM(npc)
-        val def = getNpc(rNpc)
+        val def = getNpc(rNpc)?: run {
+            println("Object not found for id=$rNpc")
+            return
+        }
         val slot = def.actions.indexOfFirst { it?.lowercase() == opt }
 
         check(
@@ -388,7 +385,10 @@ abstract class KotlinPlugin(
     ) {
         val rItem = getRSCM(item)
         val opt = option.lowercase()
-        val def = getItem(rItem)
+        val def = getItem(rItem)?: run {
+            println("Object not found for id=$rItem")
+            return
+        }
         val slot = def.options.indexOfFirst { it?.lowercase() == opt }
 
         check(slot != -1) {
@@ -883,7 +883,10 @@ abstract class KotlinPlugin(
         obj: String,
         option: String,
     ): Boolean {
-        val objDefs = getObject(getRSCM(obj))
+        val objDefs = getObject(getRSCM(obj))?: run {
+            println("Object not found for id=$obj")
+            return false
+        }
         return objDefs.actions.contains(option)
     }
 
@@ -891,7 +894,10 @@ abstract class KotlinPlugin(
         npc: String,
         option: String,
     ): Boolean {
-        val npcDefs = getNpc(getRSCM(npc))
+        val npcDefs = getNpc(getRSCM(npc))?: run {
+            println("Npc not found for id=$npc")
+            return false
+        }
         return npcDefs.actions.contains(option)
     }
 

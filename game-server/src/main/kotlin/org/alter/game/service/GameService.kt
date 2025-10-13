@@ -2,6 +2,7 @@
 
 package org.alter.game.service
 
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -108,6 +109,7 @@ class GameService : Service {
     internal var pause = false
 
     override fun init(
+        cache: Cache,
         server: org.alter.game.Server,
         world: World,
         serviceProperties: ServerProperties,

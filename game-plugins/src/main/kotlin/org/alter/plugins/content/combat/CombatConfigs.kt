@@ -6,6 +6,7 @@ import org.alter.api.ext.getAttackStyle
 import org.alter.api.ext.getEquipment
 import org.alter.api.ext.hasEquipped
 import org.alter.api.ext.hasWeaponType
+import org.alter.attackSpeed
 import org.alter.game.model.combat.*
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.entity.Pawn

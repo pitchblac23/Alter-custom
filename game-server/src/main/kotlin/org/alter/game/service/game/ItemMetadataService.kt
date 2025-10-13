@@ -8,12 +8,13 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import dev.openrune.cache.CacheManager
 import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.filestore.definition.data.ItemType
-import dev.openrune.cache.filestore.definition.data.ParamMapper
+import dev.openrune.definition.type.ItemType
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
 import io.github.oshai.kotlinlogging.KotlinLogging
 import it.unimi.dsi.fastutil.bytes.Byte2ByteOpenHashMap
+import org.alter.ParamMapper
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.service.Service
@@ -22,12 +23,14 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.concurrent.TimeUnit
+import kotlin.collections.set
 
 /**
  * @author Tom <rspsmods@gmail.com>
  */
 class ItemMetadataService : Service {
     override fun init(
+        cache : Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,
@@ -67,7 +70,10 @@ class ItemMetadataService : Service {
                     val id = parts[0].toIntOrNull()
                     val examine = line.substringAfter(',').trim()
                     if (id != null) {
-                        getItem(id).examine = examine
+                        val item = getItem(id)
+                        if (item != null) {
+                            item.examine = examine
+                        }
                     }
                 }
             }
@@ -84,22 +90,21 @@ class ItemMetadataService : Service {
              * This process ensures that item attributes are properly loaded and validated from cache for use in gameplay.
              */
             CacheManager.getItems().forEach { (_, item) ->
-                val def = getItem(item.id)
+                val def = getItem(item.id) ?: return@forEach
 
                 def.weight /= 1000
-                def.equipType = def.appearanceOverride1
+                def.extra["equipType"] = def.appearanceOverride1
 
-                def.attackSpeed = def.getValidatedParam(
+                def.extra["attackSpeed"] = def.getValidatedParam(
                     ParamMapper.item.ATTACK_RATE,
                     7
                 ) // Just in case the Attack Rate would be not configurated in cache.
 
                 if (def.equipSlot == 3) {
-                    def.weaponType = WeaponCategory.get(def, def.category)
+                    def.extra["weaponType"] = WeaponCategory.get(def, def.category)
                 }
 
-
-                def.bonuses =
+                def.extra["bonuses"] =
                     intArrayOf(
                         def.getValidatedParam(ParamMapper.item.STAB_ATTACK_BONUS),
                         def.getValidatedParam(ParamMapper.item.SLASH_ATTACK_BONUS),
@@ -117,8 +122,8 @@ class ItemMetadataService : Service {
                         def.getValidatedParam(ParamMapper.item.PRAYER_BONUS),
                     )
 
-                if (def.params?.containsKey(ParamMapper.item.PRIMARY_SKILL) == true) {
-                    def.skillReqs = Byte2ByteOpenHashMap().apply {
+                if (def.params?.containsKey(ParamMapper.item.PRIMARY_SKILL.toString()) == true) {
+                    def.extra["skillReqs"] = Byte2ByteOpenHashMap().apply {
                         put(
                             def.getValidatedParam(ParamMapper.item.PRIMARY_SKILL).toByte(),
                             def.getValidatedParam(ParamMapper.item.PRIMARY_LEVEL).toByte()
@@ -158,8 +163,8 @@ class ItemMetadataService : Service {
             }.readValue(File("../data/cfg/items/renderAnimations/item_bas.json").readText())
             valueMap.forEach { (item, animMap) ->
                 val animation = animationMap[animMap.toString()] ?: return@forEach
-                val def = getItem(item)
-                def.renderAnimations = intArrayOf(
+                val def = getItem(item)?: return@forEach
+                def.extra["renderAnimations"] = intArrayOf(
                     animation.readyAnim,
                     animation.turnAnim,
                     animation.walkAnim,
@@ -200,7 +205,7 @@ class ItemMetadataService : Service {
     }
 
     fun load(item: Metadata) {
-        val def = getItem(item.id)
+        val def = getItem(item.id)?: return
 
         def.name = item.name
         def.examine = item.examine ?: ""
@@ -211,15 +216,15 @@ class ItemMetadataService : Service {
             val equipment = item.equipment
             val slots = if (equipment.equipSlot != null) getEquipmentSlots(equipment.equipSlot, def.id) else null
 
-            def.attackSpeed = equipment.attackSpeed
+            def.extra["attackSpeed"] = equipment.attackSpeed
 
             if (equipment.weaponType == -1 && slots != null) {
-                if (slots.slot == 3) def.weaponType = 17
+                if (slots.slot == 3) def.extra["weaponType"] = 17
             } else {
-                def.weaponType = equipment.weaponType
+                def.extra["weaponType"] = equipment.weaponType
             }
 
-            def.renderAnimations = equipment.renderAnimations?.getAsArray()
+            def.extra["renderAnimations"] = equipment.renderAnimations?.getAsArray()
             /**
              * TODO def.attackSounds = equipment.attackSounds
              *  - Create Array of AttackStyleID -> It's Sound
@@ -237,7 +242,7 @@ class ItemMetadataService : Service {
              */
             if (slots != null) {
                 def.equipSlot = slots.slot
-                def.equipType = slots.secondary
+                def.extra["equipType"] = slots.secondary
             }
 
             if (equipment.skillReqs != null) {
@@ -245,11 +250,9 @@ class ItemMetadataService : Service {
                 equipment.skillReqs.filter { it.skill != null }.forEach { req ->
                     reqs[getSkillId(req.skill!!)] = req.level!!.toByte()
                 }
-
-                def.skillReqs = reqs
+                def.extra["skillReqs"] = reqs
             }
-
-            def.bonuses = intArrayOf(
+            def.extra["bonuses"] = intArrayOf(
                 equipment.attackStab,
                 equipment.attackSlash,
                 equipment.attackCrush,
@@ -316,9 +319,9 @@ class ItemMetadataService : Service {
 
 
     private fun ItemType.getValidatedParam(key: Int, defaultValue: Int = 0): Int {
-        if (this.params?.get(key) != null) {
+        if (this.params?.get(key.toString()) != null) {
             try {
-                return this.params?.get(key) as Int
+                return this.params?.get(key.toString()) as Int
             } catch (e: Exception) {
                 println("${this.id} || ${this.params}")
                 e.printStackTrace()

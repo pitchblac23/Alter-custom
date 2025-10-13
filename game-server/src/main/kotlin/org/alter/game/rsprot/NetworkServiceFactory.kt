@@ -1,6 +1,7 @@
 package org.alter.game.rsprot
 
 import dev.openrune.cache.CacheManager
+import dev.openrune.filesystem.Cache
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
@@ -65,6 +66,7 @@ import java.math.BigInteger
 class NetworkServiceFactory(
     val groupProvider: CacheJs5GroupProvider,
     val world: World,
+    val cache : Cache,
     override val ports: List<Int>,
     override val supportedClientTypes: List<OldSchoolClientType>,
 ) : AbstractNetworkServiceFactory<Client>() {
@@ -155,7 +157,7 @@ class NetworkServiceFactory(
     }
 
     override fun getHuffmanCodecProvider(): HuffmanCodecProvider {
-        val huffman: HuffmanCodec = HuffmanCodec.create(Unpooled.wrappedBuffer(CacheManager.cache.data(10, 1)!!))
+        val huffman: HuffmanCodec = HuffmanCodec.create(Unpooled.wrappedBuffer(cache.data(10, 1)!!))
         return DefaultHuffmanCodecProvider(huffman)
     }
 

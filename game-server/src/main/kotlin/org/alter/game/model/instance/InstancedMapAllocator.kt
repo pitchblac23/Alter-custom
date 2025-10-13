@@ -1,6 +1,6 @@
 package org.alter.game.model.instance
 
-import dev.openrune.cache.filestore.definition.data.ObjectType
+import dev.openrune.definition.type.ObjectType
 import org.alter.game.model.Area
 import org.alter.game.model.EntityType
 import org.alter.game.model.Tile

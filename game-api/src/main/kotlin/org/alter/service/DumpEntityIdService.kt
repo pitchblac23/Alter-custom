@@ -9,6 +9,7 @@ import dev.openrune.cache.CacheManager.getObjects
 import dev.openrune.cache.CacheManager.itemSize
 import dev.openrune.cache.CacheManager.npcSize
 import dev.openrune.cache.CacheManager.objectSize
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.Namer
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -33,6 +34,7 @@ class DumpEntityIdService : Service {
     private var outputPath: Path? = null
 
     override fun init(
+        cache : Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,
@@ -79,7 +81,7 @@ class DumpEntityIdService : Service {
                 if (item.isPlaceholder) {
                     continue
                 }
-                val rawName = if (item.noteTemplateId > 0) getItem(item.noteLinkId).name + "_NOTED" else item.name
+                val rawName = if (item.noteTemplateId > 0) getItem(item.noteLinkId)!!.name + "_NOTED" else item.name
                 if (rawName.isNotBlank()) {
                     val name = namer.name(rawName, i)?.lowercase()
                     itemWriter.write("$name:$i\n")

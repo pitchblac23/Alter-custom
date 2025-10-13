@@ -1,7 +1,7 @@
 package org.alter.plugins.content.commands.commands.developer
 
 import dev.openrune.cache.CacheManager
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import dev.openrune.cache.CacheManager.getNpcs
 import dev.openrune.cache.CacheManager.getObjects
 import dev.openrune.cache.CacheManager.itemSize
@@ -56,7 +56,7 @@ class FindPlugin(
                             list.forEach {
                                 var name = it.first!!.replace(keyword, "<col=178000>$keyword</col>", ignoreCase = true)
                                 it.second!!.let { second ->
-                                    val itemDef = getItem(second)
+                                    val itemDef = getItemOrDefault(second)
                                     if (itemDef.isPlaceholder) {
                                         name = name.plus(" (Placeholder)")
                                     }

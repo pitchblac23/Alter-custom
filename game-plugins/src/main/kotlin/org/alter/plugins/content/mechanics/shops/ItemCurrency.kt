@@ -1,6 +1,6 @@
 package org.alter.plugins.content.mechanics.shops
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import org.alter.api.ext.message
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
@@ -82,12 +82,12 @@ open class ItemCurrency(
     override fun getSellPrice(
         world: World,
         item: Int,
-    ): Int = Math.max(1, getItem(item).cost)
+    ): Int = Math.max(1, getItemOrDefault(item).cost)
 
     override fun getBuyPrice(
         world: World,
         item: Int,
-    ): Int = (getItem(item).cost * 0.6).toInt()
+    ): Int = (getItemOrDefault(item).cost * 0.6).toInt()
 
     override fun sellToPlayer(
         p: Player,

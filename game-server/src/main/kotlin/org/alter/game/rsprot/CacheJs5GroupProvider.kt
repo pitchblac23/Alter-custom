@@ -1,7 +1,7 @@
 package org.alter.game.rsprot
 
 import dev.openrune.cache.CacheManager
-import dev.openrune.cache.filestore.Cache
+import dev.openrune.filesystem.Cache
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.util.ReferenceCounted
@@ -23,8 +23,7 @@ class CacheJs5GroupProvider : Js5GroupProvider  {
 
     private val groups: Int2ObjectMap<ByteBuf> = Int2ObjectOpenHashMap(2.toDouble().pow(17).toInt())
 
-    fun load() {
-        val cache = CacheManager.cache
+    fun load(cache : Cache) {
 
         encodeMasterIndex(cache) //TODO set to versiontable from filestore lib
 

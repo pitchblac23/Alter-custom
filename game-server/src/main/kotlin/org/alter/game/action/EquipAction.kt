@@ -1,9 +1,11 @@
 package org.alter.game.action
 
 import dev.openrune.cache.CacheManager.getItem
+import org.alter.equipType
 import org.alter.game.info.PlayerInfo
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
+import org.alter.skillReqs
 
 /**
  * This class is responsible for handling armor equip and unequip related
@@ -85,6 +87,10 @@ object EquipAction {
         inventorySlot: Int = -1,
     ): Result {
         val def = getItem(item.id)
+        if (def == null) {
+            println("Invalid Item for: ${item.id}")
+            return Result.INVALID_ITEM
+        }
         val plugins = p.world.plugins
 
         // Resets interaction when an item is equipped.
@@ -184,7 +190,10 @@ object EquipAction {
              */
             for (i in 0 until p.equipment.capacity) {
                 val equip = p.equipment[i] ?: continue
-                val otherDef = getItem(equip.id)
+                val otherDef = getItem(equip.id) ?: run {
+                    p.writeMessage("Item definition not found for id=${equip.id}")
+                    return Result.INVALID_ITEM
+                }
                 if (otherDef.equipType == equipSlot && otherDef.equipType != 0) {
                     unequip.add(i)
                 }

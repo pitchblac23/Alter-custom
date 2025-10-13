@@ -280,7 +280,7 @@ suspend fun QueueTask.chatNpc(
                 player,
             ) ?: throw RuntimeException("Npc id must be manually set as the player is not interacting with an npc.")
         }
-    val dialogTitle = title ?: getNpc(npcId).name
+    val dialogTitle = title ?: getNpc(npcId)?.name?: ""
 
     player.runClientScript(CommonClientScripts.CHATBOX_RESET_BACKGROUND)
     player.openInterface(parent = 162, child = CHATBOX_CHILD, interfaceId = 231)
@@ -520,7 +520,7 @@ suspend fun QueueTask.produceItemBox(
 
     itemDefs.withIndex().forEach {
         val def = it.value
-        itemArray[it.index] = def.id
+        itemArray[it.index] = def!!.id
         nameArray[it.index] = "|${def.name}"
     }
 

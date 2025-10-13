@@ -10,6 +10,7 @@ application {
 }
 val lib = rootProject.project.libs
 dependencies {
+    implementation(project(":cache"))
     with(lib) {
         implementation(projects.util)
         runtimeOnly(projects.gamePlugins)
@@ -27,9 +28,7 @@ dependencies {
         implementation(rootProject.projects.plugins.rscm)
         testImplementation(junit)
         implementation(rootProject.project.libs.rsprot)
-        implementation(rootProject.projects.plugins.filestore)
         implementation(rootProject.projects.plugins.rscm)
-        implementation(rootProject.projects.plugins.tools)
         implementation(lib.routefinder)
     }
 }

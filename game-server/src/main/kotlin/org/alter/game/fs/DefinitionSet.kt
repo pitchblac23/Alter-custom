@@ -1,9 +1,9 @@
 package org.alter.game.fs
 
 import dev.openrune.cache.*
-import dev.openrune.cache.filestore.loadLocations
-import dev.openrune.cache.filestore.loadTerrain
+import dev.openrune.filesystem.Cache
 import io.github.oshai.kotlinlogging.KotlinLogging
+import org.alter.game.Server
 import org.alter.game.model.Tile
 import org.alter.game.model.World
 import org.alter.game.model.collision.BLOCKED_TILE
@@ -28,6 +28,7 @@ class DefinitionSet {
         chunks: ChunkSet,
         regions: IntArray,
     ) {
+
         val start = System.currentTimeMillis()
 
         var loaded = 0
@@ -55,7 +56,7 @@ class DefinitionSet {
         val x = id shr 8
         val y = id and 0xFF
 
-        val mapData = CacheManager.cache.data(MAPS, "m${x}_$y") ?: return false
+        val mapData = Server.cache.data(MAPS, "m${x}_$y") ?: return false
 
         val baseX: Int = id shr 8 and 255 shl 6
         val baseZ: Int = id and 255 shl 6
@@ -127,7 +128,7 @@ class DefinitionSet {
 
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
         try {
-            val landData = CacheManager.cache.data(MAPS, "l${x}_$y", keys) ?: return false
+            val landData = Server.cache.data(MAPS, "l${x}_$y", keys) ?: return false
             loadLocations(landData) { loc ->
                 val tile =
                     Tile(

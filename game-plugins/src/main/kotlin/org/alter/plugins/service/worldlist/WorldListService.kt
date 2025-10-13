@@ -2,6 +2,7 @@ package org.alter.plugins.service.worldlist
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.bootstrap.ServerBootstrap
@@ -61,6 +62,7 @@ class WorldListService : Service {
      * @param serviceProperties The properties for this server
      */
     override fun init(
+        cache : Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,

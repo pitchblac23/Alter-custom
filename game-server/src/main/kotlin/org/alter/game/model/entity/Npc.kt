@@ -2,7 +2,7 @@ package org.alter.game.model.entity
 
 import dev.openrune.cache.CacheManager.getNpc
 import dev.openrune.cache.CacheManager.getVarbit
-import dev.openrune.cache.filestore.definition.data.NpcType
+import dev.openrune.definition.type.NpcType
 import gg.rsmod.util.toStringHelper
 import net.rsprot.protocol.game.outgoing.info.npcinfo.NpcAvatar
 import org.alter.game.info.NpcInfo
@@ -106,7 +106,10 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
     /**
      * Gets the [NpcType] corresponding to our [id].
      */
-    val def: NpcType = getNpc(id)
+    val def: NpcType = getNpc(id) ?: run {
+        println("NPC $id not found, using default NPC 0")
+        getNpc(0)!!
+    }
 
     /**
      * Set which routefinder logic to use.
@@ -132,7 +135,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
 
     override fun isRunning(): Boolean = false
 
-    override fun getSize(): Int = getNpc(id).size // TODO ADVO can we just do def.size() ?
+    override fun getSize(): Int = getNpc(id)?.size?: 0 // TODO ADVO can we just do def.size() ?
 
     override fun getCurrentHp(): Int = hitpoints
 
@@ -166,7 +169,7 @@ class Npc private constructor(val id: Int, world: World, val spawnTile: Tile) : 
      */
     fun getTransform(player: Player): Int {
         if (def.varbit != -1) {
-            val varbitDef = getVarbit(def.varbit)
+            val varbitDef = getVarbit(def.varbit)?: return id
             val state = player.varps.getBit(varbitDef.varp, varbitDef.startBit, varbitDef.endBit)
             return def.transforms!![state]
         }

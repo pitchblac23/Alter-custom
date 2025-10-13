@@ -1,7 +1,6 @@
 package org.alter.plugins.content.items.essencepouch
 
-import dev.openrune.cache.CacheManager.getItem
-import dev.openrune.cache.CacheManager.getItems
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*
@@ -69,7 +68,7 @@ fun fillPouch(
     val containedItem = item.getAttr(ItemAttribute.ATTACHED_ITEM_ID) ?: -1
     val amount = Math.max(item.getAttr(ItemAttribute.ATTACHED_ITEM_COUNT) ?: 0, 0)
 
-    val def = getItems().get(containedItem)
+    val def = getItemOrDefault(containedItem)
     val inventory = player.inventory
     val freeSpace = pouch.capacity - amount
 
@@ -169,7 +168,7 @@ fun checkPouch(player: Player) {
         return
     }
 
-    val name = getItem(item).name.lowercase()
+    val name = getItemOrDefault(item).name.lowercase()
 
     player.message("There ${count.toLiteral()?.pluralPrefix(count)} ${name.pluralSuffix(count)} in this pouch.")
 }

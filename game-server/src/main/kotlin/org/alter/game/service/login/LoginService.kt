@@ -1,5 +1,6 @@
 package org.alter.game.service.login
 
+import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.concurrency.ThreadFactoryBuilder
 import io.github.oshai.kotlinlogging.KotlinLogging
@@ -29,6 +30,7 @@ class LoginService : Service {
     private var threadCount = 1
 
     override fun init(
+        cache: Cache,
         server: Server,
         world: World,
         serviceProperties: ServerProperties,

@@ -1,5 +1,7 @@
 package org.alter.game.service
 
+import dev.openrune.filesystem.Cache
+import dev.openrune.filesystem.FileCache
 import gg.rsmod.util.ServerProperties
 import org.alter.game.model.World
 
@@ -13,6 +15,7 @@ interface Service {
      * Called when the server is starting up.
      */
     fun init(
+        cache: Cache,
         server: org.alter.game.Server,
         world: World,
         serviceProperties: ServerProperties,

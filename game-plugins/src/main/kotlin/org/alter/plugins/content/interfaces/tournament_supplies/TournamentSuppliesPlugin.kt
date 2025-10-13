@@ -1,6 +1,6 @@
 package org.alter.plugins.content.interfaces.tournament_supplies
 
-import dev.openrune.cache.CacheManager.getItem
+import dev.openrune.cache.CacheManager.getItemOrDefault
 import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*
@@ -50,7 +50,7 @@ class TournamentSuppliesPlugin(
                 player.queue(TaskPriority.WEAK) {
                     amount = inputInt(player, "How many would you like to withdraw?")
                     if (amount > 0) {
-                        if (player.inventory.freeSlotCount < amount && !getItem(itemid).stackable
+                        if (player.inventory.freeSlotCount < amount && !getItemOrDefault(itemid).stackable
                         ) {
                             amount = player.inventory.freeSlotCount
                         }
@@ -58,7 +58,7 @@ class TournamentSuppliesPlugin(
                     }
                 }
             } else {
-                if (getItem(itemid).stackable) {
+                if (getItemOrDefault(itemid).stackable) {
                     amount = 10000
                 }
                 player.inventory.add(itemid, amount)
@@ -78,7 +78,7 @@ class TournamentSuppliesPlugin(
                         1 -> player.inventory.getItemCount(player.inventory[slot]!!.id)
                         else -> 1
                     }
-                if (getItem(player.inventory[slot]!!.id).stackable) {
+                if (getItemOrDefault(player.inventory[slot]!!.id).stackable) {
                     amount = player.inventory.getItemCount(player.inventory[slot]!!.id)
                 }
                 player.inventory.remove(item = player.inventory[slot]!!.id, amount = amount, beginSlot = slot)

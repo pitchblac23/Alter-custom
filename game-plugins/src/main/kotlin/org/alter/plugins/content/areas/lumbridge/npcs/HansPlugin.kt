@@ -6,12 +6,8 @@ import org.alter.game.model.Direction
 import org.alter.game.model.World
 import org.alter.game.model.entity.Player
 import org.alter.game.model.queue.QueueTask
-import org.alter.game.model.shop.PurchasePolicy
-import org.alter.game.model.shop.ShopItem
 import org.alter.game.plugin.KotlinPlugin
 import org.alter.game.plugin.PluginRepository
-import org.alter.plugins.content.mechanics.shops.CoinCurrency
-import org.alter.rscm.RSCM.getRSCM
 
 
 class HansPlugin(

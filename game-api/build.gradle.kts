@@ -14,7 +14,6 @@ dependencies {
     implementation(project(":game-server"))
     implementation(project(":util"))
     implementation(rootProject.project.libs.rsprot)
-    implementation(rootProject.projects.plugins.rscm)
 }
 tasks.withType<DokkaTask> {
     for (pkg in listOf("org.alter.api.cfg")) {

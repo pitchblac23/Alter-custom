@@ -24,10 +24,8 @@ include(":util")
 include(":game-plugins")
 include(":game-api")
 include(":game-server")
-include(":plugins")
 include(":cache")
 
-includePlugins(project(":plugins"))
 fun includePlugins(pluginProject: ProjectDescriptor) {
     val pluginPath = pluginProject.projectDir.toPath()
     Files.walk(pluginPath).forEach {

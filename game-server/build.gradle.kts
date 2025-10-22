@@ -26,10 +26,8 @@ dependencies {
         implementation(kotlin.csv)
         implementation(mongo.bson)
         implementation(mongo.driver)
-        implementation(rootProject.projects.plugins.rscm)
         testImplementation(junit)
         implementation(rootProject.project.libs.rsprot)
-        implementation(rootProject.projects.plugins.rscm)
         implementation(lib.routefinder)
     }
 }

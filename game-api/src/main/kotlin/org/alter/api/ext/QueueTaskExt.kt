@@ -8,7 +8,6 @@ import org.alter.api.CommonClientScripts
 import org.alter.api.InterfaceDestination
 import org.alter.api.Skills
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
-import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.game.model.queue.QueueTask

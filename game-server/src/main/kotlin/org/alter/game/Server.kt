@@ -1,7 +1,8 @@
 package org.alter.game
 
-import dev.openrune.OsrsCacheProvider
 import dev.openrune.ServerCacheManager
+import dev.openrune.definition.constants.CompositeMappingProvider
+import dev.openrune.definition.constants.ConstantProvider
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
@@ -174,7 +175,7 @@ class Server {
         /**
          * Initialize RSCM
          */
-        RSCM.init()
+        ConstantProvider.load(Paths.get("../data", "cfg","rscm").toFile())
 
         /*
          * Load the privileges for the game.

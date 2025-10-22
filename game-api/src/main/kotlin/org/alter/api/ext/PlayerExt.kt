@@ -2,7 +2,6 @@ package org.alter.api.ext
 
 import dev.openrune.ServerCacheManager
 import dev.openrune.ServerCacheManager.getItem
-import dev.openrune.server.impl.item.WeaponTypes
 import gg.rsmod.util.BitManipulation
 import net.rsprot.protocol.game.outgoing.interfaces.*
 import net.rsprot.protocol.game.outgoing.inv.UpdateInvFull

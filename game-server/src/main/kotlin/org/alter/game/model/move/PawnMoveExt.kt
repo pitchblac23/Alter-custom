@@ -132,6 +132,7 @@ fun Pawn.walkTo(
         this.interruptQueues()
         this.resetInteractions()
     }
+
     val route = world.smartRouteFinder.findRoute(
         level = tile.height,
         srcX = tile.x,
@@ -139,6 +140,7 @@ fun Pawn.walkTo(
         destX = targetX,
         destZ = targetY,
     )
+
     if (attr[CLIENT_KEY_COMBINATION] == 2 && this is Player && world.privileges.isEligible(
             privilege,
             Privilege.ADMIN_POWER

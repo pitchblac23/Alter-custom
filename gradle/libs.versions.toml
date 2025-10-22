@@ -37,6 +37,9 @@ slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4jApi" 
 log4j-slf4j-impl = { group = "org.apache.logging.log4j", name = "log4j-slf4j-impl", version.ref = "log4jSlf4jImpl" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
 
+kotlin-scripting = {group = "org.jetbrains.kotlin", name = "kotlin-scripting-common", version = "_"}
+kotlin-script-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-script-runtime", version.ref = "kotlin"}
+
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging", version.ref = "kotlinLogging" }
 jackson-dataformat-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version = "2.14.2" }
 jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jacksonDataformatToml" }

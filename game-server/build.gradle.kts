@@ -12,12 +12,18 @@ val lib = rootProject.project.libs
 dependencies {
     implementation(project(":cache"))
     implementation("dev.or2:server-utils:0.7")
+    implementation("joda-time:joda-time:2.14.0")
+    implementation("io.github.classgraph:classgraph:4.8.184")
+
+
     with(lib) {
         implementation(projects.util)
         runtimeOnly(projects.gamePlugins)
         implementation(kotlinx.coroutines)
         implementation(reflection)
         implementation(commons)
+        implementation(kotlin.scripting)
+        implementation(kotlin.script.runtime)
         implementation(classgraph)
         implementation(fastutil)
         implementation(bouncycastle)

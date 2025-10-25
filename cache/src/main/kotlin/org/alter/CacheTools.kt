@@ -36,9 +36,9 @@ fun downloadRev(type : TaskType) {
     when(type) {
         TaskType.FRESH_INSTALL -> {
             val builder = Builder(type = TaskType.FRESH_INSTALL, File(getCacheLocation()))
-            builder.revision(rev)
-            builder.removeXteas()
-            builder.removeBzip()
+            builder.revision(rev.first)
+            builder.subRevision(rev.second)
+            builder.removeXteas(false)
             builder.extraTasks(*tasks.toTypedArray()).build().initialize()
 
             Files.move(
@@ -49,7 +49,7 @@ fun downloadRev(type : TaskType) {
         }
         TaskType.BUILD -> {
             val builder = Builder(type = TaskType.BUILD, cacheLocation = File(getCacheLocation()))
-            builder.revision(rev)
+            builder.revision(rev.first)
             builder.extraTasks(*tasks.toTypedArray()).build().initialize()
         }
     }
@@ -57,16 +57,23 @@ fun downloadRev(type : TaskType) {
 
 }
 
-fun readRevision(): Int {
+fun readRevision(): Pair<Int, Int> {
     val file = listOf("../game.yml", "../game.example.yml")
         .map(::File)
-        .first { it.exists() } // guaranteed one exists
+        .first { it.exists() }
 
     return file.useLines { lines ->
-        lines.first { it.trim().startsWith("revision:") }
-            .substringAfter("revision:")
-            .trim()
-            .substringBefore('.')
-            .toInt()
+        val line = lines.firstOrNull { it.trimStart().startsWith("revision:") }
+            ?: error("No revision line found in ${file.name}")
+
+        // e.g. "revision: 234.1" or "revision: 234"
+        val revisionStr = line.substringAfter("revision:").trim()
+        val match = Regex("""^(\d+)(?:\.(\d+))?$""").matchEntire(revisionStr)
+            ?: error("Invalid revision format: '$revisionStr'")
+
+        val major = match.groupValues[1].toInt()
+        val minor = match.groupValues.getOrNull(2)?.toIntOrNull() ?: -1
+
+        major to minor
     }
 }

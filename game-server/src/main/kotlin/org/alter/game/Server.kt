@@ -139,7 +139,7 @@ class Server {
          * Load the file store.
          */
         individualStopwatch.reset().start()
-        cache = Cache.load(filestore)
+        cache = Cache.load(filestore,false)
         ServerCacheManager.init(cache)
         logger.info{"Loaded filestore from path ${filestore} in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."}
 

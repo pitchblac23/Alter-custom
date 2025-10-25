@@ -114,6 +114,7 @@ class DefinitionSet {
          * like in the other places, and that works
          *
          */
+
         if (xteaService == null) {
             /*
              * If we don't have an [XteaKeyService], then we assume we don't
@@ -127,26 +128,25 @@ class DefinitionSet {
         }
 
         val keys = xteaService?.get(id) ?: XteaKeyService.EMPTY_KEYS
-        try {
-            val landData = Server.cache.data(MAPS, "l${x}_$y", keys) ?: return false
-            loadLocations(landData) { loc ->
-                val tile =
-                    Tile(
-                        baseX + loc.localX,
-                        baseZ + loc.localY,
-                        loc.height,
-                    )
-                val hasBridge = bridges.contains(tile)
-                if (hasBridge && loc.height == 0) return@loadLocations
-                val adjustedTile = if (bridges.contains(tile)) tile.transform(-1) else tile
-                val obj = StaticObject(loc.id, loc.type, loc.orientation, adjustedTile)
-                world.chunks.getOrCreate(adjustedTile).addEntity(world, obj, adjustedTile)
-            }
-            return true
-        } catch (e: IOException) {
-            logger.error { "${"Could not decrypt map region {}."} $id" }
-            return false
-        }
+
+        return runCatching {
+            Server.cache.data(MAPS, "l${x}_$y", keys)?.let { landData ->
+                logger.info { "Region: $id : Keys: ${keys.contentToString()}" }
+
+                loadLocations(landData) { loc ->
+                    Tile(baseX + loc.localX, baseZ + loc.localY, loc.height)
+                        .takeUnless { it in bridges && loc.height == 0 }
+                        ?.let { tile ->
+                            val adjustedTile = if (tile in bridges) tile.transform(-1) else tile
+                            val obj = StaticObject(loc.id, loc.type, loc.orientation, adjustedTile)
+                            world.chunks.getOrCreate(adjustedTile).addEntity(world, obj, adjustedTile)
+                        }
+                }
+            } != null
+        }.onFailure { e ->
+            logger.error(e) { "Could not decrypt map region $id." }
+        }.getOrDefault(false)
+
     }
 
     companion object {

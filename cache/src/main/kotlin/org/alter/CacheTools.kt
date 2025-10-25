@@ -1,6 +1,7 @@
 package org.alter
 
 import dev.openrune.cache.tools.Builder
+import dev.openrune.cache.tools.CacheEnvironment
 import dev.openrune.cache.tools.tasks.CacheTask
 import dev.openrune.cache.tools.tasks.TaskType
 import dev.openrune.tools.PackServerConfig
@@ -39,6 +40,7 @@ fun downloadRev(type : TaskType) {
             builder.revision(rev.first)
             builder.subRevision(rev.second)
             builder.removeXteas(false)
+            builder.environment(CacheEnvironment.valueOf(rev.third))
             builder.extraTasks(*tasks.toTypedArray()).build().initialize()
 
             Files.move(
@@ -57,23 +59,33 @@ fun downloadRev(type : TaskType) {
 
 }
 
-fun readRevision(): Pair<Int, Int> {
+fun readRevision(): Triple<Int, Int, String> {
     val file = listOf("../game.yml", "../game.example.yml")
         .map(::File)
-        .first { it.exists() }
+        .firstOrNull { it.exists() }
+        ?: error("No game.yml or game.example.yml found")
 
     return file.useLines { lines ->
-        val line = lines.firstOrNull { it.trimStart().startsWith("revision:") }
+        val revisionLine = lines.firstOrNull { it.trimStart().startsWith("revision:") }
             ?: error("No revision line found in ${file.name}")
 
-        // e.g. "revision: 234.1" or "revision: 234"
-        val revisionStr = line.substringAfter("revision:").trim()
+        val revisionStr = revisionLine.substringAfter("revision:").trim()
         val match = Regex("""^(\d+)(?:\.(\d+))?$""").matchEntire(revisionStr)
             ?: error("Invalid revision format: '$revisionStr'")
 
         val major = match.groupValues[1].toInt()
         val minor = match.groupValues.getOrNull(2)?.toIntOrNull() ?: -1
 
-        major to minor
+        val envLine = file.readLines()
+            .firstOrNull { it.trimStart().startsWith("environment:") }
+
+        val environment = envLine
+            ?.substringAfter("environment:")
+            ?.trim()
+            ?.removeSurrounding("\"")
+            ?.ifBlank { "live" }
+            ?: "live"
+
+        Triple(major, minor, environment.uppercase())
     }
 }

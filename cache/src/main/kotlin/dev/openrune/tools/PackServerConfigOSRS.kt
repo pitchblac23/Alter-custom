@@ -52,7 +52,7 @@ class PackServerConfig : CacheTask() {
         val codec5 = ItemServerCodec(
             CacheManager.getItems(),
             CacheManager.getEnums(),
-            InfoBoxItem.load(    getRawCacheLocation("extra-dump").toPath().resolve("items.json")))
+            InfoBoxItem.load(    getRawCacheLocation("extra-dump").toPath().resolve("item-data.json")))
 
         logger.info { "Packing Objects..." }
         CacheManager.getObjects().forEach {

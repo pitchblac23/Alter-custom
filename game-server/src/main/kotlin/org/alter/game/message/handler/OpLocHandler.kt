@@ -13,8 +13,8 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.move.stopMovement
 import org.alter.game.model.priv.Privilege
+import org.alter.game.pluginnew.MenuOption
 import org.alter.game.pluginnew.event.impl.ObjectClickEvent
-import org.alter.game.pluginnew.event.impl.ObjectOption
 import java.lang.ref.WeakReference
 
 /**
@@ -45,10 +45,10 @@ class OpLocHandler : MessageHandler<OpLoc> {
          * Get the region chunk that the object would belong to.
          */
         val chunk = client.world.chunks.getOrCreate(tile)
-        val obj =
-            chunk.getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT).firstOrNull {
-                it.id == message.id
-            } ?: return
+        val obj = chunk
+            .getEntities<GameObject>(tile, EntityType.STATIC_OBJECT, EntityType.DYNAMIC_OBJECT)
+            .firstOrNull { it.id == message.id }
+            ?: return
 
         log(client, "Object action %d: id=%d, x=%d, y=%d, movement=%b", message.op, message.id, message.x, message.z, message.controlKey)
 
@@ -67,6 +67,6 @@ class OpLocHandler : MessageHandler<OpLoc> {
         client.attr[INTERACTING_OPT_ATTR] = message.op
         client.attr[INTERACTING_OBJ_ATTR] = WeakReference(obj)
         client.executePlugin(ObjectPathAction.objectInteractPlugin)
-        ObjectClickEvent(message.id, ObjectOption.fromId(message.op),client).post()
+        ObjectClickEvent(obj, MenuOption.fromId(message.op),client).post()
     }
 }

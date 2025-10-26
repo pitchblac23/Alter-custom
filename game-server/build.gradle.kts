@@ -12,12 +12,18 @@ val lib = rootProject.project.libs
 dependencies {
     implementation(project(":cache"))
     implementation("dev.or2:server-utils:0.7")
+    implementation("joda-time:joda-time:2.14.0")
+    implementation("io.github.classgraph:classgraph:4.8.184")
+
+
     with(lib) {
         implementation(projects.util)
         runtimeOnly(projects.gamePlugins)
         implementation(kotlinx.coroutines)
         implementation(reflection)
         implementation(commons)
+        implementation(kotlin.scripting)
+        implementation(kotlin.script.runtime)
         implementation(classgraph)
         implementation(fastutil)
         implementation(bouncycastle)
@@ -134,6 +140,22 @@ tasks.withType<ProcessResources> {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
+
+tasks.named<JavaExec>("run") {
+    group = "application"
+
+    // Ensure content is built before running
+    dependsOn(":content:build")
+
+    // Optional: print message if content is being built
+    doFirst {
+        if (!project(":content").tasks.named("build").get().didWork) {
+            println("Content is up-to-date, skipping build.")
+        } else {
+            println("Building content because it's out of date...")
+        }
+    }
+}
 
 /**
  * @TODO Forgot about this one.

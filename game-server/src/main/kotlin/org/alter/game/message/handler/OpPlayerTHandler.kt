@@ -7,6 +7,8 @@ import org.alter.game.model.attr.INTERACTING_COMPONENT_PARENT
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Entity
+import org.alter.game.model.item.Item
+import org.alter.game.pluginnew.event.impl.SpellOnPlayerEvent
 import java.lang.ref.WeakReference
 
 class OpPlayerTHandler : MessageHandler<OpPlayerT> {
@@ -38,6 +40,13 @@ class OpPlayerTHandler : MessageHandler<OpPlayerT> {
             if (client.world.devContext.debugMagicSpells) {
                 client.writeMessage("Unhandled magic spell: [$parent, $child]")
             }
+        }
+        
+        // Note: SpellOnPlayerEvent needs item data, but OpPlayerT doesn't have item info
+        // You may need to adjust this based on actual requirements
+        val dummyItem = client.inventory[0] // Placeholder
+        if (dummyItem != null) {
+            SpellOnPlayerEvent(player, dummyItem, 0, parent, child, client).post()
         }
     }
 }

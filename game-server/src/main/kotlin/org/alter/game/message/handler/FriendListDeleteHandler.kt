@@ -3,6 +3,7 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.social.FriendListDel
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.FriendListDeleteEvent
 
 class FriendListDeleteHandler : MessageHandler<FriendListDel> {
     override fun consume(
@@ -10,5 +11,6 @@ class FriendListDeleteHandler : MessageHandler<FriendListDel> {
         message: FriendListDel,
     ) {
         client.social.deleteFriend(client, message.name)
+        FriendListDeleteEvent(message.name, client).post()
     }
 }

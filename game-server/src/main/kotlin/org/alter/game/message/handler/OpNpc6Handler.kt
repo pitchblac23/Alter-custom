@@ -4,6 +4,7 @@ import net.rsprot.protocol.game.incoming.npcs.OpNpc6
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.ExamineEntityType
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ExamineEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -14,5 +15,6 @@ class OpNpc6Handler : MessageHandler<OpNpc6> {
         message: OpNpc6,
     ) {
         client.world.sendExamine(client, message.id, ExamineEntityType.NPC)
+        ExamineEvent(message.id, ExamineEntityType.NPC, client).post()
     }
 }

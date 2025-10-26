@@ -3,6 +3,7 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.misc.client.DetectModifiedClient
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ModifiedClientEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -13,5 +14,6 @@ class DetectModifiedClientHandler : MessageHandler<DetectModifiedClient> {
         message: DetectModifiedClient,
     ) {
         log(client, "Detected modified client for player %s.", client.username)
+        ModifiedClientEvent(client).post()
     }
 }

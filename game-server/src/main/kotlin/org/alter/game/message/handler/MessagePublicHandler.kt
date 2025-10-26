@@ -4,6 +4,7 @@ import net.rsprot.protocol.game.incoming.messaging.MessagePublic
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
 import org.alter.game.service.log.LoggerService
+import org.alter.game.pluginnew.event.impl.MessagePublicEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -22,5 +23,6 @@ class MessagePublicHandler : MessageHandler<MessagePublic> {
             pattern = message.pattern?.asByteArray(),
         )
         client.world.getService(LoggerService::class.java, searchSubclasses = true)?.logPublicChat(client, message.message)
+        MessagePublicEvent(message.message, message.colour, message.effect, message.type, message.pattern?.asByteArray(), client).post()
     }
 }

@@ -14,6 +14,7 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.move.stopMovement
 import org.alter.game.model.priv.Privilege
+import org.alter.game.pluginnew.event.impl.ItemOnObject
 import java.lang.ref.WeakReference
 
 class OpLocTHandler : MessageHandler<OpLocT> {
@@ -76,5 +77,7 @@ class OpLocTHandler : MessageHandler<OpLocT> {
         client.attr[INTERACTING_OBJ_ATTR] = WeakReference(obj)
 
         client.executePlugin(ObjectPathAction.itemOnObjectPlugin)
+        ItemOnObject(item,obj,slot,client).post()
+
     }
 }

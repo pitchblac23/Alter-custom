@@ -1,11 +1,13 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.If3Button
+import net.rsprot.protocol.util.CombinedId
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.INTERACTING_ITEM_ID
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ButtonClickEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -44,5 +46,7 @@ class IfButton1Handler : MessageHandler<If3Button> {
                 "Unhandled button action: [component=[$interfaceId:$component], option=$option, slot=${message.sub}, item=${message.obj}]",
             )
         }
+        
+        ButtonClickEvent(CombinedId(interfaceId, component), option, message.obj, message.sub, client).post()
     }
 }

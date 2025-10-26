@@ -4,6 +4,7 @@ import net.rsprot.protocol.game.incoming.misc.user.ClientCheat
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
 import org.alter.game.service.log.LoggerService
+import org.alter.game.pluginnew.event.impl.CommandEvent
 import java.util.*
 
 /**
@@ -18,7 +19,7 @@ class ClientCheatHandler : MessageHandler<ClientCheat> {
         val command = values[0].lowercase()
         val args = if (values.size > 1) values.slice(1 until values.size).filter { it.isNotEmpty() }.toTypedArray() else null
 
-        log(client, "Command: cmd=%s, args=%s", command, Arrays.toString(args ?: emptyArray<String>()))
+        log(client, "Command: cmd=%s, args=%s", command, (args ?: emptyArray<String>()).contentToString())
 
         val handled = client.world.plugins.executeCommand(client, command, args)
         if (handled) {
@@ -26,5 +27,7 @@ class ClientCheatHandler : MessageHandler<ClientCheat> {
         } else {
             client.writeMessage("No valid command found: $command")
         }
+        
+        CommandEvent(command, args, client).post()
     }
 }

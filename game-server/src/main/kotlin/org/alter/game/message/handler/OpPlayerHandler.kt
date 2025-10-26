@@ -6,6 +6,9 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_PLAYER_ATTR
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.MenuOption
+import org.alter.game.pluginnew.event.impl.PlayerClickEvent
+import org.alter.game.pluginnew.event.impl.PlayerAttackEvent
 import java.lang.ref.WeakReference
 
 /**
@@ -41,5 +44,11 @@ class OpPlayerHandler : MessageHandler<OpPlayer> {
         client.attr[INTERACTING_PLAYER_ATTR] = WeakReference(other)
         client.attr[INTERACTING_OPT_ATTR] = option
         client.executePlugin(PawnPathAction.walkPlugin)
+        
+        if (option == 2) {
+            PlayerAttackEvent(other, option, client).post()
+        } else {
+            PlayerClickEvent(other, MenuOption.fromId(option), client).post()
+        }
     }
 }

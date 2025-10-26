@@ -23,6 +23,7 @@ import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.StockType
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
+import kotlin.script.experimental.annotations.KotlinScript
 
 /**
  * Represents a KotlinScript plugin.

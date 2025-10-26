@@ -5,6 +5,8 @@ import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
 import org.alter.game.model.entity.Entity
+import org.alter.game.model.item.Item
+import org.alter.game.pluginnew.event.impl.ItemOnNpcEvent
 import java.lang.ref.WeakReference
 
 @Suppress("UNREACHABLE_CODE")
@@ -39,8 +41,10 @@ class OpNpcTHandler : MessageHandler<OpNpcT> {
          *
          */
         if (child == 0) {
+            val item = client.inventory[message.selectedSub] ?: return
             if (client.world.plugins.executeItemOnNpc(client, npc.id, verify)
                 || client.world.plugins.executeItemOnNpc(client, verify)) {
+                ItemOnNpcEvent(npc, item, message.selectedSub, parent, child, client).post()
                 return
             }
             if (client.world.devContext.debugItemActions) {

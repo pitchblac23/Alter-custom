@@ -44,7 +44,8 @@ allprojects {
         compilerOptions {
             languageVersion.set(KotlinVersion.KOTLIN_2_0)
             freeCompilerArgs = listOf(
-                "-Xuse-fir-lt=false"
+                "-Xuse-fir-lt=false",
+                "-Xallow-any-scripts-in-source-roots"
             )
         }
     }

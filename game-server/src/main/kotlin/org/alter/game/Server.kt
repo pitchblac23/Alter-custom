@@ -15,6 +15,7 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.GroundItem
 import org.alter.game.model.entity.Npc
 import org.alter.game.model.skill.SkillSet
+import org.alter.game.pluginnew.PluginManager
 import org.alter.game.saving.PlayerDetails
 import org.alter.game.saving.PlayerSaving
 import org.alter.game.saving.formats.SaveFormatType
@@ -199,10 +200,13 @@ class Server {
             "Loaded ${DecimalFormat().format(world.plugins.getPluginCount())} plugins in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."
         }
 
+
         /*
          * Post load world.
          */
         world.postLoad()
+
+        PluginManager.load()
 
         /*
          * Inform the time it took to load up all non-network logic.

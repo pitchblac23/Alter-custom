@@ -7,6 +7,9 @@ import org.alter.game.model.attr.CLIENT_KEY_COMBINATION
 import org.alter.game.model.attr.INTERACTING_NPC_ATTR
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.MenuOption
+import org.alter.game.pluginnew.event.impl.NpcAttackEvent
+import org.alter.game.pluginnew.event.impl.NpcClickEvent
 import java.lang.ref.WeakReference
 
 class OpNpcHandler : MessageHandler<OpNpc> {
@@ -19,10 +22,12 @@ class OpNpcHandler : MessageHandler<OpNpc> {
         client.attr[CLIENT_KEY_COMBINATION] = if (message.controlKey) 2 else 0
         if (message.op == 2) {
             client.attack(npc)
+            NpcAttackEvent(npc,client).post()
         } else {
             client.attr[INTERACTING_OPT_ATTR] = message.op
             client.attr[INTERACTING_NPC_ATTR] = WeakReference(npc)
             client.executePlugin(PawnPathAction.walkPlugin)
+            NpcClickEvent(npc, MenuOption.fromId(message.op),client).post()
         }
     }
 }

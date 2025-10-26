@@ -33,6 +33,7 @@ object PluginManager {
                 pluginClassList.forEach { classInfo ->
                     try {
                         val clazz = classInfo.loadClass(Script::class.java)
+                        val instance = clazz.getDeclaredConstructor().newInstance()
                         scripts.add(clazz.getDeclaredConstructor())
                     } catch (ex: Exception) {
                         error { "${"Error loading plugin {}"} ${classInfo.name} $ex" }

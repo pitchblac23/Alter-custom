@@ -17,40 +17,40 @@ import org.alter.plugins.content.combat.strategy.ranged.ammo.Bolts.STEEL_BOLTS
  * @author Tom <rspsmods@gmail.com>
  */
 enum class CrossbowType(val item: Int, val ammo: Array<Int>) {
-    PHOENIX_CROSSBOW(item = getRSCM("item.phoenix_crossbow"), ammo = BRONZE_BOLTS),
-    CROSSBOW(item = getRSCM("item.crossbow"), ammo = BRONZE_BOLTS),
+    PHOENIX_CROSSBOW(item = getRSCM("items.phoenix_crossbow"), ammo = BRONZE_BOLTS),
+    CROSSBOW(item = getRSCM("items.crossbow"), ammo = BRONZE_BOLTS),
 
-    BRONZE_CROSSBOW(item = getRSCM("item.bronze_crossbow"), ammo = BRONZE_BOLTS),
-    IRON_CROSSBOW(item = getRSCM("item.iron_crossbow"), ammo = BRONZE_BOLTS + IRON_BOLTS),
-    STEEL_CROSSBOW(item = getRSCM("item.steel_crossbow"), ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS),
+    BRONZE_CROSSBOW(item = getRSCM("items.xbows_crossbow_bronze"), ammo = BRONZE_BOLTS),
+    IRON_CROSSBOW(item = getRSCM("items.xbows_crossbow_iron"), ammo = BRONZE_BOLTS + IRON_BOLTS),
+    STEEL_CROSSBOW(item = getRSCM("items.xbows_crossbow_steel"), ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS),
 
     // @TODO MITH_CROSSBOW(item = Items.MITHRIL_CROSSBOW, ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + MITHRIL_BOLTS),
-    ADAMANT_CROSSBOW(item = getRSCM("item.adamant_crossbow"), ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS),
-    RUNE_CROSSBOW(item = getRSCM("item.rune_crossbow"), ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS + BROAD_BOLTS + RUNITE_BOLTS),
+    ADAMANT_CROSSBOW(item = getRSCM("items.xbows_crossbow_adamantite"), ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS),
+    RUNE_CROSSBOW(item = getRSCM("items.xbows_crossbow_runite"), ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS + BROAD_BOLTS + RUNITE_BOLTS),
     DRAGON_CROSSBOW(
-        item = getRSCM("item.dragon_crossbow"),
+        item = getRSCM("items.xbows_crossbow_dragon"),
         ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS + BROAD_BOLTS + RUNITE_BOLTS + DRAGON_BOLTS,
     ),
 
     DRAGON_HUNTER_CROSSBOW(
-        item = getRSCM("item.dragon_hunter_crossbow"),
+        item = getRSCM("items.dragonhunter_xbow"),
         ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS + BROAD_BOLTS + RUNITE_BOLTS + DRAGON_BOLTS,
     ),
     ARMADYL_CROSSBOW(
-        item = getRSCM("item.armadyl_crossbow"),
+        item = getRSCM("items.acb"),
         ammo = BRONZE_BOLTS + IRON_BOLTS + STEEL_BOLTS + ADAMANT_BOLTS + BROAD_BOLTS + RUNITE_BOLTS + DRAGON_BOLTS,
     ),
 
-    BLURITE_CROSSBOW(item = getRSCM("item.blurite_crossbow"), ammo = BRONZE_BOLTS + BLURITE_BOLTS),
-    DORGESHUUN_CROSSBOW(item = getRSCM("item.dorgeshuun_crossbow"), ammo = BONE_BOLTS),
-    HUNTER_CROSSBOW(item = getRSCM("item.hunters_crossbow"), ammo = KEBBIT_BOLTS),
+    BLURITE_CROSSBOW(item = getRSCM("items.xbows_crossbow_blurite"), ammo = BRONZE_BOLTS + BLURITE_BOLTS),
+    DORGESHUUN_CROSSBOW(item = getRSCM("items.dttd_bone_crossbow"), ammo = BONE_BOLTS),
+    HUNTER_CROSSBOW(item = getRSCM("items.hunting_crossbow"), ammo = KEBBIT_BOLTS),
 
-    KARIL_CROSSBOW(item = getRSCM("item.karils_crossbow"), ammo = BOLT_RACKS),
-    KARIL_CROSSBOW_0(item = getRSCM("item.karils_crossbow_0"), ammo = BOLT_RACKS),
-    KARIL_CROSSBOW_25(item = getRSCM("item.karils_crossbow_25"), ammo = BOLT_RACKS),
-    KARIL_CROSSBOW_50(item = getRSCM("item.karils_crossbow_50"), ammo = BOLT_RACKS),
-    KARIL_CROSSBOW_75(item = getRSCM("item.karils_crossbow_75"), ammo = BOLT_RACKS),
-    KARIL_CROSSBOW_100(item = getRSCM("item.karils_crossbow_100"), ammo = BOLT_RACKS),
+    KARIL_CROSSBOW(item = getRSCM("items.barrows_karil_weapon"), ammo = BOLT_RACKS),
+    KARIL_CROSSBOW_0(item = getRSCM("items.barrows_karil_weapon_broken"), ammo = BOLT_RACKS),
+    KARIL_CROSSBOW_25(item = getRSCM("items.barrows_karil_weapon_25"), ammo = BOLT_RACKS),
+    KARIL_CROSSBOW_50(item = getRSCM("items.barrows_karil_weapon_50"), ammo = BOLT_RACKS),
+    KARIL_CROSSBOW_75(item = getRSCM("items.barrows_karil_weapon_75"), ammo = BOLT_RACKS),
+    KARIL_CROSSBOW_100(item = getRSCM("items.barrows_karil_weapon_100"), ammo = BOLT_RACKS),
     ;
 
     companion object {

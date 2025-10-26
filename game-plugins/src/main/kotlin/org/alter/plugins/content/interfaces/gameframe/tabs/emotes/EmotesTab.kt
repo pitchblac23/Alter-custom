@@ -81,114 +81,114 @@ object EmotesTab {
          */
         if (emote == Emote.SKILLCAPE) {
             when (p.equipment[EquipmentType.CAPE.id]?.id) {
-                getRSCM("item.max_cape_13342") -> {
+                getRSCM("items.skillcape_max_worn") -> {
                     p.animate(7121, 4)
                     p.graphic(1286, delay = 4)
                 }
-                getRSCM("item.attack_cape"), getRSCM("item.attack_capet") -> {
+                getRSCM("items.skillcape_attack"), getRSCM("items.skillcape_attack_trimmed") -> {
                     p.animate(4959)
                     p.graphic(823)
                 }
-                getRSCM("item.strength_cape"), getRSCM("item.strength_capet") -> {
+                getRSCM("items.skillcape_strength"), getRSCM("items.skillcape_strength_trimmed") -> {
                     p.animate(4981)
                     p.graphic(828)
                 }
-                getRSCM("item.defence_cape"), getRSCM("item.defence_capet") -> {
+                getRSCM("items.skillcape_defence"), getRSCM("items.skillcape_defence_trimmed") -> {
                     p.animate(4961)
                     p.graphic(824)
                 }
-                getRSCM("item.ranging_cape"), getRSCM("item.ranging_capet") -> {
+                getRSCM("items.skillcape_ranging"), getRSCM("items.skillcape_ranging_trimmed") -> {
                     p.animate(4973)
                     p.graphic(832)
                 }
-                getRSCM("item.prayer_cape"), getRSCM("item.prayer_capet") -> {
+                getRSCM("items.skillcape_prayer"), getRSCM("items.skillcape_prayer_trimmed") -> {
                     p.animate(4979)
                     p.graphic(829)
                 }
-                getRSCM("item.magic_cape"), getRSCM("item.magic_capet") -> {
+                getRSCM("items.skillcape_magic"), getRSCM("items.skillcape_magic_trimmed") -> {
                     p.animate(4939)
                     p.graphic(813)
                 }
-                getRSCM("item.runecraft_cape"), getRSCM("item.runecraft_capet") -> {
+                getRSCM("items.skillcape_runecrafting"), getRSCM("items.skillcape_runecrafting_trimmed") -> {
                     p.animate(4947)
                     p.graphic(817)
                 }
-                getRSCM("item.hitpoints_cape"), getRSCM("item.hitpoints_capet") -> {
+                getRSCM("items.skillcape_hitpoints"), getRSCM("items.skillcape_hitpoints_trimmed") -> {
                     p.animate(4971)
                     p.graphic(833)
                 }
-                getRSCM("item.agility_cape"), getRSCM("item.agility_capet") -> {
+                getRSCM("items.skillcape_agility"), getRSCM("items.skillcape_agility_trimmed") -> {
                     p.animate(4977)
                     p.graphic(830)
                 }
-                getRSCM("item.herblore_cape"), getRSCM("item.herblore_capet") -> {
+                getRSCM("items.skillcape_herblore"), getRSCM("items.skillcape_herblore_trimmed") -> {
                     p.animate(4969)
                     p.graphic(835)
                 }
-                getRSCM("item.thieving_cape"), getRSCM("item.thieving_capet") -> {
+                getRSCM("items.skillcape_thieving"), getRSCM("items.skillcape_thieving_trimmed") -> {
                     p.animate(4965)
                     p.graphic(826)
                 }
-                getRSCM("item.crafting_cape"), getRSCM("item.crafting_capet") -> {
+                getRSCM("items.skillcape_crafting"), getRSCM("items.skillcape_crafting_trimmed") -> {
                     p.animate(4949)
                     p.graphic(818)
                 }
-                getRSCM("item.fletching_cape"), getRSCM("item.fletching_capet") -> {
+                getRSCM("items.skillcape_fletching"), getRSCM("items.skillcape_fletching_trimmed") -> {
                     p.animate(4937)
                     p.graphic(812)
                 }
-                getRSCM("item.slayer_cape"), getRSCM("item.slayer_capet") -> {
+                getRSCM("items.skillcape_slayer"), getRSCM("items.skillcape_slayer_trimmed") -> {
                     p.animate(4967)
                     p.graphic(827)
                 }
-                getRSCM("item.construct_cape"), getRSCM("item.construct_capet") -> {
+                getRSCM("items.skillcape_construction"), getRSCM("items.skillcape_construction_trimmed") -> {
                     p.animate(4953)
                     p.graphic(820)
                 }
-                getRSCM("item.mining_cape"), getRSCM("item.mining_capet") -> {
+                getRSCM("items.skillcape_mining"), getRSCM("items.skillcape_mining_trimmed") -> {
                     p.animate(4941)
                     p.graphic(814)
                 }
-                getRSCM("item.smithing_cape"), getRSCM("item.smithing_capet") -> {
+                getRSCM("items.skillcape_smithing"), getRSCM("items.skillcape_smithing_trimmed") -> {
                     p.animate(4943)
                     p.graphic(815)
                 }
-                getRSCM("item.fishing_cape"), getRSCM("item.fishing_capet") -> {
+                getRSCM("items.skillcape_fishing"), getRSCM("items.skillcape_fishing_trimmed") -> {
                     p.animate(4951)
                     p.graphic(819)
                 }
-                getRSCM("item.cooking_cape"), getRSCM("item.cooking_capet") -> {
+                getRSCM("items.skillcape_cooking"), getRSCM("items.skillcape_cooking_trimmed") -> {
                     p.animate(4955)
                     p.graphic(821)
                 }
-                getRSCM("item.firemaking_cape"), getRSCM("item.firemaking_capet") -> {
+                getRSCM("items.skillcape_firemaking"), getRSCM("items.skillcape_firemaking_trimmed") -> {
                     p.animate(4975)
                     p.graphic(831)
                 }
-                getRSCM("item.woodcutting_cape"), getRSCM("item.woodcut_capet") -> {
+                getRSCM("items.skillcape_woodcutting"), getRSCM("items.skillcape_woodcutting_trimmed") -> {
                     p.animate(4957)
                     p.graphic(822)
                 }
-                getRSCM("item.farming_cape"), getRSCM("item.farming_capet") -> {
+                getRSCM("items.skillcape_farming"), getRSCM("items.skillcape_farming_trimmed") -> {
                     p.animate(4963)
                     p.graphic(825)
                 }
-                getRSCM("item.hunter_cape"), getRSCM("item.hunter_capet") -> {
+                getRSCM("items.skillcape_hunting"), getRSCM("items.skillcape_hunting_trimmed") -> {
                     p.animate(5158)
                     p.graphic(907)
                 }
-                getRSCM("item.cabbage_cape") -> {
+                getRSCM("items.skillcape_cabbage") -> {
                     p.animate(7209)
                 }
-                getRSCM("item.quest_point_cape"), getRSCM("item.quest_point_cape_t") -> {
+                getRSCM("items.skillcape_qp"), getRSCM("items.skillcape_qp_trimmed") -> {
                     p.animate(4945)
                     p.graphic(816)
                 }
-                getRSCM("item.achievement_diary_cape"), getRSCM("item.achievement_diary_cape_t") -> {
+                getRSCM("items.skillcape_ad"), getRSCM("items.skillcape_ad_trimmed") -> {
                     p.animate(2709)
                     p.graphic(323)
                 }
-                getRSCM("item.music_cape"), getRSCM("item.music_capet") -> {
+                getRSCM("items.music_cape"), getRSCM("items.music_cape_trimmed") -> {
                     p.animate(4751)
                     p.graphic(1239)
                 }

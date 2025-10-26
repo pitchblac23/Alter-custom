@@ -25,9 +25,9 @@ class KbdConfigsPlugin(
     init {
         setMultiCombatRegion(region = 9033)
 
-        spawnNpc("npc.king_black_dragon", x = 2274, z = 4698, walkRadius = 5)
+        spawnNpc("npcs.king_dragon", x = 2274, z = 4698, walkRadius = 5)
 
-        setCombatDef("npc.king_black_dragon") {
+        setCombatDef("npcs.king_dragon") {
             species {
                 +NpcSpecies.DRACONIC
                 +NpcSpecies.BASIC_DRAGON

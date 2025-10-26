@@ -31,7 +31,7 @@ class CowPlugin(
     init {
         val cow_npc_list =
             listOf(
-                "npc.cow",
+                "npcs.cow",
             )
 
         val COW_YELL_DELAY = TimerKey()

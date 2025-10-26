@@ -21,11 +21,11 @@ class RingOfWealthPlugin(
 
     val RING_OF_WEALTH =
         arrayOf(
-            "item.ring_of_wealth_1",
-            "item.ring_of_wealth_2",
-            "item.ring_of_wealth_3",
-            "item.ring_of_wealth_4",
-            "item.ring_of_wealth_5",
+            "items.ring_of_wealth_1",
+            "items.ring_of_wealth_2",
+            "items.ring_of_wealth_3",
+            "items.ring_of_wealth_4",
+            "items.ring_of_wealth_5",
         )
 
     private val SOUNDAREA_ID = 200
@@ -77,21 +77,21 @@ class RingOfWealthPlugin(
 
     fun Player.getRingReplacement(): Item? {
         return when {
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_5") -> Item(getRSCM("item.ring_of_wealth_4"))
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_4") -> Item(getRSCM("item.ring_of_wealth_3"))
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_3") -> Item(getRSCM("item.ring_of_wealth_2"))
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_2") -> Item(getRSCM("item.ring_of_wealth_1"))
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_1") -> Item(getRSCM("item.ring_of_wealth"))
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_5") -> Item(getRSCM("items.ring_of_wealth_4"))
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_4") -> Item(getRSCM("items.ring_of_wealth_3"))
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_3") -> Item(getRSCM("items.ring_of_wealth_2"))
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_2") -> Item(getRSCM("items.ring_of_wealth_1"))
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_1") -> Item(getRSCM("items.ring_of_wealth"))
             else -> null
         }
     }
 
     fun Player.getRingChargeReplacement(): String {
         return when {
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_4") -> "<col=7f007f>Your ring has four charges left.</col>"
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_3") -> "<col=7f007f>Your ring has three charges left.</col>"
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_2") -> "<col=7f007f>Your ring has two charges left.</col>"
-            hasEquipped(EquipmentType.RING, "item.ring_of_wealth_1") -> "<col=7f007f>Your ring has one charge left.</col>"
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_4") -> "<col=7f007f>Your ring has four charges left.</col>"
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_3") -> "<col=7f007f>Your ring has three charges left.</col>"
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_2") -> "<col=7f007f>Your ring has two charges left.</col>"
+            hasEquipped(EquipmentType.RING, "items.ring_of_wealth_1") -> "<col=7f007f>Your ring has one charge left.</col>"
             else -> "<col=7f007f>You use your ring's last charge.</col>"
         }
     }

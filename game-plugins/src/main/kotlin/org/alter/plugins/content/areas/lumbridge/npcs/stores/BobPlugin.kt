@@ -27,17 +27,17 @@ class BobPlugin(
     )
 
     private val storeItems = listOf(
-        ShopItem(getRSCM("item.bronze_pickaxe"), 5, 1, 0),
-        ShopItem(getRSCM("item.bronze_axe"), 10, 16, 9),
-        ShopItem(getRSCM("item.iron_axe"), 5, 56, 33),
-        ShopItem(getRSCM("item.steel_axe"), 3, 200, 120),
-        ShopItem(getRSCM("item.iron_battleaxe"), 5, 182, 109),
-        ShopItem(getRSCM("item.steel_battleaxe"), 2, 650, 390),
-        ShopItem(getRSCM("item.mithril_battleaxe"), 1, 1690, 1014),
+        ShopItem(getRSCM("items.bronze_pickaxe"), 5, 1, 0),
+        ShopItem(getRSCM("items.bronze_axe"), 10, 16, 9),
+        ShopItem(getRSCM("items.iron_axe"), 5, 56, 33),
+        ShopItem(getRSCM("items.steel_axe"), 3, 200, 120),
+        ShopItem(getRSCM("items.iron_battleaxe"), 5, 182, 109),
+        ShopItem(getRSCM("items.steel_battleaxe"), 2, 650, 390),
+        ShopItem(getRSCM("items.mithril_battleaxe"), 1, 1690, 1014),
     )
 
     init {
-        spawnNpc("npc.bob_10619", 3230, 3203, 0, 2, Direction.EAST)
+        spawnNpc("npcs.bob", 3230, 3203, 0, 2, Direction.EAST)
 
         createShop("Bob's Brilliant Axes.", CoinCurrency(), purchasePolicy = PurchasePolicy.BUY_STOCK) {
             storeItems.forEachIndexed { index, item ->
@@ -45,12 +45,12 @@ class BobPlugin(
             }
         }
 
-        onNpcOption("npc.bob_10619", option = "talk-to")
+        onNpcOption("npcs.bob", option = "talk-to")
         {
             player.queue { dialog(player) }
         }
 
-        onNpcOption("npc.bob_10619", option = "trade")
+        onNpcOption("npcs.bob", option = "trade")
         {
             player.shop()
         }

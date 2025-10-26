@@ -19,9 +19,9 @@ class BartenderPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.bartender_7546", x = 3232, z = 3241, direction = Direction.WEST)
+        spawnNpc("npcs.ram_bartender", x = 3232, z = 3241, direction = Direction.WEST)
 
-        onNpcOption("npc.bartender_7546", option = "talk-to", lineOfSightDistance = 4) {
+        onNpcOption("npcs.ram_bartender", option = "talk-to", lineOfSightDistance = 4) {
             player.queue { dialog(player) }
         }
     }
@@ -32,9 +32,9 @@ class BartenderPlugin(
             1 -> {
                 chatPlayer(player, "I'll have a beer please.")
                 chatNpc(player, "That'll be two coins please.")
-                if (player.inventory.contains("item.coins_995")) {
-                    player.inventory.remove("item.coins_995", 2)
-                    player.inventory.add("item.beer", 1)
+                if (player.inventory.contains("items.coins")) {
+                    player.inventory.remove("items.coins", 2)
+                    player.inventory.add("items.beer", 1)
                 } else {
                     chatPlayer(player, "Oh dear, I don't seem to have enough money.")
                 }

@@ -19,7 +19,7 @@ class DragonDaggerPlugin(
 
         val SPECIAL_REQUIREMENT = 25
 
-        SpecialAttacks.register("item.dragon_dagger", SPECIAL_REQUIREMENT) {
+        SpecialAttacks.register("items.dragon_dagger", SPECIAL_REQUIREMENT) {
             player.animate(id = 1062)
             player.graphic(id = 252, height = 92)
             world.spawn(AreaSound(tile = player.tile, id = 2537, radius = 10, volume = 1))

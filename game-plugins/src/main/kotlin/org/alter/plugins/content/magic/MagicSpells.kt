@@ -40,13 +40,13 @@ object MagicSpells {
 
     private val STAFF_ITEMS =
         arrayOf(
-            "item.ibans_staff",
-            "item.ibans_staff_u",
-            "item.slayers_staff",
-            "item.slayers_staff_e",
-            "item.saradomin_staff",
-            "item.guthix_staff",
-            "item.zamorak_staff",
+            "items.ibanstaff",
+            "items.ibanstaff_upgraded",
+            "items.slayer_staff",
+            "items.slayer_staff_enchanted",
+            "items.saradomin_staff",
+            "items.guthix_staff",
+            "items.zamorak_staff",
         )
 
     private val metadata = Int2ObjectOpenHashMap<SpellMetadata>()

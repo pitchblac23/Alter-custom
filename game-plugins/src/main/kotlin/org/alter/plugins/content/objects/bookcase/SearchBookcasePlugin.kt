@@ -23,7 +23,7 @@ class SearchBookcasePlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        val BOOKCASES = setOf("object.bookcase_380", "object.bookcase_381")
+        val BOOKCASES = setOf("objects.bookcase", "objects.bookcase2")
 
         BOOKCASES.forEach { case ->
             onObjOption(obj = case, option = "search") {

@@ -23,7 +23,7 @@ class WildernessDitchPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        onObjOption("object.wilderness_ditch", "cross") {
+        onObjOption("objects.ditch_wilderness_cover", "cross") {
             val ditch = player.getInteractingGameObj()
             val sideCross = player.tile.z == ditch.tile.z
 

@@ -14,7 +14,7 @@ class PrayerScrollsPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        onItemOption("item.dexterous_prayer_scroll", "read") {
+        onItemOption("items.raids_prayerscroll", "read") {
             player.queue {
                 if (player.getVarbit(Prayers.RIGOUR_UNLOCK_VARBIT) == 1) {
                     messageBox(player,
@@ -25,17 +25,17 @@ class PrayerScrollsPlugin(
                 player.animate(id = 7403)
                 itemMessageBox(player,
                     "You can make out some faded words on the ancient parchment. It appears to be an archaic invocation of the gods! Would you like to absorb its power? <br>(Warning: This will consume the scroll.)</b>",
-                    item = "item.dexterous_prayer_scroll",
+                    item = "items.raids_prayerscroll",
                 )
                 when (options(player, "Learn Rigour", "Cancel", title = "This will consume the scroll")) {
                     1 -> {
-                        if (player.inventory.contains(getRSCM("item.dexterous_prayer_scroll"))) {
-                            player.inventory.remove(item = "item.dexterous_prayer_scroll")
+                        if (player.inventory.contains(getRSCM("items.raids_prayerscroll"))) {
+                            player.inventory.remove(item = "items.raids_prayerscroll")
                             player.setVarbit(id = Prayers.RIGOUR_UNLOCK_VARBIT, value = 1)
                             player.animate(id = -1)
                             itemMessageBox(player,
                                 "You study the scroll and learn a new prayer: <col=8B0000>Rigour</col>",
-                                item = "item.dexterous_prayer_scroll",
+                                item = "items.raids_prayerscroll",
                             )
                         }
                     }
@@ -46,7 +46,7 @@ class PrayerScrollsPlugin(
             }
         }
 
-        onItemOption("item.arcane_prayer_scroll", "read") {
+        onItemOption("items.raids_prayerscroll_augury", "read") {
             player.queue {
                 if (player.getVarbit(Prayers.AUGURY_UNLOCK_VARBIT) == 1) {
                     messageBox(player,
@@ -57,17 +57,17 @@ class PrayerScrollsPlugin(
                 player.animate(id = 7403)
                 itemMessageBox(player,
                     "You can make out some faded words on the ancient parchment. It appears to be an archaic invocation of the gods! Would you like to absorb its power? <br>(Warning: This will consume the scroll.)</b>",
-                    item = "item.arcane_prayer_scroll",
+                    item = "items.raids_prayerscroll_augury",
                 )
                 when (options(player, "Learn Augury", "Cancel", title = "This will consume the scroll")) {
                     1 -> {
-                        if (player.inventory.contains("item.arcane_prayer_scroll")) {
-                            player.inventory.remove(item = "item.arcane_prayer_scroll")
+                        if (player.inventory.contains("items.raids_prayerscroll_augury")) {
+                            player.inventory.remove(item = "items.raids_prayerscroll_augury")
                             player.setVarbit(id = Prayers.AUGURY_UNLOCK_VARBIT, value = 1)
                             player.animate(id = -1)
                             itemMessageBox(player,
                                 "You study the scroll and learn a new prayer: <col=8B0000>Augury</col>",
-                                item = "item.arcane_prayer_scroll",
+                                item = "items.raids_prayerscroll_augury",
                             )
                         }
                     }
@@ -78,7 +78,7 @@ class PrayerScrollsPlugin(
             }
         }
 
-        onItemOption("item.torn_prayer_scroll", "read") {
+        onItemOption("items.raids_prayerscroll_preserve", "read") {
             player.queue {
                 if (player.getVarbit(Prayers.PRESERVE_UNLOCK_VARBIT) == 1) {
                     messageBox(player,
@@ -89,17 +89,17 @@ class PrayerScrollsPlugin(
                 player.animate(id = 7403)
                 itemMessageBox(player,
                     "You can make out some faded words on the ancient parchment. It appears to be an archaic invocation of the gods! Would you like to absorb its power? <br>(Warning: This will consume the scroll.)</b>",
-                    item = "item.torn_prayer_scroll",
+                    item = "items.raids_prayerscroll_preserve",
                 )
                 when (options(player, "Learn Preserve", "Cancel", title = "This will consume the scroll")) {
                     1 -> {
-                        if (player.inventory.contains("item.torn_prayer_scroll")) {
-                            player.inventory.remove(item = "item.torn_prayer_scroll")
+                        if (player.inventory.contains("items.raids_prayerscroll_preserve")) {
+                            player.inventory.remove(item = "items.raids_prayerscroll_preserve")
                             player.setVarbit(id = Prayers.PRESERVE_UNLOCK_VARBIT, value = 1)
                             player.animate(id = -1)
                             itemMessageBox(player,
                                 "You study the scroll and learn a new prayer: <col=8B0000>Preserve</col>",
-                                item = "item.torn_prayer_scroll",
+                                item = "items.raids_prayerscroll_preserve",
                             )
                         }
                     }

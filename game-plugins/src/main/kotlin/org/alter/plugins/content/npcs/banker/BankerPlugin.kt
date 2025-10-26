@@ -15,9 +15,9 @@ class BankerPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     private val bankers = listOf(
-        "npc.banker_1479",
-        "npc.banker_1480",
-        "npc.banker_2897",
+        "npcs.mourning_elf_bankerm",
+        "npcs.mourning_elf_bankerf",
+        "npcs.banker1_new",
     )
 
     init {

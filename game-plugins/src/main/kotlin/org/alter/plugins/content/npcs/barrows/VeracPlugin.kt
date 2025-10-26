@@ -23,13 +23,13 @@ class VeracPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        spawnNpc("npc.verac_the_defiled", 3557, 3297, 0, 2)
-        spawnNpc("npc.verac_the_defiled", 3559, 3300, 0, 2)
-        spawnNpc("npc.verac_the_defiled", 3555, 3297, 0, 2)
-        spawnNpc("npc.verac_the_defiled", 3555, 3294, 0, 2)
-        spawnNpc("npc.verac_the_defiled", 3559, 3294, 0, 2)
+        spawnNpc("npcs.barrows_verac", 3557, 3297, 0, 2)
+        spawnNpc("npcs.barrows_verac", 3559, 3300, 0, 2)
+        spawnNpc("npcs.barrows_verac", 3555, 3297, 0, 2)
+        spawnNpc("npcs.barrows_verac", 3555, 3294, 0, 2)
+        spawnNpc("npcs.barrows_verac", 3559, 3294, 0, 2)
 
-        setCombatDef("npc.verac_the_defiled") {
+        setCombatDef("npcs.barrows_verac") {
             configs {
                 attackSpeed = 6
                 respawnDelay = 50

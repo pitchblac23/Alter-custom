@@ -28,9 +28,9 @@ class LadderPlugin(
 
         val stairs =
             arrayOf(
-                "object.staircase_16672",
-                "object.staircase_16673",
-                "object.staircase_16671",
+                "objects.spiralstairsmiddle",
+                "objects.spiralstairstop",
+                "objects.spiralstairs",
             )
 
         stairs.forEach { stairs ->
@@ -55,12 +55,12 @@ class LadderPlugin(
 
         val ladders =
             arrayOf(
-                "object.ladder_12964",
-                "object.ladder_12965",
-                "object.ladder_16683",
-                "object.ladder_12966",
-                "object.ladder_16679",
-                "object.ladder_16684",
+                "objects.qip_cook_ladder",
+                "objects.qip_cook_ladder_middle",
+                "objects.ladder",
+                "objects.qip_cook_ladder_top",
+                "objects.laddertop",
+                "objects.laddermiddle",
             )
 
         ladders.forEach { ladder ->
@@ -83,10 +83,10 @@ class LadderPlugin(
 
         /**Trapdoors.*/
 
-        onObjOption("object.trapdoor_14880", option = "climb-down") {
+        onObjOption("objects.qip_cook_trapdoor_open", option = "climb-down") {
             player.moveTo(3210, 9616, 0)
         }
-        onObjOption("object.ladder_17385", option = "climb-up") {
+        onObjOption("objects.ladder_from_cellar", option = "climb-up") {
             player.moveTo(3210, 3216, 0)
         }
     }

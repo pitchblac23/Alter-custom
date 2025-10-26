@@ -31,7 +31,7 @@ class MysteryBoxPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        onItemOption("item.mystery_box", 2) {
+        onItemOption("items.macro_quiz_mystery_box", 2) {
             val itemLimit = itemSize()
             var item = world.random(0..itemLimit)
             var itemDef = getItemOrDefault(item)

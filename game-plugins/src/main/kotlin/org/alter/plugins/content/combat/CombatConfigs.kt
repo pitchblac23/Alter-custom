@@ -25,49 +25,49 @@ object CombatConfigs {
 
     private val DEFENDERS =
         arrayOf(
-            "item.bronze_defender",
-            "item.iron_defender",
-            "item.steel_defender",
-            "item.mithril_defender",
-            "item.black_defender",
-            "item.adamant_defender",
-            "item.rune_defender",
-            "item.dragon_defender",
-            "item.dragon_defender_t",
-            "item.avernic_defender",
+            "items.bronze_parryingdagger",
+            "items.iron_parryingdagger",
+            "items.steel_parryingdagger",
+            "items.mithril_parryingdagger",
+            "items.black_parryingdagger",
+            "items.adamant_parryingdagger",
+            "items.rune_parryingdagger",
+            "items.dragon_parryingdagger",
+            "items.dragon_parryingdagger_t",
+            "items.infernal_defender",
         )
 
     private val BOOKS =
         arrayOf(
-            "item.holy_book",
-            "item.book_of_balance",
-            "item.unholy_book",
-            "item.book_of_law",
-            "item.book_of_war",
-            "item.book_of_darkness",
-            "item.mages_book",
-            "item.tome_of_fire",
-            "item.tome_of_fire_empty",
+            "items.saradominbook_complete",
+            "items.guthixbook_complete",
+            "items.zamorakbook_complete",
+            "items.armadylbook_complete",
+            "items.bandosbook_complete",
+            "items.zarosbook_complete",
+            "items.magictraining_bookofmagic",
+            "items.tome_of_fire",
+            "items.tome_of_fire_uncharged",
         )
 
     private val BOXING_GLOVES =
         arrayOf(
-            "item.boxing_gloves",
-            "item.boxing_gloves_7673",
-            "item.beach_boxing_gloves",
-            "item.beach_boxing_gloves_11706",
+            "items.poh_boxing_gloves_red",
+            "items.poh_boxing_gloves_blue",
+            "items.beachparty_boxinggloves_yellow",
+            "items.beachparty_boxinggloves_purple",
         )
 
     private val GODSWORDS =
         arrayOf(
-            "item.armadyl_godsword",
-            "item.armadyl_godsword_or",
-            "item.bandos_godsword",
-            "item.bandos_godsword_or",
-            "item.saradomin_godsword",
-            "item.saradomin_godsword_or",
-            "item.zamorak_godsword",
-            "item.zamorak_godsword_or",
+            "items.ags",
+            "items.agsg",
+            "items.bgs",
+            "items.bgsg",
+            "items.sgs",
+            "items.sgsg",
+            "items.zgs",
+            "items.zgsg",
         )
 
     fun getCombatStrategy(pawn: Pawn): CombatStrategy =
@@ -138,7 +138,7 @@ object CombatConfigs {
                 pawn.hasWeaponType(WeaponType.MAGIC_STAFF) || pawn.hasWeaponType(WeaponType.STAFF) -> 419
                 pawn.hasWeaponType(WeaponType.MACE) -> if (style == 2) 400 else 401
                 pawn.hasWeaponType(WeaponType.CHINCHOMPA) -> 7618
-                pawn.hasWeaponType(WeaponType.THROWN) -> if (pawn.hasEquipped(EquipmentType.WEAPON, "item.toktzxilul")) 7558 else 929
+                pawn.hasWeaponType(WeaponType.THROWN) -> if (pawn.hasEquipped(EquipmentType.WEAPON, "items.tzhaar_throwingring")) 7558 else 929
                 pawn.hasWeaponType(WeaponType.WHIP) -> 1658
                 pawn.hasWeaponType(WeaponType.SPEAR) || pawn.hasWeaponType(WeaponType.HALBERD) ->
                     if (style == 1) {
@@ -164,15 +164,15 @@ object CombatConfigs {
         if (pawn is Player) {
             return when {
                 pawn.hasEquipped(EquipmentType.SHIELD, *BOOKS) -> 420
-                pawn.hasEquipped(EquipmentType.WEAPON, "item.sled_4084") -> 1466
-                pawn.hasEquipped(EquipmentType.WEAPON, "item.easter_basket") -> 1834
+                pawn.hasEquipped(EquipmentType.WEAPON, "items.trollromance_toboggon_waxed") -> 1466
+                pawn.hasEquipped(EquipmentType.WEAPON, "items.easter_basket_2005") -> 1834
                 pawn.hasEquipped(EquipmentType.SHIELD, *DEFENDERS) -> 4177
                 pawn.getEquipment(EquipmentType.SHIELD) != null -> 1156 // If wearing any shield, this animation is used
 
                 pawn.hasEquipped(EquipmentType.WEAPON, *BOXING_GLOVES) -> 3679
                 pawn.hasEquipped(EquipmentType.WEAPON, *GODSWORDS) -> 7056
-                pawn.hasEquipped(EquipmentType.WEAPON, "item.light_ballista", "item.heavy_ballista") -> 7219
-                pawn.hasEquipped(EquipmentType.WEAPON, "item.zamorakian_spear") -> 1709
+                pawn.hasEquipped(EquipmentType.WEAPON, "items.light_ballista", "items.heavy_ballista") -> 7219
+                pawn.hasEquipped(EquipmentType.WEAPON, "items.zamorak_spear") -> 1709
 
                 pawn.hasWeaponType(WeaponType.DAGGER) -> 378
                 pawn.hasWeaponType(WeaponType.LONG_SWORD) -> 388

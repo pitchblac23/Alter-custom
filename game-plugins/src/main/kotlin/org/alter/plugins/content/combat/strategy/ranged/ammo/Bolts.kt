@@ -5,16 +5,16 @@ import org.alter.rscm.RSCM.getRSCM
  * @author Tom <rspsmods@gmail.com>
  */
 object Bolts {
-    val BRONZE_BOLTS = arrayOf(getRSCM("item.bronze_bolts"), getRSCM("item.bronze_bolts_p"), getRSCM("item.bronze_bolts_p_6061"), getRSCM("item.bronze_bolts_p_6062"))
-    val IRON_BOLTS = arrayOf(getRSCM("item.iron_bolts"), getRSCM("item.iron_bolts_p"), getRSCM("item.iron_bolts_p_9294"), getRSCM("item.iron_bolts_p_9301"))
-    val STEEL_BOLTS = arrayOf(getRSCM("item.steel_bolts"), getRSCM("item.steel_bolts_p"), getRSCM("item.steel_bolts_p_9295"), getRSCM("item.steel_bolts_p_9302"))
-    val MITHRIL_BOLTS = arrayOf(getRSCM("item.mithril_bolts"), getRSCM("item.mithril_bolts_p"), getRSCM("item.mithril_bolts_p_9296"), getRSCM("item.mithril_bolts_p_9303"))
-    val ADAMANT_BOLTS = arrayOf(getRSCM("item.adamant_bolts"), getRSCM("item.adamant_bolts_p"), getRSCM("item.adamant_bolts_p_9297"), getRSCM("item.adamant_bolts_p_9304"))
-    val BROAD_BOLTS = arrayOf(getRSCM("item.broad_bolts"), getRSCM("item.amethyst_broad_bolts"))
-    val RUNITE_BOLTS = arrayOf(getRSCM("item.runite_bolts"), getRSCM("item.runite_bolts_p"), getRSCM("item.runite_bolts_p_9298"), getRSCM("item.runite_bolts_p_9305"))
-    val DRAGON_BOLTS = arrayOf(getRSCM("item.dragon_bolts"), getRSCM("item.dragon_bolts_p"), getRSCM("item.dragon_bolts_p_21926"), getRSCM("item.dragon_bolts_p_21928"))
-    val BLURITE_BOLTS = arrayOf(getRSCM("item.blurite_bolts"), getRSCM("item.blurite_bolts_p"), getRSCM("item.blurite_bolts_p_9293"), getRSCM("item.blurite_bolts_p_9300"))
-    val BONE_BOLTS = arrayOf(getRSCM("item.bone_bolts"))
-    val KEBBIT_BOLTS = arrayOf(getRSCM("item.kebbit_bolts"), getRSCM("item.long_kebbit_bolts"))
-    val BOLT_RACKS = arrayOf(getRSCM("item.bolt_rack"))
+    val BRONZE_BOLTS = arrayOf(getRSCM("items.bolt"), getRSCM("items.poison_bolt"), getRSCM("items.poison_bolt+"), getRSCM("items.poison_bolt++"))
+    val IRON_BOLTS = arrayOf(getRSCM("items.xbows_crossbow_bolts_iron"), getRSCM("items.xbows_crossbow_bolts_iron_poisoned"), getRSCM("items.xbows_crossbow_bolts_iron_poisoned+"), getRSCM("items.xbows_crossbow_bolts_iron_poisoned++"))
+    val STEEL_BOLTS = arrayOf(getRSCM("items.xbows_crossbow_bolts_steel"), getRSCM("items.xbows_crossbow_bolts_steel_poisoned"), getRSCM("items.xbows_crossbow_bolts_steel_poisoned+"), getRSCM("items.xbows_crossbow_bolts_steel_poisoned++"))
+    val MITHRIL_BOLTS = arrayOf(getRSCM("items.xbows_crossbow_bolts_mithril"), getRSCM("items.xbows_crossbow_bolts_mithril_poisoned"), getRSCM("items.xbows_crossbow_bolts_mithril_poisoned+"), getRSCM("items.xbows_crossbow_bolts_mithril_poisoned++"))
+    val ADAMANT_BOLTS = arrayOf(getRSCM("items.xbows_crossbow_bolts_adamantite"), getRSCM("items.xbows_crossbow_bolts_adamantite_poisoned"), getRSCM("items.xbows_crossbow_bolts_adamantite_poisoned+"), getRSCM("items.xbows_crossbow_bolts_adamantite_poisoned++"))
+    val BROAD_BOLTS = arrayOf(getRSCM("items.slayer_broad_bolt"), getRSCM("items.slayer_broad_bolt_amethyst"))
+    val RUNITE_BOLTS = arrayOf(getRSCM("items.xbows_crossbow_bolts_runite"), getRSCM("items.xbows_crossbow_bolts_runite_poisoned"), getRSCM("items.xbows_crossbow_bolts_runite_poisoned+"), getRSCM("items.xbows_crossbow_bolts_runite_poisoned++"))
+    val DRAGON_BOLTS = arrayOf(getRSCM("items.dragon_bolts"), getRSCM("items.dragon_bolts_p"), getRSCM("items.dragon_bolts_p+"), getRSCM("items.dragon_bolts_p++"))
+    val BLURITE_BOLTS = arrayOf(getRSCM("items.xbows_crossbow_bolts_blurite"), getRSCM("items.xbows_crossbow_bolts_blurite_poisoned"), getRSCM("items.xbows_crossbow_bolts_blurite_poisoned+"), getRSCM("items.xbows_crossbow_bolts_blurite_poisoned++"))
+    val BONE_BOLTS = arrayOf(getRSCM("items.dttd_bone_crossbow_bolt"))
+    val KEBBIT_BOLTS = arrayOf(getRSCM("items.huntingbow_bolts"), getRSCM("items.huntingbow_bigbolts"))
+    val BOLT_RACKS = arrayOf(getRSCM("items.barrows_karil_ammo"))
 }

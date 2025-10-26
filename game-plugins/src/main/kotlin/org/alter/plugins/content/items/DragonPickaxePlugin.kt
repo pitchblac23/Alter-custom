@@ -28,7 +28,7 @@ class DragonPickaxePlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        SpecialAttacks.register("item.dragon_pickaxe", 100, true) {
+        SpecialAttacks.register("items.dragon_pickaxe", 100, true) {
             player.getSkills().alterCurrentLevel(Skills.MINING, +3, 120)
             player.forceChat("Smashing!")
             player.animate(Animation.DRAGON_PICKAXE_SPECIAL)

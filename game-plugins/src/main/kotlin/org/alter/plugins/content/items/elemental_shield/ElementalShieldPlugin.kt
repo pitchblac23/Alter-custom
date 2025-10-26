@@ -23,7 +23,7 @@ class ElementalShieldPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        onItemEquip("item.elemental_shield") {
+        onItemEquip("items.elemental_shield") {
             player.queue {
                 player.animate(-1)
                 player.graphic(-1)

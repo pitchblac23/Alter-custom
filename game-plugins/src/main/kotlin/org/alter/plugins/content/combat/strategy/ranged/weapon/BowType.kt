@@ -23,103 +23,103 @@ import org.alter.plugins.content.combat.strategy.ranged.ammo.Arrows.TRAINING_ARR
  * @author Tom <rspsmods@gmail.com>
  */
 enum class BowType(val item: Int, val ammo: Array<Int>) {
-    TRAINING_BOW(item = getRSCM("item.training_bow"), ammo = TRAINING_ARROWS),
+    TRAINING_BOW(item = getRSCM("items.aide_shortbow"), ammo = TRAINING_ARROWS),
 
-    SHORTBOW(item = getRSCM("item.shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS),
-    LONGBOW(item = getRSCM("item.longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS),
+    SHORTBOW(item = getRSCM("items.shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS),
+    LONGBOW(item = getRSCM("items.longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS),
 
-    OAK_SHORTBOW(item = getRSCM("item.oak_shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS),
-    OAK_LONGBOW(item = getRSCM("item.oak_longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS),
+    OAK_SHORTBOW(item = getRSCM("items.oak_shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS),
+    OAK_LONGBOW(item = getRSCM("items.oak_longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS),
 
-    WILLOW_SHORTBOW(item = getRSCM("item.willow_shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS),
-    WILLOW_COMP_BOW(item = getRSCM("item.willow_comp_bow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS),
-    WILLOW_LONGBOW(item = getRSCM("item.willow_longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS),
+    WILLOW_SHORTBOW(item = getRSCM("items.willow_shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS),
+    WILLOW_COMP_BOW(item = getRSCM("items.trail_composite_bow_willow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS),
+    WILLOW_LONGBOW(item = getRSCM("items.willow_longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS),
 
-    MAPLE_SHORTBOW(item = getRSCM("item.maple_shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS),
-    MAPLE_LONGBOW(item = getRSCM("item.maple_longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS),
+    MAPLE_SHORTBOW(item = getRSCM("items.maple_shortbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS),
+    MAPLE_LONGBOW(item = getRSCM("items.maple_longbow"), ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS),
 
-    OGRE_BOW(item = getRSCM("item.ogre_bow"), ammo = OGRE_ARROWS),
+    OGRE_BOW(item = getRSCM("items.ogre_bow"), ammo = OGRE_ARROWS),
     COMP_OGRE_BOW(
-        item = getRSCM("item.comp_ogre_bow"),
+        item = getRSCM("items.zogre_bow"),
         ammo = BRUTAL_BRONZE_ARROWS + BRUTAL_IRON_ARROWS + BRUTAL_STEEL_ARROWS + BRUTAL_BLACK_ARROWS + BRUTAL_MITHRIL_ARROWS + BRUTAL_ADAMANT_ARROWS + BRUTAL_RUNE_ARROWS,
     ),
 
     YEW_SHORTBOW(
-        item = getRSCM("item.yew_shortbow"),
+        item = getRSCM("items.yew_shortbow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS,
     ),
     YEW_LONGBOW(
-        item = getRSCM("item.yew_longbow"),
+        item = getRSCM("items.yew_longbow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS,
     ),
     YEW_COMP_BOW(
-        item = getRSCM("item.yew_comp_bow"),
+        item = getRSCM("items.trail_composite_bow_yew"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS,
     ),
 
     MAGIC_SHORTBOW(
-        item = getRSCM("item.magic_shortbow"),
+        item = getRSCM("items.magic_shortbow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS,
     ),
     MAGIC_SHORTBOW_I(
-        item = getRSCM("item.magic_shortbow_i"),
+        item = getRSCM("items.magic_shortbow_i"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS,
     ),
     MAGIC_LONGBOW(
-        item = getRSCM("item.magic_longbow"),
+        item = getRSCM("items.magic_longbow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS,
     ),
     MAGIC_COMP_BOW(
-        item = getRSCM("item.magic_comp_bow"),
+        item = getRSCM("items.trail_composite_bow_magic"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS,
     ),
 
     SEERCULL(
-        item = getRSCM("item.seercull"),
+        item = getRSCM("items.daganoth_cave_magic_shortbow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS,
     ),
-    CRAWS_BOW(item = getRSCM("item.craws_bow"), ammo = emptyArray()),
+    CRAWS_BOW(item = getRSCM("items.wild_cave_bow_charged"), ammo = emptyArray()),
 
     DARK_BOW(
-        item = getRSCM("item.dark_bow"),
+        item = getRSCM("items.darkbow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
     BLUE_DARK_BOW(
-        item = getRSCM("item.dark_bow_12765"),
+        item = getRSCM("items.darkbow_green"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
     GREEN_DARK_BOW(
-        item = getRSCM("item.dark_bow_12766"),
+        item = getRSCM("items.darkbow_blue"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
     WHITE_DARK_BOW(
-        item = getRSCM("item.dark_bow_12767"),
+        item = getRSCM("items.darkbow_yellow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
     YELLOW_DARK_BOW(
-        item = getRSCM("item.dark_bow_12768"),
+        item = getRSCM("items.darkbow_white"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
 
     THIRD_AGE_BOW(
-        item = getRSCM("item._3rd_age_bow"),
+        item = getRSCM("items.trail_ranger_bow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
 
-    CRYSTAL_BOW_110(item = getRSCM("item.crystal_bow_110"), ammo = emptyArray()),
-    CRYSTAL_BOW_210(item = getRSCM("item.crystal_bow_210"), ammo = emptyArray()),
-    CRYSTAL_BOW_310(item = getRSCM("item.crystal_bow_310"), ammo = emptyArray()),
-    CRYSTAL_BOW_410(item = getRSCM("item.crystal_bow_410"), ammo = emptyArray()),
-    CRYSTAL_BOW_510(item = getRSCM("item.crystal_bow_510"), ammo = emptyArray()),
-    CRYSTAL_BOW_610(item = getRSCM("item.crystal_bow_610"), ammo = emptyArray()),
-    CRYSTAL_BOW_710(item = getRSCM("item.crystal_bow_710"), ammo = emptyArray()),
-    CRYSTAL_BOW_810(item = getRSCM("item.crystal_bow_810"), ammo = emptyArray()),
-    CRYSTAL_BOW_910(item = getRSCM("item.crystal_bow_910"), ammo = emptyArray()),
-    CRYSTAL_BOW_FULL(item = getRSCM("item.crystal_bow_full"), ammo = emptyArray()),
-    CRYSTAL_BOW_NEW(item = getRSCM("item.new_crystal_bow"), ammo = emptyArray()),
+    CRYSTAL_BOW_110(item = getRSCM("items.roving_crystal_bow_100"), ammo = emptyArray()),
+    CRYSTAL_BOW_210(item = getRSCM("items.roving_crystal_bow_200"), ammo = emptyArray()),
+    CRYSTAL_BOW_310(item = getRSCM("items.roving_crystal_bow_300"), ammo = emptyArray()),
+    CRYSTAL_BOW_410(item = getRSCM("items.roving_crystal_bow_400"), ammo = emptyArray()),
+    CRYSTAL_BOW_510(item = getRSCM("items.roving_crystal_bow_500"), ammo = emptyArray()),
+    CRYSTAL_BOW_610(item = getRSCM("items.roving_crystal_bow_600"), ammo = emptyArray()),
+    CRYSTAL_BOW_710(item = getRSCM("items.roving_crystal_bow_700"), ammo = emptyArray()),
+    CRYSTAL_BOW_810(item = getRSCM("items.roving_crystal_bow_800"), ammo = emptyArray()),
+    CRYSTAL_BOW_910(item = getRSCM("items.roving_crystal_bow_900"), ammo = emptyArray()),
+    CRYSTAL_BOW_FULL(item = getRSCM("items.roving_crystal_bow_1000"), ammo = emptyArray()),
+    CRYSTAL_BOW_NEW(item = getRSCM("items.roving_crystal_bow_new"), ammo = emptyArray()),
 
     TWISTED_BOW(
-        item = getRSCM("item.twisted_bow"),
+        item = getRSCM("items.twisted_bow"),
         ammo = BRONZE_ARROWS + IRON_ARROWS + STEEL_ARROWS + MITHRIL_ARROWS + ADAMANT_ARROWS + RUNE_ARROWS + AMETHYST_ARROWS + DRAGON_ARROWS,
     ),
     ;

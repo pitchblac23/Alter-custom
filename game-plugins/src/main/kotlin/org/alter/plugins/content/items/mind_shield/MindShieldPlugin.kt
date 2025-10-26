@@ -23,7 +23,7 @@ class MindShieldPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        onItemEquip("item.mind_shield") {
+        onItemEquip("items.elemental_mind_shield") {
             player.queue {
                 player.animate(-1)
                 player.graphic(-1)

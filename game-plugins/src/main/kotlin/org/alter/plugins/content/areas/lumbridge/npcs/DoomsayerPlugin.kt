@@ -15,9 +15,9 @@ class DoomsayerPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.doomsayer", x = 3232, z = 3223, direction = Direction.EAST)
+        spawnNpc("npcs.doomsayer_normal", x = 3232, z = 3223, direction = Direction.EAST)
 
-        onNpcOption(npc = "npc.doomsayer", option = "Talk-to") {
+        onNpcOption(npc = "npcs.doomsayer_normal", option = "Talk-to") {
             player.queue { dialog(player) }
         }
     }

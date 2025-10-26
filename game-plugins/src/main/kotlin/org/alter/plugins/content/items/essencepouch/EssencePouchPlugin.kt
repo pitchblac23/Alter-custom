@@ -24,10 +24,10 @@ class EssencePouchPlugin(
          */
         val pouches =
             setOf(
-                EssencePouch(id = "item.small_pouch", levelReq = 1, capacity = 3),
-                EssencePouch(id = "item.medium_pouch", levelReq = 25, capacity = 6),
-                EssencePouch(id = "item.large_pouch", levelReq = 50, capacity = 9),
-                EssencePouch(id = "item.giant_pouch", levelReq = 75, capacity = 12),
+                EssencePouch(id = "items.rcu_pouch_small", levelReq = 1, capacity = 3),
+                EssencePouch(id = "items.rcu_pouch_medium", levelReq = 25, capacity = 6),
+                EssencePouch(id = "items.rcu_pouch_large", levelReq = 50, capacity = 9),
+                EssencePouch(id = "items.rcu_pouch_giant", levelReq = 75, capacity = 12),
             )
 
         /**
@@ -102,12 +102,12 @@ fun fillPouch(
         return
     }
 
-    if (!inventory.containsAny("item.pure_essence", "item.rune_essence")) {
+    if (!inventory.containsAny("items.blankrune_high", "items.blankrune")) {
         player.message("You do not have any essence to fill your pouch with.")
         return
     }
 
-    val essence = if (inventory.contains(getRSCM("item.pure_essence"))) "item.pure_essence" else "item.rune_essence"
+    val essence = if (inventory.contains(getRSCM("items.blankrune_high"))) "items.blankrune_high" else "items.blankrune"
     deposit(pouch = item, container = player.inventory, essence = getRSCM(essence), def = pouch)
 }
 
@@ -123,7 +123,7 @@ fun emptyPouch(player: Player) {
     val count = pouch.getAttr(ItemAttribute.ATTACHED_ITEM_COUNT) ?: 0
     val inventory = player.inventory
 
-    if (item != getRSCM("item.rune_essence") && item != getRSCM("item.pure_essence") || count <= 0) {
+    if (item != getRSCM("items.blankrune") && item != getRSCM("items.blankrune_high") || count <= 0) {
         player.message("There are no essences in this pouch.")
         return
     }
@@ -156,7 +156,7 @@ fun checkPouch(player: Player) {
     val item = pouch.getAttr(ItemAttribute.ATTACHED_ITEM_ID) ?: -1
     val count = pouch.getAttr(ItemAttribute.ATTACHED_ITEM_COUNT) ?: 0
 
-    if (item != getRSCM("item.rune_essence") && item != getRSCM("item.pure_essence") || count <= 0) {
+    if (item != getRSCM("items.blankrune") && item != getRSCM("items.blankrune_high") || count <= 0) {
         player.message("There are no essences in this pouch.")
         return
     }

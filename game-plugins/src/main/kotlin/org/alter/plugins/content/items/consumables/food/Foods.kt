@@ -33,7 +33,7 @@ object Foods {
         food: Food,
     ) {
         val delay = if (food.comboFood) COMBO_FOOD_DELAY else FOOD_DELAY
-        val anim = if (p.hasEquipped(EquipmentType.WEAPON, "item.sled")) EAT_FOOD_ON_SLED_ANIM else EAT_FOOD_ANIM
+        val anim = if (p.hasEquipped(EquipmentType.WEAPON, "items.trollromance_toboggon")) EAT_FOOD_ON_SLED_ANIM else EAT_FOOD_ANIM
 
         val heal =
             when (food) {

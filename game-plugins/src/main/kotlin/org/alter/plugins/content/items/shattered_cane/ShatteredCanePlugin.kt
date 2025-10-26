@@ -30,22 +30,22 @@ class ShatteredCanePlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        onEquipmentOption("item.shattered_cane", "Skill Emote") {
+        onEquipmentOption("items.league_3_cane", "Skill Emote") {
             if (checkForItems(player)) {
                 doEmote(player, 2021)
             }
         }
-        onEquipmentOption("item.shattered_cane", "Boss Emote") {
+        onEquipmentOption("items.league_3_cane", "Boss Emote") {
             if (checkForItems(player)) {
                 doEmote(player, 2022)
             }
         }
-        onEquipmentOption("item.shattered_cane", "Quest Emote") {
+        onEquipmentOption("items.league_3_cane", "Quest Emote") {
             if (checkForItems(player)) {
                 doEmote(player, 2023)
             }
         }
-        onEquipmentOption("item.shattered_cane", "Fragment Emote") {
+        onEquipmentOption("items.league_3_cane", "Fragment Emote") {
             if (checkForItems(player)) {
                 player.queue {
                     player.lock()
@@ -63,10 +63,10 @@ class ShatteredCanePlugin(
 
     val required_items =
         arrayOf(
-            "item.shattered_hood_t3",
-            "item.shattered_top_t3",
-            "item.shattered_boots_t3",
-            "item.shattered_trousers_t3",
+            "items.league_3_relic_hunter_hood_t3",
+            "items.league_3_relic_hunter_top_t3",
+            "items.league_3_relic_hunter_boots_t3",
+            "items.league_3_relic_hunter_legs_t3",
         )
 
     fun doEmote(

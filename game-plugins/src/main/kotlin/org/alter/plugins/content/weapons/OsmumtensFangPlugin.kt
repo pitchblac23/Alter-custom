@@ -20,7 +20,7 @@ class OsmumtensFangPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        setItemCombatLogic("item.osmumtens_fang") {
+        setItemCombatLogic("items.osmumtens_fang") {
             val attackStyle = player.getAttackStyle()
             //9471 1-2 attacks
         }

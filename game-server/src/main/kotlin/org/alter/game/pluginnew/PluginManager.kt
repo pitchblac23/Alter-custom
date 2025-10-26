@@ -1,6 +1,7 @@
 package org.alter.game.pluginnew
 
 import io.github.classgraph.ClassGraph
+import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.joinAll
@@ -12,6 +13,8 @@ import java.net.URLClassLoader
 
 object PluginManager {
 
+    val logger = KotlinLogging.logger {}
+
     private val pkg = "org.alter"
 
     val scripts = ArrayList<Constructor<Script>>()
@@ -19,7 +22,6 @@ object PluginManager {
     @OptIn(DelicateCoroutinesApi::class)
     fun load() {
         val otherModuleClasses = File("../content/build/classes/kotlin/main")
-
 
         ClassGraph()
             .overrideClasspath(otherModuleClasses)
@@ -31,14 +33,13 @@ object PluginManager {
                 pluginClassList.forEach { classInfo ->
                     try {
                         val clazz = classInfo.loadClass(Script::class.java)
-                        val instance = clazz.getDeclaredConstructor().newInstance()
-                        println("Loaded plugin: ${classInfo.name}")
                         scripts.add(clazz.getDeclaredConstructor())
                     } catch (ex: Exception) {
-                        println("Error loading plugin ${classInfo.name}")
-                        ex.printStackTrace()
+                        error { "${"Error loading plugin {}"} ${classInfo.name} $ex" }
                     }
                 }
+
+                logger.info { "Finished loading plugins. Total loaded: ${scripts.size}" }
             }
     }
 }

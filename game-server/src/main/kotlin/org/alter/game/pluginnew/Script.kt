@@ -12,9 +12,22 @@ abstract class Script  {
     inline fun <reified K : Event> on(config: EventListener<K>.() -> EventListener<K>): EventListener<K> {
         return config.invoke(EventListener(K::class)).submit()
     }
+    
+    // Shorthand syntax: onEvent<EventType> { ...code... } treats code as the action
+    inline fun <reified K : Event> onEvent(noinline action: suspend K.() -> Unit): EventListener<K> {
+        val listener = EventListener(K::class)
+        listener.action = action
+        return listener.submit()
+    }
 
     fun <K : Event> on(type: KClass<K>, config: EventListener<K>.() -> EventListener<K>): EventListener<K> {
         return config.invoke(EventListener(type)).submit()
+    }
+    
+    fun <K : Event> onEvent(type: KClass<K>, action: suspend K.() -> Unit): EventListener<K> {
+        val listener = EventListener(type)
+        listener.action = action
+        return listener.submit()
     }
 
     fun <K : Event> addFilter(type: KClass<K>, filter: K.() -> Boolean) {

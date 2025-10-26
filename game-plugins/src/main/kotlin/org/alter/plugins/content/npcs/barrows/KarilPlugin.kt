@@ -23,13 +23,13 @@ class KarilPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        spawnNpc("npc.karil_the_tainted", 3565, 3275, 0, 2)
-        spawnNpc("npc.karil_the_tainted", 3563, 3272, 0, 2)
-        spawnNpc("npc.karil_the_tainted", 3563, 3278, 0, 2)
-        spawnNpc("npc.karil_the_tainted", 3567, 3272, 0, 2)
-        spawnNpc("npc.karil_the_tainted", 3567, 3278, 0, 2)
+        spawnNpc("npcs.barrows_karil", 3565, 3275, 0, 2)
+        spawnNpc("npcs.barrows_karil", 3563, 3272, 0, 2)
+        spawnNpc("npcs.barrows_karil", 3563, 3278, 0, 2)
+        spawnNpc("npcs.barrows_karil", 3567, 3272, 0, 2)
+        spawnNpc("npcs.barrows_karil", 3567, 3278, 0, 2)
 
-        setCombatDef("npc.karil_the_tainted") {
+        setCombatDef("npcs.barrows_karil") {
             configs {
                 attackSpeed = 6
                 respawnDelay = 50

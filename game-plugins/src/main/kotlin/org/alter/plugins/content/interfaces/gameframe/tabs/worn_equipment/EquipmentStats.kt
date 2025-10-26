@@ -12,7 +12,7 @@ object EquipmentStats {
     const val EQUIPMENTSTATS_INTERFACE_ID = 84
     const val EQUIPMENTSTATS_TAB_INTERFACE_ID = 85
 
-    private val MAGE_ELITE_VOID = arrayOf("item.void_mage_helm", "item.elite_void_top", "item.elite_void_robe", "item.void_knight_gloves")
+    private val MAGE_ELITE_VOID = arrayOf("items.game_pest_mage_helm", "items.elite_void_knight_top", "items.elite_void_knight_robes", "items.pest_void_knight_gloves")
 
     /**
      * @TODO

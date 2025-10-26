@@ -25,7 +25,7 @@ class DoorPlugin(
 
     init {
 
-        onObjOption("object.door_1535", option = "open") {
+        onObjOption("objects.poordoor", option = "open") {
             val obj = player.getInteractingGameObj();
             player.message(obj.toString())
         }

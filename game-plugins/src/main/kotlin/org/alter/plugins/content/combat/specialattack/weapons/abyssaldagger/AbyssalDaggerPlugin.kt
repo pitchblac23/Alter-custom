@@ -21,10 +21,10 @@ class AbyssalDaggerPlugin(
         val SPECIAL_REQUIREMENT = 50
 
         for(item in listOf(
-            "item.abyssal_dagger",
-            "item.abyssal_dagger_p",
-            "item.abyssal_dagger_p_13269",
-            "item.abyssal_dagger_p_13271"
+            "items.abyssal_dagger",
+            "items.abyssal_dagger_p",
+            "items.abyssal_dagger_p+",
+            "items.abyssal_dagger_p++"
         )) {
             SpecialAttacks.register(item, SPECIAL_REQUIREMENT) {
                 player.animate(id = 3300)

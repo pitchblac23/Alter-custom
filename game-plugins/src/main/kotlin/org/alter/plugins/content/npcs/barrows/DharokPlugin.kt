@@ -23,13 +23,13 @@ class DharokPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        spawnNpc("npc.dharok_the_wretched", 3576, 3298, 0, 2)
-        spawnNpc("npc.dharok_the_wretched", 3576, 3300, 0, 2)
-        spawnNpc("npc.dharok_the_wretched", 3573, 3299, 0, 2)
-        spawnNpc("npc.dharok_the_wretched", 3578, 3296, 0, 2)
-        spawnNpc("npc.dharok_the_wretched", 3574, 3295, 0, 2)
+        spawnNpc("npcs.barrows_dharok", 3576, 3298, 0, 2)
+        spawnNpc("npcs.barrows_dharok", 3576, 3300, 0, 2)
+        spawnNpc("npcs.barrows_dharok", 3573, 3299, 0, 2)
+        spawnNpc("npcs.barrows_dharok", 3578, 3296, 0, 2)
+        spawnNpc("npcs.barrows_dharok", 3574, 3295, 0, 2)
 
-        setCombatDef("npc.dharok_the_wretched") {
+        setCombatDef("npcs.barrows_dharok") {
             configs {
                 attackSpeed = 7
                 respawnDelay = 50

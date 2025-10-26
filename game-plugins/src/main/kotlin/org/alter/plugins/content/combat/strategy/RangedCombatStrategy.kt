@@ -37,9 +37,9 @@ object RangedCombatStrategy : CombatStrategy {
 
             var range =
                 when (weapon?.id) {
-                    getRSCM("item.armadyl_crossbow") -> 8
-                    getRSCM("item.craws_bow"), getRSCM("item.craws_bow_u") -> 10
-                    getRSCM("item.chinchompa_10033"), getRSCM("item.red_chinchompa_10034"), getRSCM("item.black_chinchompa") -> 9
+                    getRSCM("items.acb") -> 8
+                    getRSCM("items.wild_cave_bow_charged"), getRSCM("items.wild_cave_bow_uncharged") -> 10
+                    getRSCM("items.chinchompa_captured"), getRSCM("items.chinchompa_big_captured"), getRSCM("items.chinchompa_black") -> 9
                     in Bows.LONG_BOWS -> 9
                     in Knives.KNIVES -> 6
                     in Darts.DARTS -> 3
@@ -144,8 +144,8 @@ object RangedCombatStrategy : CombatStrategy {
                 val breakAmmo = chance in 0..19
                 val dropAmmo =
                     when {
-                        pawn.hasEquipped(EquipmentType.CAPE, "item.avas_accumulator") -> chance in 20..27
-                        pawn.hasEquipped(EquipmentType.CAPE, "item.avas_assembler") -> false
+                        pawn.hasEquipped(EquipmentType.CAPE, "items.anma_50_reward") -> chance in 20..27
+                        pawn.hasEquipped(EquipmentType.CAPE, "items.avas_assembler") -> false
                         else -> !breakAmmo
                     }
 

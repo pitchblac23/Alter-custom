@@ -73,9 +73,9 @@ class DragonfireFormula(val maxHit: Int, val minHit: Int = 0) : CombatFormula {
     }
 
     companion object {
-        private val ANTI_DRAGON_SHIELDS = arrayOf("item.antidragon_shield", "item.antidragon_shield_nz")
-        private val DRAGONFIRE_SHIELDS = arrayOf("item.dragonfire_shield", "item.dragonfire_shield_11284")
-        private val WYVERN_SHIELDS = arrayOf("item.ancient_wyvern_shield", "item.ancient_wyvern_shield_21634") // Does [Items.ANCIENT_WYVERN_SHIELD] Uncharged even protect u from Dragon Fire ?
-        private val DRAGONFIRE_WARDS = arrayOf("item.dragonfire_ward", "item.dragonfire_ward_22003")
+        private val ANTI_DRAGON_SHIELDS = arrayOf("items.antidragonbreathshield", "items.nzone_antidragonshield")
+        private val DRAGONFIRE_SHIELDS = arrayOf("items.dragonfire_shield", "items.dragonfire_shield_uncharged")
+        private val WYVERN_SHIELDS = arrayOf("items.wyvern_shield", "items.wyvern_shield_uncharged") // Does [Items.ANCIENT_WYVERN_SHIELD] Uncharged even protect u from Dragon Fire ?
+        private val DRAGONFIRE_WARDS = arrayOf("items.dragonfire_ward", "items.dragonfire_ward_uncharged")
     }
 }

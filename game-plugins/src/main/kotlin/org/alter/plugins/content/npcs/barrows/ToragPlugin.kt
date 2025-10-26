@@ -23,13 +23,13 @@ class ToragPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        spawnNpc("npc.torag_the_corrupted", 3552, 3283, 0, 2)
-        spawnNpc("npc.torag_the_corrupted", 3551, 3280, 0, 2)
-        spawnNpc("npc.torag_the_corrupted", 3551, 3285, 0, 2)
-        spawnNpc("npc.torag_the_corrupted", 3554, 3280, 0, 2)
-        spawnNpc("npc.torag_the_corrupted", 3556, 3284, 0, 2)
+        spawnNpc("npcs.barrows_torag", 3552, 3283, 0, 2)
+        spawnNpc("npcs.barrows_torag", 3551, 3280, 0, 2)
+        spawnNpc("npcs.barrows_torag", 3551, 3285, 0, 2)
+        spawnNpc("npcs.barrows_torag", 3554, 3280, 0, 2)
+        spawnNpc("npcs.barrows_torag", 3556, 3284, 0, 2)
 
-        setCombatDef("npc.torag_the_corrupted") {
+        setCombatDef("npcs.barrows_torag") {
             configs {
                 attackSpeed = 6
                 respawnDelay = 50

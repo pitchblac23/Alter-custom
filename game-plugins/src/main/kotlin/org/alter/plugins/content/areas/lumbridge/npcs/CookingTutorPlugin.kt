@@ -13,9 +13,9 @@ class CookingTutorPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.cooking_tutor", x = 3233, z = 3195, walkRadius = 3, height = 0)
+        spawnNpc("npcs.aide_tutor_cooking", x = 3233, z = 3195, walkRadius = 3, height = 0)
 
-        onNpcOption("npc.cooking_tutor", option = "talk-to") {
+        onNpcOption("npcs.aide_tutor_cooking", option = "talk-to") {
             player.queue { menu(player) }
         }
     }
@@ -38,7 +38,7 @@ class CookingTutorPlugin(
                 itemMessageBox(
                     player,
                     "When you have a full inventory of meat or fish, find a<br>range. Look for this icon on your minimap.",
-                    item = "item.null_5090",
+                    item = "items.range_icon_dummy",
                     amountOrZoom = 400,
                 )
                 chatNpc(
@@ -54,13 +54,13 @@ class CookingTutorPlugin(
                 itemMessageBox(
                     player,
                     "When you have a full inventory of cooked food, drop<br>the useless burnt food and find a bank. Look for this<br>symbol on your minimap after climbing the stairs of the<br>Lumbridge Castle to the top. There are numerous",
-                    item = "item.null_5080",
+                    item = "items.bank_icon_dummy",
                     amountOrZoom = 400,
                 )
                 itemMessageBox(
                     player,
                     "banks around the world, all marked with that symbol.",
-                    item = "item.null_5080",
+                    item = "items.bank_icon_dummy",
                     amountOrZoom = 400
                 )
                 chatNpc(
@@ -85,8 +85,8 @@ class CookingTutorPlugin(
                 doubleItemMessageBox(
                     player,
                     "Fish and meat of most varieties can be cooked very<br>simply on either a fire or range, experiment which one<br>works for you.",
-                    item1 = "item.raw_beef",
-                    item2 = "item.cooked_meat",
+                    item1 = "items.raw_beef",
+                    item2 = "items.cooked_meat",
                     amount1 = 400,
                     amount2 = 400,
                 )
@@ -97,16 +97,16 @@ class CookingTutorPlugin(
                 doubleItemMessageBox(
                     player,
                     "Use a pot of flour with a bucket of water. You will then<br>get an option to make bread dough, pitta bread dough,<br>pastry dough, or pizza dough. Select pizza or pastry<br>dough.",
-                    item1 = "item.bucket_of_water",
-                    item2 = "item.pot_of_flour",
+                    item1 = "items.bucket_water",
+                    item2 = "items.pot_flour",
                     amount1 = 400,
                     amount2 = 400,
                 )
                 doubleItemMessageBox(
                     player,
                     "Use the pastry dough with a pie dish then add your<br>filling such as apple or red berries.",
-                    item1 = "item.pie_dish",
-                    item2 = "item.pastry_dough",
+                    item1 = "items.piedish",
+                    item2 = "items.pastry_dough",
                     amount1 = 400,
                     amount2 = 400,
                 )

@@ -23,7 +23,7 @@ class MemoryTestPlugin(
         onCommand("qutest", description = "Check memory usage") {
             repeat(10_000_000) {
                 player.queue {
-                    player.inventory.add(getRSCM("item.coins_995"), 1)
+                    player.inventory.add(getRSCM("items.coins"), 1)
                 }
             }
         }

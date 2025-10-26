@@ -23,7 +23,7 @@ class KbdCombatPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        onNpcCombat("npc.king_black_dragon") {
+        onNpcCombat("npcs.king_dragon") {
             npc.queue {
                 npc.combat(this)
             }

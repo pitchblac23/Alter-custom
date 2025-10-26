@@ -17,19 +17,19 @@ import org.alter.plugins.content.mechanics.prayer.Prayers
  */
 object MeleeCombatFormula : CombatFormula {
 
-    private val BLACK_MASKS = arrayOf("item.black_mask",
-            "item.black_mask_1", "item.black_mask_2", "item.black_mask_3", "item.black_mask_4",
-            "item.black_mask_5", "item.black_mask_6", "item.black_mask_7", "item.black_mask_8",
-            "item.black_mask_9", "item.black_mask_10")
+    private val BLACK_MASKS = arrayOf("items.harmless_black_mask",
+            "items.harmless_black_mask_1", "items.harmless_black_mask_2", "items.harmless_black_mask_3", "items.harmless_black_mask_4",
+            "items.harmless_black_mask_5", "items.harmless_black_mask_6", "items.harmless_black_mask_7", "items.harmless_black_mask_8",
+            "items.harmless_black_mask_9", "items.harmless_black_mask_10")
 
-    private val BLACK_MASKS_I = arrayOf("item.black_mask_i",
-            "item.black_mask_1_i", "item.black_mask_2_i", "item.black_mask_3_i", "item.black_mask_4_i",
-            "item.black_mask_5_i", "item.black_mask_6_i", "item.black_mask_7_i", "item.black_mask_8_i",
-            "item.black_mask_9_i", "item.black_mask_10_i")
+    private val BLACK_MASKS_I = arrayOf("items.nzone_black_mask",
+            "items.nzone_black_mask_1", "items.nzone_black_mask_2", "items.nzone_black_mask_3", "items.nzone_black_mask_4",
+            "items.nzone_black_mask_5", "items.nzone_black_mask_6", "items.nzone_black_mask_7", "items.nzone_black_mask_8",
+            "items.nzone_black_mask_9", "items.nzone_black_mask_10")
 
-    private val MELEE_VOID = arrayOf("item.void_melee_helm", "item.void_knight_top", "item.void_knight_robe", "item.void_knight_gloves")
+    private val MELEE_VOID = arrayOf("items.game_pest_melee_helm", "items.pest_void_knight_top", "items.pest_void_knight_robes", "items.pest_void_knight_gloves")
 
-    private val MELEE_ELITE_VOID = arrayOf("item.void_melee_helm", "item.elite_void_top", "item.elite_void_robe", "item.void_knight_gloves")
+    private val MELEE_ELITE_VOID = arrayOf("items.game_pest_melee_helm", "items.elite_void_knight_top", "items.elite_void_knight_robes", "items.pest_void_knight_gloves")
 
     override fun getAccuracy(pawn: Pawn, target: Pawn, specialAttackMultiplier: Double): Double {
         val attack = getAttackRoll(pawn, target, specialAttackMultiplier)
@@ -112,7 +112,7 @@ object MeleeCombatFormula : CombatFormula {
         hit *= getEquipmentMultiplier(player)
         hit = Math.floor(hit)
 
-        hit *= (if (player.hasEquipped(EquipmentType.WEAPON, "item.arclight") && isDemon(target)) 1.7 else specialAttackMultiplier)
+        hit *= (if (player.hasEquipped(EquipmentType.WEAPON, "items.arclight") && isDemon(target)) 1.7 else specialAttackMultiplier)
         hit = Math.floor(hit)
 
         return hit
@@ -121,7 +121,7 @@ object MeleeCombatFormula : CombatFormula {
     private fun applyDefenceSpecials(target: Pawn, base: Double): Double {
         var hit = base
 
-        if (target is Player && isWearingTorag(target) && target.hasEquipped(EquipmentType.AMULET, "item.amulet_of_the_damned_full")) {
+        if (target is Player && isWearingTorag(target) && target.hasEquipped(EquipmentType.AMULET, "items.damned_amulet")) {
             val lost = (target.getMaxHp() - target.getCurrentHp()) / 100.0
             val max = target.getMaxHp() / 100.0
             hit *= (1.0 + (lost * max))
@@ -260,8 +260,8 @@ object MeleeCombatFormula : CombatFormula {
     }
 
     private fun getEquipmentMultiplier(player: Player): Double = when {
-        player.hasEquipped(EquipmentType.AMULET, "item.salve_amulet") -> 7.0 / 6.0 // These should only apply if the target is undead..
-        player.hasEquipped(EquipmentType.AMULET, "item.salve_amulet_e") -> 1.2 // These should only apply if the target is undead..
+        player.hasEquipped(EquipmentType.AMULET, "items.crystalshard_necklace") -> 7.0 / 6.0 // These should only apply if the target is undead..
+        player.hasEquipped(EquipmentType.AMULET, "items.lotr_crystalshard_necklace_upgrade") -> 1.2 // These should only apply if the target is undead..
         // TODO: this should only apply when target is slayer task?
         player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS) || player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS_I) -> 7.0 / 6.0 // This should only apply if you have the target || his category as a Slayer Task
         else -> 1.0
@@ -271,14 +271,14 @@ object MeleeCombatFormula : CombatFormula {
         if (pawn is Player) {
             val world = pawn.world
             val multiplier = when {
-                pawn.hasEquipped(EquipmentType.AMULET, "item.berserker_necklace") -> 1.2
+                pawn.hasEquipped(EquipmentType.AMULET, "items.jewl_beserker_necklace") -> 1.2
                 isWearingDharok(pawn) -> {
                     val lost = (pawn.getMaxHp() - pawn.getCurrentHp()) / 100.0
                     val max = pawn.getMaxHp() / 100.0
                     1.0 + (lost * max)
                 }
-                pawn.hasEquipped(EquipmentType.WEAPON, "item.gadderhammer") && isShade(target) -> if (world.chance(1, 20)) 2.0 else 1.25
-                pawn.hasEquipped(EquipmentType.WEAPON, "item.keris", "item.kerisp") && (isKalphite(target) || isScarab(target)) -> if (world.chance(1, 51)) 3.0 else (4.0 / 3.0)
+                pawn.hasEquipped(EquipmentType.WEAPON, "items.gadderanks_warhammer") && isShade(target) -> if (world.chance(1, 20)) 2.0 else 1.25
+                pawn.hasEquipped(EquipmentType.WEAPON, "items.contact_keris", "items.contact_keris_p") && (isKalphite(target) || isScarab(target)) -> if (world.chance(1, 51)) 3.0 else (4.0 / 3.0)
                 else -> 1.0
             }
             if (multiplier == 1.0 && isWearingVerac(pawn)) {
@@ -324,10 +324,10 @@ object MeleeCombatFormula : CombatFormula {
     private fun isWearingDharok(pawn: Pawn): Boolean {
         if (pawn.entityType.isPlayer) {
             val player = pawn as Player
-            return player.hasEquipped(EquipmentType.HEAD, "item.dharoks_helm", "item.dharoks_helm_25", "item.dharoks_helm_50", "item.dharoks_helm_75", "item.dharoks_helm_100")
-                    && player.hasEquipped(EquipmentType.WEAPON, "item.dharoks_greataxe", "item.dharoks_greataxe_25", "item.dharoks_greataxe_50", "item.dharoks_greataxe_75", "item.dharoks_greataxe_100")
-                    && player.hasEquipped(EquipmentType.CHEST, "item.dharoks_platebody", "item.dharoks_platebody_25", "item.dharoks_platebody_50", "item.dharoks_platebody_75", "item.dharoks_platebody_100")
-                    && player.hasEquipped(EquipmentType.LEGS, "item.dharoks_platelegs", "item.dharoks_platelegs_25", "item.dharoks_platelegs_50", "item.dharoks_platelegs_75", "item.dharoks_platelegs_100")
+            return player.hasEquipped(EquipmentType.HEAD, "items.barrows_dharok_head", "items.barrows_dharok_head_25", "items.barrows_dharok_head_50", "items.barrows_dharok_head_75", "items.barrows_dharok_head_100")
+                    && player.hasEquipped(EquipmentType.WEAPON, "items.barrows_dharok_weapon", "items.barrows_dharok_weapon_25", "items.barrows_dharok_weapon_50", "items.barrows_dharok_weapon_75", "items.barrows_dharok_weapon_100")
+                    && player.hasEquipped(EquipmentType.CHEST, "items.barrows_dharok_body", "items.barrows_dharok_body_25", "items.barrows_dharok_body_50", "items.barrows_dharok_body_75", "items.barrows_dharok_body_100")
+                    && player.hasEquipped(EquipmentType.LEGS, "items.barrows_dharok_legs", "items.barrows_dharok_legs_25", "items.barrows_dharok_legs_50", "items.barrows_dharok_legs_75", "items.barrows_dharok_legs_100")
         }
         return false
     }
@@ -335,18 +335,18 @@ object MeleeCombatFormula : CombatFormula {
     private fun isWearingVerac(pawn: Pawn): Boolean {
         if (pawn.entityType.isPlayer) {
             val player = pawn as Player
-            return player.hasEquipped(EquipmentType.HEAD, "item.veracs_helm", "item.veracs_helm_25", "item.veracs_helm_50", "item.veracs_helm_75", "item.veracs_helm_100")
-                    && player.hasEquipped(EquipmentType.WEAPON, "item.veracs_flail", "item.veracs_flail_25", "item.veracs_flail_50", "item.veracs_flail_75", "item.veracs_flail_100")
-                    && player.hasEquipped(EquipmentType.CHEST, "item.veracs_brassard", "item.veracs_brassard_25", "item.veracs_brassard_50", "item.veracs_brassard_75", "item.veracs_brassard_100")
-                    && player.hasEquipped(EquipmentType.LEGS, "item.veracs_plateskirt", "item.veracs_plateskirt_25", "item.veracs_plateskirt_50", "item.veracs_plateskirt_75", "item.veracs_plateskirt_100")
+            return player.hasEquipped(EquipmentType.HEAD, "items.barrows_verac_head", "items.barrows_verac_head_25", "items.barrows_verac_head_50", "items.barrows_verac_head_75", "items.barrows_verac_head_100")
+                    && player.hasEquipped(EquipmentType.WEAPON, "items.barrows_verac_weapon", "items.barrows_verac_weapon_25", "items.barrows_verac_weapon_50", "items.barrows_verac_weapon_75", "items.barrows_verac_weapon_100")
+                    && player.hasEquipped(EquipmentType.CHEST, "items.barrows_verac_body", "items.barrows_verac_body_25", "items.barrows_verac_body_50", "items.barrows_verac_body_75", "items.barrows_verac_body_100")
+                    && player.hasEquipped(EquipmentType.LEGS, "items.barrows_verac_legs", "items.barrows_verac_legs_25", "items.barrows_verac_legs_50", "items.barrows_verac_legs_75", "items.barrows_verac_legs_100")
         }
         return false
     }
 
     private fun isWearingTorag(player: Player): Boolean {
-        return player.hasEquipped(EquipmentType.HEAD, "item.torags_helm", "item.torags_helm_25", "item.torags_helm_50", "item.torags_helm_75", "item.torags_helm_100")
-                && player.hasEquipped(EquipmentType.WEAPON, "item.torags_hammers", "item.torags_hammers_25", "item.torags_hammers_50", "item.torags_hammers_75", "item.torags_hammers_100")
-                && player.hasEquipped(EquipmentType.CHEST, "item.torags_platebody", "item.torags_platebody_25", "item.torags_platebody_50", "item.torags_platebody_75", "item.torags_platebody_100")
-                && player.hasEquipped(EquipmentType.LEGS, "item.torags_platelegs", "item.torags_platelegs_25", "item.torags_platelegs_50", "item.torags_platelegs_75", "item.torags_platelegs_100")
+        return player.hasEquipped(EquipmentType.HEAD, "items.barrows_torag_head", "items.barrows_torag_head_25", "items.barrows_torag_head_50", "items.barrows_torag_head_75", "items.barrows_torag_head_100")
+                && player.hasEquipped(EquipmentType.WEAPON, "items.barrows_torag_weapon", "items.barrows_torag_weapon_25", "items.barrows_torag_weapon_50", "items.barrows_torag_weapon_75", "items.barrows_torag_weapon_100")
+                && player.hasEquipped(EquipmentType.CHEST, "items.barrows_torag_body", "items.barrows_torag_body_25", "items.barrows_torag_body_50", "items.barrows_torag_body_75", "items.barrows_torag_body_100")
+                && player.hasEquipped(EquipmentType.LEGS, "items.barrows_torag_legs", "items.barrows_torag_legs_25", "items.barrows_torag_legs_50", "items.barrows_torag_legs_75", "items.barrows_torag_legs_100")
     }
 }

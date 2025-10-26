@@ -23,13 +23,13 @@ class AhrimPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        spawnNpc("npc.ahrim_the_blighted", 3565, 3289, 0, 2)
-        spawnNpc("npc.ahrim_the_blighted", 3563, 3286, 0, 2)
-        spawnNpc("npc.ahrim_the_blighted", 3563, 3291, 0, 2)
-        spawnNpc("npc.ahrim_the_blighted", 3567, 3291, 0, 2)
-        spawnNpc("npc.ahrim_the_blighted", 3568, 3288, 0, 2)
+        spawnNpc("npcs.barrows_ahrim", 3565, 3289, 0, 2)
+        spawnNpc("npcs.barrows_ahrim", 3563, 3286, 0, 2)
+        spawnNpc("npcs.barrows_ahrim", 3563, 3291, 0, 2)
+        spawnNpc("npcs.barrows_ahrim", 3567, 3291, 0, 2)
+        spawnNpc("npcs.barrows_ahrim", 3568, 3288, 0, 2)
 
-        setCombatDef("npc.ahrim_the_blighted") {
+        setCombatDef("npcs.barrows_ahrim") {
             configs {
                 attackSpeed = 6
                 respawnDelay = 50

@@ -26,7 +26,7 @@ open class ItemCurrency(
         world: World,
         item: Int,
     ): AcceptItemState {
-        if (item == getRSCM("item.coins_995") || item == getRSCM("item.blood_money")) {
+        if (item == getRSCM("items.coins") || item == getRSCM("items.deadman_coins")) {
             return AcceptItemState(acceptable = false, errorMessage = "You can't sell this item to a shop.")
         }
         when {

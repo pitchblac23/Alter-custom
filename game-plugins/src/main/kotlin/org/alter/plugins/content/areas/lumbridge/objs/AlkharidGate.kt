@@ -16,16 +16,16 @@ class AlkharidGate(
     r: PluginRepository, world: World, server: Server
 ) : KotlinPlugin(r, world, server) {
 
-    private val gates = arrayOf("object.gate_44052", "object.gate_44053")
-    private val guard = getRSCM("npc.border_guard")
+    private val gates = arrayOf("objects.kharidmetalgateclosedl_2op", "objects.kharidmetalgateclosedr_2op")
+    private val guard = getRSCM("npcs.borderguard1")
 
     init {
         gates.forEach { obj ->
             onObjOption(obj, "pay-toll(10gp)", lineOfSightDistance = 2) {
-                if (player.inventory.getItemCount(getRSCM("item.coins_995")) >= 10) {
+                if (player.inventory.getItemCount(getRSCM("items.coins")) >= 10) {
                     when (obj) {
-                        "object.gate_44052" -> handleGate(player, world)
-                        "object.gate_44053" -> handleGate(player, world)
+                        "objects.kharidmetalgateclosedl_2op" -> handleGate(player, world)
+                        "objects.kharidmetalgateclosedr_2op" -> handleGate(player, world)
                     }
                 } else {
                     player.queue { dialog(player) }
@@ -39,7 +39,7 @@ class AlkharidGate(
     }
 
     private fun handleGate(player: Player, world: World) {
-        player.inventory.remove("item.coins_995", 10)
+        player.inventory.remove("items.coins", 10)
 
         val toLumbridge = player.tile.x == 3268
         val targetX: Int = if (!toLumbridge) {
@@ -51,16 +51,16 @@ class AlkharidGate(
         world.queue {
 //            player.lock() // This locking shit needs fixing, no idea how it works tbh
 //            wait(2)
-            world.openDoor(world.getObject(Tile(3268, 3228), 0)!!, "object.null_1574")
-            world.openDoor(world.getObject(Tile(3268, 3227), 0)!!, "object.null_1573", invertRot = true)
+            world.openDoor(world.getObject(Tile(3268, 3228), 0)!!, "objects.inacmetalgateopenr")
+            world.openDoor(world.getObject(Tile(3268, 3227), 0)!!, "objects.inacmetalgateopenl", invertRot = true)
 
             player.walkTo(targetX, player.tile.z, MovementQueue.StepType.FORCED_WALK)
             wait(3)
 
             world.closeDoor(
-                world.getObject(Tile(3267, 3227), 0)!!, "object.gate_44052", invertTransform = true, invertRot = true
+                world.getObject(Tile(3267, 3227), 0)!!, "objects.kharidmetalgateclosedl_2op", invertTransform = true, invertRot = true
             )
-            world.closeDoor(world.getObject(Tile(3267, 3228), 0)!!, "object.gate_44053")
+            world.closeDoor(world.getObject(Tile(3267, 3228), 0)!!, "objects.kharidmetalgateclosedr_2op")
 //            player.unlock()
         }
     }

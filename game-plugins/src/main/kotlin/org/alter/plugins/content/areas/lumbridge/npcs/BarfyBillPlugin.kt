@@ -19,9 +19,9 @@ class BarfyBillPlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.barfy_bill", x = 3243, z = 3237, walkRadius = 3, height = 0)
+        spawnNpc("npcs.canoeing_bill", x = 3243, z = 3237, walkRadius = 3, height = 0)
 
-        onNpcOption("npc.barfy_bill", option = "talk-to") {
+        onNpcOption("npcs.canoeing_bill", option = "talk-to") {
             player.queue { dialog(player) }
         }
     }

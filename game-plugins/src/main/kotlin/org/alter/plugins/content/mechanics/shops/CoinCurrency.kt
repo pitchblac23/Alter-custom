@@ -6,4 +6,4 @@ import org.alter.rscm.RSCM.getRSCM
 /**
  * @author Tom <rspsmods@gmail.com>
  */
-class CoinCurrency : ItemCurrency(getRSCM("item.coins_995"), singularCurrency = "coin", pluralCurrency = "coins")
+class CoinCurrency : ItemCurrency(getRSCM("items.coins"), singularCurrency = "coin", pluralCurrency = "coins")

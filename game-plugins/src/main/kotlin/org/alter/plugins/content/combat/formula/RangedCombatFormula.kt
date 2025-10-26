@@ -17,38 +17,38 @@ import org.alter.plugins.content.mechanics.prayer.Prayers
 object RangedCombatFormula : CombatFormula {
     private val BLACK_MASKS =
         arrayOf(
-            "item.black_mask",
-            "item.black_mask_1",
-            "item.black_mask_2",
-            "item.black_mask_3",
-            "item.black_mask_4",
-            "item.black_mask_5",
-            "item.black_mask_6",
-            "item.black_mask_7",
-            "item.black_mask_8",
-            "item.black_mask_9",
-            "item.black_mask_10",
+            "items.harmless_black_mask",
+            "items.harmless_black_mask_1",
+            "items.harmless_black_mask_2",
+            "items.harmless_black_mask_3",
+            "items.harmless_black_mask_4",
+            "items.harmless_black_mask_5",
+            "items.harmless_black_mask_6",
+            "items.harmless_black_mask_7",
+            "items.harmless_black_mask_8",
+            "items.harmless_black_mask_9",
+            "items.harmless_black_mask_10",
         )
 
     private val BLACK_MASKS_I =
         arrayOf(
-            "item.black_mask_i",
-            "item.black_mask_1_i",
-            "item.black_mask_2_i",
-            "item.black_mask_3_i",
-            "item.black_mask_4_i",
-            "item.black_mask_5_i",
-            "item.black_mask_6_i",
-            "item.black_mask_7_i",
-            "item.black_mask_8_i",
-            "item.black_mask_9_i",
-            "item.black_mask_10_i",
+            "items.nzone_black_mask",
+            "items.nzone_black_mask_1",
+            "items.nzone_black_mask_2",
+            "items.nzone_black_mask_3",
+            "items.nzone_black_mask_4",
+            "items.nzone_black_mask_5",
+            "items.nzone_black_mask_6",
+            "items.nzone_black_mask_7",
+            "items.nzone_black_mask_8",
+            "items.nzone_black_mask_9",
+            "items.nzone_black_mask_10",
         )
 
-    private val RANGED_VOID = arrayOf("item.void_ranger_helm", "item.void_knight_top", "item.void_knight_robe", "item.void_knight_gloves")
+    private val RANGED_VOID = arrayOf("items.game_pest_archer_helm", "items.pest_void_knight_top", "items.pest_void_knight_robes", "items.pest_void_knight_gloves")
 
     private val RANGED_ELITE_VOID =
-        arrayOf("item.void_ranger_helm", "item.elite_void_top", "item.elite_void_robe", "item.void_knight_gloves")
+        arrayOf("items.game_pest_archer_helm", "items.elite_void_knight_top", "items.elite_void_knight_robes", "items.pest_void_knight_gloves")
 
     override fun getAccuracy(
         pawn: Pawn,
@@ -146,8 +146,8 @@ object RangedCombatFormula : CombatFormula {
         if (specialAttackMultiplier == 1.0) {
             val multiplier =
                 when {
-                    player.hasEquipped(EquipmentType.WEAPON, "item.dragon_hunter_crossbow") && isDragon(target) -> 1.3
-                    player.hasEquipped(EquipmentType.WEAPON, "item.twisted_bow") && target.entityType.isNpc -> {
+                    player.hasEquipped(EquipmentType.WEAPON, "items.dragonhunter_xbow") && isDragon(target) -> 1.3
+                    player.hasEquipped(EquipmentType.WEAPON, "items.twisted_bow") && target.entityType.isNpc -> {
                         // TODO: cap inside Chambers of Xeric is 350
                         val cap = 250.0
                         val magic =
@@ -208,8 +208,8 @@ object RangedCombatFormula : CombatFormula {
         if (specialAttackMultiplier == 1.0) {
             val multiplier =
                 when {
-                    player.hasEquipped(EquipmentType.WEAPON, "item.dragon_hunter_crossbow") && isDragon(target) -> 1.3
-                    player.hasEquipped(EquipmentType.WEAPON, "item.twisted_bow") && target.entityType.isNpc -> {
+                    player.hasEquipped(EquipmentType.WEAPON, "items.dragonhunter_xbow") && isDragon(target) -> 1.3
+                    player.hasEquipped(EquipmentType.WEAPON, "items.twisted_bow") && target.entityType.isNpc -> {
                         // TODO: cap inside Chambers of Xeric is 250
                         val cap = 140.0
                         val magic =
@@ -243,7 +243,7 @@ object RangedCombatFormula : CombatFormula {
     ): Double {
         var hit = base
 
-        if (target is Player && isWearingTorag(target) && target.hasEquipped(EquipmentType.AMULET, "item.amulet_of_the_damned_full")) {
+        if (target is Player && isWearingTorag(target) && target.hasEquipped(EquipmentType.AMULET, "items.damned_amulet")) {
             val lost = (target.getMaxHp() - target.getCurrentHp()) / 100.0
             val max = target.getMaxHp() / 100.0
             hit *= (1.0 + (lost * max))
@@ -375,10 +375,10 @@ object RangedCombatFormula : CombatFormula {
 
     private fun getEquipmentMultiplier(player: Player): Double =
         when {
-            player.hasEquipped(EquipmentType.AMULET, "item.salve_amulet") -> 7.0 / 6.0
-            player.hasEquipped(EquipmentType.AMULET, "item.salve_amulet_e") -> 1.2
-            player.hasEquipped(EquipmentType.AMULET, "item.salve_amuleti") -> 1.15
-            player.hasEquipped(EquipmentType.AMULET, "item.salve_amuletei") -> 1.2
+            player.hasEquipped(EquipmentType.AMULET, "items.crystalshard_necklace") -> 7.0 / 6.0
+            player.hasEquipped(EquipmentType.AMULET, "items.lotr_crystalshard_necklace_upgrade") -> 1.2
+            player.hasEquipped(EquipmentType.AMULET, "items.nzone_salve_amulet") -> 1.15
+            player.hasEquipped(EquipmentType.AMULET, "items.nzone_salve_amulet_e") -> 1.2
             // TODO: this should only apply when target is slayer task?
             player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS) -> 7.0 / 6.0
             player.hasEquipped(EquipmentType.HEAD, *BLACK_MASKS_I) -> 1.15
@@ -395,26 +395,26 @@ object RangedCombatFormula : CombatFormula {
                 val dragonstone =
                     player.hasEquipped(
                         EquipmentType.AMMO,
-                        "item.dragonstone_bolts",
-                        "item.dragonstone_bolts_e",
-                        "item.dragonstone_dragon_bolts",
-                        "item.dragonstone_dragon_bolts_e",
+                        "items.xbows_crossbow_bolts_runite_tipped_dragonstone",
+                        "items.xbows_crossbow_bolts_runite_tipped_dragonstone_enchanted",
+                        "items.dragon_bolts_unenchanted_dragonstone",
+                        "items.dragon_bolts_enchanted_dragonstone",
                     )
                 val opal =
                     player.hasEquipped(
                         EquipmentType.AMMO,
-                        "item.opal_bolts",
-                        "item.opal_bolts_e",
-                        "item.opal_dragon_bolts",
-                        "item.opal_dragon_bolts_e",
+                        "items.opal_bolt",
+                        "items.xbows_crossbow_bolts_bronze_tipped_opal_enchanted",
+                        "items.dragon_bolts_unenchanted_opal",
+                        "items.dragon_bolts_enchanted_opal",
                     )
                 val pearl =
                     player.hasEquipped(
                         EquipmentType.AMMO,
-                        "item.pearl_bolts",
-                        "item.pearl_bolts_e",
-                        "item.pearl_dragon_bolts",
-                        "item.pearl_dragon_bolts_e",
+                        "items.pearl_bolt",
+                        "items.xbows_crossbow_bolts_iron_tipped_pearl_enchanted",
+                        "items.dragon_bolts_unenchanted_pearl",
+                        "items.dragon_bolts_enchanted_pearl",
                     )
 
                 when {
@@ -452,35 +452,35 @@ object RangedCombatFormula : CombatFormula {
     private fun isWearingTorag(player: Player): Boolean {
         return player.hasEquipped(
             EquipmentType.HEAD,
-            "item.torags_helm",
-            "item.torags_helm_25",
-            "item.torags_helm_50",
-            "item.torags_helm_75",
-            "item.torags_helm_100",
+            "items.barrows_torag_head",
+            "items.barrows_torag_head_25",
+            "items.barrows_torag_head_50",
+            "items.barrows_torag_head_75",
+            "items.barrows_torag_head_100",
         ) &&
             player.hasEquipped(
                 EquipmentType.WEAPON,
-                "item.torags_hammers",
-                "item.torags_hammers_25",
-                "item.torags_hammers_50",
-                "item.torags_hammers_75",
-                "item.torags_hammers_100",
+                "items.barrows_torag_weapon",
+                "items.barrows_torag_weapon_25",
+                "items.barrows_torag_weapon_50",
+                "items.barrows_torag_weapon_75",
+                "items.barrows_torag_weapon_100",
             ) &&
             player.hasEquipped(
                 EquipmentType.CHEST,
-                "item.torags_platebody",
-                "item.torags_platebody_25",
-                "item.torags_platebody_50",
-                "item.torags_platebody_75",
-                "item.torags_platebody_100",
+                "items.barrows_torag_body",
+                "items.barrows_torag_body_25",
+                "items.barrows_torag_body_50",
+                "items.barrows_torag_body_75",
+                "items.barrows_torag_body_100",
             ) &&
             player.hasEquipped(
                 EquipmentType.LEGS,
-                "item.torags_platelegs",
-                "item.torags_platelegs_25",
-                "item.torags_platelegs_50",
-                "item.torags_platelegs_75",
-                "item.torags_platelegs_100",
+                "items.barrows_torag_legs",
+                "items.barrows_torag_legs_25",
+                "items.barrows_torag_legs_50",
+                "items.barrows_torag_legs_75",
+                "items.barrows_torag_legs_100",
             )
     }
 }

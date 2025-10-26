@@ -17,12 +17,12 @@ class StarterKitPlugin(
         onLogin {
             if (player.attr[NEW_ACCOUNT_ATTR] ?: return@onLogin) {
                 with(player.inventory) {
-                    add(getRSCM("item.logs"), 5)
-                    add(getRSCM("item.tinderbox"))
-                    add(getRSCM("item.bread"), 5)
-                    add(getRSCM("item.bronze_pickaxe"))
-                    add(getRSCM("item.bronze_dagger"))
-                    add(getRSCM("item.knife"))
+                    add(getRSCM("items.logs"), 5)
+                    add(getRSCM("items.tinderbox"))
+                    add(getRSCM("items.bread"), 5)
+                    add(getRSCM("items.bronze_pickaxe"))
+                    add(getRSCM("items.bronze_dagger"))
+                    add(getRSCM("items.knife"))
                 }
             }
         }

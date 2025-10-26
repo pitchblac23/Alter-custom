@@ -23,7 +23,7 @@ class SearchSacksPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        val SACKS = setOf("object.sacks_365")
+        val SACKS = setOf("objects.sacks")
 
         SACKS.forEach { sack ->
             onObjOption(obj = sack, option = "search") {

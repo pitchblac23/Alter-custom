@@ -17,9 +17,9 @@ class SearchHayPlugin(
     init {
         val HAY_OBJECTS =
             setOf(
-                "object.haystack",
-                "object.hay_bales",
-                "object.hay_bales_299",
+                "objects.haystack3",
+                "objects.haystack",
+                "objects.haystack2",
             )
 
         HAY_OBJECTS.forEach { hay ->
@@ -45,9 +45,9 @@ class SearchHayPlugin(
         p.unlock()
         when (world.random(100)) {
             0 -> {
-                val add = p.inventory.add(item = "item.needle")
+                val add = p.inventory.add(item = "items.needle")
                 if (add.hasFailed()) {
-                    world.spawn(GroundItem(item = getRSCM("item.needle"), amount = 1, tile = p.tile, owner = p))
+                    world.spawn(GroundItem(item = getRSCM("items.needle"), amount = 1, tile = p.tile, owner = p))
                 }
                 it.chatPlayer(p, "Wow! A needle!<br>Now what are the chances of finding that?")
             }

@@ -23,7 +23,6 @@ import org.alter.rscm.RSCM
 import org.alter.game.rsprot.CacheJs5GroupProvider
 import org.alter.game.rsprot.NetworkServiceFactory
 import org.alter.game.service.xtea.XteaKeyService
-import org.alter.rscm.RSCMV2
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -142,7 +141,6 @@ class Server {
          * Load the file store.
          */
         individualStopwatch.reset().start()
-        RSCM.initRSCM()
         cache = Cache.load(filestore,false)
         ServerCacheManager.init(cache)
         logger.info{"Loaded filestore from path ${filestore} in ${individualStopwatch.elapsed(TimeUnit.MILLISECONDS)}ms."}

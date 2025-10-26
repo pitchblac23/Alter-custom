@@ -18,9 +18,9 @@ class CookPlugin (
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.cook_4626", x = 3209, z = 3215, direction = Direction.SOUTH)
+        spawnNpc("npcs.cook", x = 3209, z = 3215, direction = Direction.SOUTH)
 
-        onNpcOption("npc.cook_4626", option = "talk-to") {
+        onNpcOption("npcs.cook", option = "talk-to") {
             player.queue { dialog(player) }
         }
     }

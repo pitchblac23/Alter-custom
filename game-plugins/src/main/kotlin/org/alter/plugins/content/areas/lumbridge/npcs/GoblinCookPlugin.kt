@@ -17,9 +17,9 @@ class GoblinCookPlugin (
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc(npc = "npc.goblin_cook_4851", x = 3246, z = 3246, walkRadius = 2, direction = Direction.WEST)
+        spawnNpc(npc = "npcs.goblin_cook_charred", x = 3246, z = 3246, walkRadius = 2, direction = Direction.WEST)
 
-        onNpcOption("npc.goblin_cook_4851", option = "talk-to") {
+        onNpcOption("npcs.goblin_cook_charred", option = "talk-to") {
             player.queue { dialog(player) }
         }
     }

@@ -19,9 +19,9 @@ class CraftingTutorPlugin (
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.crafting_tutor", x = 3211, z = 3212, 1, 1, Direction.WEST)
+        spawnNpc("npcs.aide_tutor_crafting", x = 3211, z = 3212, 1, 1, Direction.WEST)
 
-        onNpcOption(npc = "npc.crafting_tutor", option = "talk-to") {
+        onNpcOption(npc = "npcs.aide_tutor_crafting", option = "talk-to") {
             player.queue { dialog(player) }
         }
     }
@@ -45,7 +45,7 @@ class CraftingTutorPlugin (
         chatNpc(player,"When you have a full inventory, take it to the bank,<br>you can find it on the roof of this very castle.", animation = 568)
         itemMessageBox(player,
             "To find a bank, look for this symbol on your minimap<br>after climbing the stairs of the Lumbridge Castle to the<br>top. There are banks all over the world with this symbol.",
-            item = "item.null_5080",
+            item = "items.bank_icon_dummy",
             amountOrZoom = 400,
         )
     }

@@ -33,18 +33,18 @@ class DepositBoxPlugin(
 
         val DEPOSIT_BOXES =
             setOf(
-                "object.bank_deposit_box",
-                "object.bank_deposit_box_25937",
-                "object.bank_deposit_box_26254",
-                "object.bank_deposit_box_29103",
-                "object.bank_deposit_box_29104",
-                "object.bank_deposit_box_29105",
-                "object.bank_deposit_box_29106",
-                "object.bank_deposit_box_29327",
-                "object.bank_deposit_box_30268",
-                "object.bank_deposit_box_31726",
-                "object.bank_deposit_box_32665",
-                "object.bank_deposit_box_34344",
+                "objects.bank_deposit_box",
+                "objects.kr_bank_deposit_box",
+                "objects.sarim_deposit_box",
+                "objects.diary_guild_deposit_box",
+                "objects.swan_bank_deposit_box",
+                "objects.burgh_bank_deposit_box",
+                "objects.ahoy_bank_deposit_box",
+                "objects.wint_deposit_box",
+                "objects.tzhaar_deposit_box",
+                "objects.corscurs_bank_deposit_box",
+                "objects.tob_surface_deposit_box",
+                "objects.brimstone_depositbox",
             )
 
         DEPOSIT_BOXES.forEach { box ->

@@ -25,14 +25,14 @@ class HansPlugin(
     )
 
     init {
-        spawnNpc("npc.hans", 3221, 3219, 0, 0, Direction.EAST)
+        spawnNpc("npcs.hans", 3221, 3219, 0, 0, Direction.EAST)
 
-        onNpcOption("npc.hans", option = "talk-to")
+        onNpcOption("npcs.hans", option = "talk-to")
         {
             player.queue { dialog(player) }
         }
 
-        onNpcOption("npc.hans", option = "age")
+        onNpcOption("npcs.hans", option = "age")
         {
             player.queue { age(player) }
         }

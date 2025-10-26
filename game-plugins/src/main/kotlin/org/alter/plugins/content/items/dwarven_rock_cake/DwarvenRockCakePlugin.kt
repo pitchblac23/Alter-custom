@@ -30,7 +30,7 @@ class DwarvenRockCakePlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        listOf("item.dwarven_rock_cake", "item.dwarven_rock_cake_7510").forEach {
+        listOf("items.hundred_dwarf_hot_rockcake", "items.hundred_dwarf_cool_rockcake").forEach {
             onItemOption(it, "Eat") {
                 player.queue {
                     player.filterableMessage("Ow! You nearly broke a tooth!")

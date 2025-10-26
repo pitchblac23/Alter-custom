@@ -23,7 +23,7 @@ class AbyssalBludgeonPlugin(
 
         val SPECIAL_REQUIREMENT = 50
 
-        SpecialAttacks.register("item.abyssal_bludgeon", SPECIAL_REQUIREMENT) {
+        SpecialAttacks.register("items.abyssal_bludgeon", SPECIAL_REQUIREMENT) {
             player.animate(id = 3299)
             player.graphic(id = 1284)
 
@@ -36,7 +36,7 @@ class AbyssalBludgeonPlugin(
             player.dealHit(target = target, maxHit = maxHit, landHit = landHit, delay = 1)
         }
 
-        setItemCombatLogic("item.abyssal_bludgeon") {
+        setItemCombatLogic("items.abyssal_bludgeon") {
             val target = player.getTarget()
             if (target != null) {
                 target.graphic(Graphic.ABYSSAL_BLUDGEON_SPECIAL)

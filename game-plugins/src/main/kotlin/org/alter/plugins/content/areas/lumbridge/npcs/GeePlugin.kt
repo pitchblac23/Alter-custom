@@ -17,10 +17,10 @@ class GeePlugin(
 ) : KotlinPlugin(r, world, server) {
 
     init {
-        spawnNpc("npc.gee", x = 3223, z = 3229, walkRadius = 19, direction = Direction.SOUTH)
-        spawnNpc("npc.gee", 3243, 3265, walkRadius = 22)
+        spawnNpc("npcs.lumbridge_guide2_man", x = 3223, z = 3229, walkRadius = 19, direction = Direction.SOUTH)
+        spawnNpc("npcs.lumbridge_guide2_man", 3243, 3265, walkRadius = 22)
 
-        onNpcOption("npc.gee", option = "talk-to") {
+        onNpcOption("npcs.lumbridge_guide2_man", option = "talk-to") {
             player.queue { dialog(player) }
         }
     }

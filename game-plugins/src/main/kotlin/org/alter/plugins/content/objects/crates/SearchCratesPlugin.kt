@@ -25,15 +25,15 @@ class SearchCratesPlugin(
     init {
         val CRATES =
             setOf(
-                "object.crate_354",
-                "object.crate_355",
-                "object.crate_356",
-                "object.crate_357",
-                "object.crate_358",
-                "object.crate_366",
-                "object.crate_1990",
-                "object.crate_1999",
-                "object.crate_2064",
+                "objects.crate2",
+                "objects.crate3",
+                "objects.crate_old",
+                "objects.crate2_old",
+                "objects.crate3_old",
+                "objects.crate",
+                "objects.golrie_crate_waterfall_quest",
+                "objects.baxtorian_crate_waterfall_quest",
+                "objects.mournercrateup",
             )
 
         CRATES.forEach { crate ->

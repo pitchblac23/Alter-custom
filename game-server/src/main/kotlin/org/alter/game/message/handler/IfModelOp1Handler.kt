@@ -1,11 +1,13 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.If1Button
+import net.rsprot.protocol.util.CombinedId
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.INTERACTING_ITEM_ID
 import org.alter.game.model.attr.INTERACTING_OPT_ATTR
 import org.alter.game.model.attr.INTERACTING_SLOT_ATTR
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ButtonClickEvent
 
 class IfModelOp1Handler : MessageHandler<If1Button> {
     override fun consume(
@@ -33,5 +35,7 @@ class IfModelOp1Handler : MessageHandler<If1Button> {
         if (client.world.devContext.debugButtons) {
             client.writeMessage("Unhandled button action: [component=[$interfaceId:$component], option=$option, slot=$slot, item=$item]")
         }
+        
+        ButtonClickEvent(CombinedId(interfaceId, component), option, item, slot, client).post()
     }
 }

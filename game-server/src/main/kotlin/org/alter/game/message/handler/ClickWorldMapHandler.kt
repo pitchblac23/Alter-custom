@@ -6,6 +6,7 @@ import org.alter.game.model.Tile
 import org.alter.game.model.entity.Client
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
+import org.alter.game.pluginnew.event.impl.ClickWorldMapEvent
 
 /**
  * @author HolyRSPS <dagreenrs@gmail.com>
@@ -20,5 +21,6 @@ class ClickWorldMapHandler : MessageHandler<ClickWorldMap> {
             log(client, "Click world map: %s", dest.toString())
             client.moveTo(dest)
         }
+        ClickWorldMapEvent(Tile(message.x, message.z), client).post()
     }
 }

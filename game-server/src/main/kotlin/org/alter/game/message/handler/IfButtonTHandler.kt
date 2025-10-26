@@ -1,9 +1,11 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.IfButtonT
+import net.rsprot.protocol.util.CombinedId
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.*
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ItemOnItemEvent
 import java.lang.ref.WeakReference
 
 class IfButtonTHandler : MessageHandler<IfButtonT> {
@@ -88,5 +90,15 @@ class IfButtonTHandler : MessageHandler<IfButtonT> {
                     "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",
             )
         }
+
+        ItemOnItemEvent(
+            fromItem,
+            toItem,
+            fromSlot,
+            toSlot,
+            CombinedId(fromInterfaceId, fromComponent),
+            CombinedId(toInterfaceId, toComponent),
+            client
+        ).post()
     }
 }

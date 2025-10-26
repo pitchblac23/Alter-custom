@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 description = "Server Content"
 
 dependencies {
@@ -7,6 +9,11 @@ dependencies {
     implementation(kotlin("script-runtime"))
     implementation(kotlin("scripting-jvm"))
     implementation(kotlin("scripting-jvm-host"))
+    implementation(rootProject.project.libs.rsprot)
+}
+
+tasks.withType<KotlinCompile> {
+    dependsOn(":game-server:build")
 }
 
 tasks.named<Jar>("jar") {

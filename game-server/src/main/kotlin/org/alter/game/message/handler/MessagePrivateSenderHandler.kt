@@ -4,6 +4,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import net.rsprot.protocol.game.incoming.messaging.MessagePrivate
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.MessagePrivateEvent
 
 /**
  * @TODO
@@ -19,6 +20,7 @@ class MessagePrivateSenderHandler : MessageHandler<MessagePrivate> {
             logger.info { "Attempting to send packet to target" }
             client.social.sendPrivateMessage(client, target, message.message)
         }
+        MessagePrivateEvent(message.name, message.message, client).post()
     }
 
     companion object {

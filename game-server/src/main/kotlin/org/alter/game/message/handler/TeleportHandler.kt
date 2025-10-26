@@ -2,9 +2,11 @@ package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.misc.user.Teleport
 import org.alter.game.message.MessageHandler
+import org.alter.game.model.Tile
 import org.alter.game.model.entity.Client
 import org.alter.game.model.move.moveTo
 import org.alter.game.model.priv.Privilege
+import org.alter.game.pluginnew.event.impl.TeleportEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -27,5 +29,6 @@ class TeleportHandler : MessageHandler<Teleport> {
         if (client.world.privileges.isEligible(client.privilege, Privilege.ADMIN_POWER)) {
             client.moveTo(message.x, message.z, message.level)
         }
+        TeleportEvent(Tile(message.x, message.z, message.level), client).post()
     }
 }

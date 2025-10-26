@@ -3,6 +3,7 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.friendchat.FriendChatJoinLeave
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.FriendChatJoinEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -12,6 +13,7 @@ class ClanJoinChatLeaveHandler : MessageHandler<FriendChatJoinLeave> {
         client: Client,
         message: FriendChatJoinLeave,
     ) {
-        throw RuntimeException("Unhandled.")
+        // Note: Implement join/leave logic here
+        FriendChatJoinEvent(true, client).post()
     }
 }

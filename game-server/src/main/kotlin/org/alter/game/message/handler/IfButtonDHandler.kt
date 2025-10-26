@@ -1,11 +1,13 @@
 package org.alter.game.message.handler
 
 import net.rsprot.protocol.game.incoming.buttons.IfButtonD
+import net.rsprot.protocol.util.CombinedId
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.attr.INTERACTING_COMPONENT_CHILD
 import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.game.model.attr.OTHER_ITEM_SLOT_ATTR
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ComponentSwapEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -55,5 +57,15 @@ class IfButtonDHandler : MessageHandler<IfButtonD> {
                     "from_component=[$fromInterfaceId:$fromComponent], to_component=[$toInterfaceId:$toComponent]]",
             )
         }
+
+        ComponentSwapEvent(
+            fromItemId,
+            toItemId,
+            fromSlot,
+            toSlot,
+            CombinedId(fromInterfaceId, fromComponent),
+            CombinedId(toInterfaceId, toComponent),
+            client
+        ).post()
     }
 }

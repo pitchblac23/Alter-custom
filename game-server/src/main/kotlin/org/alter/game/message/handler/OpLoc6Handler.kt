@@ -4,6 +4,7 @@ import net.rsprot.protocol.game.incoming.locs.OpLoc6
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.ExamineEntityType
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.ExamineEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -14,5 +15,6 @@ class OpLoc6Handler : MessageHandler<OpLoc6> {
         message: OpLoc6,
     ) {
         client.world.sendExamine(client, message.id, ExamineEntityType.OBJECT)
+        ExamineEvent(message.id, ExamineEntityType.OBJECT, client).post()
     }
 }

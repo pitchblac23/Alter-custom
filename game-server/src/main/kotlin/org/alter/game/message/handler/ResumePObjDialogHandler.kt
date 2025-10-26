@@ -3,6 +3,7 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.resumed.ResumePObjDialog
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.DialogItemEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -14,5 +15,6 @@ class ResumePObjDialogHandler : MessageHandler<ResumePObjDialog> {
     ) {
         log(client, "Searched item: item=%d", message.obj)
         client.queues.submitReturnValue(message.obj)
+        DialogItemEvent(message.obj,client).post()
     }
 }

@@ -3,6 +3,7 @@ package org.alter.game.message.handler
 import net.rsprot.protocol.game.incoming.events.EventCameraPosition
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.entity.Client
+import org.alter.game.pluginnew.event.impl.CameraPositionEvent
 
 /**
  * @author Tom <rspsmods@gmail.com>
@@ -14,5 +15,6 @@ class EventCameraPositionHandler : MessageHandler<EventCameraPosition> {
     ) {
         client.cameraPitch = message.angleX
         client.cameraYaw = message.angleY
+        CameraPositionEvent(message.angleX, message.angleY, client).post()
     }
 }

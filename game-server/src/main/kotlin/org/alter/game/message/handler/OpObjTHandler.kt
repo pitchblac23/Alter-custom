@@ -5,6 +5,8 @@ import org.alter.game.model.move.ObjectPathAction
 import org.alter.game.message.MessageHandler
 import org.alter.game.model.Tile
 import org.alter.game.model.entity.Client
+import org.alter.game.model.item.Item
+import org.alter.game.pluginnew.event.impl.ItemOnGroundItemEvent
 
 class OpObjTHandler : MessageHandler<OpObjT> {
     override fun consume(
@@ -34,7 +36,9 @@ class OpObjTHandler : MessageHandler<OpObjT> {
             message.x,
             message.z
         )
+        
+        val item = client.inventory[slot] ?: return
         client.executePlugin(ObjectPathAction.itemOnObjectPlugin)
-
+        ItemOnGroundItemEvent(item, slot, message.id, tile, client).post()
     }
 }

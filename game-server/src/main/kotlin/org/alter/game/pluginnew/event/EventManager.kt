@@ -138,22 +138,14 @@ object EventManager {
      * Get the coroutine [Channel] responsible for the specific event
      */
     private fun <E : Event> getChannel(clazz: Class<out Event>): MutableSharedFlow<E> {
-        if (!eventChannels.containsKey(clazz)) {
-            eventChannels[clazz] = MutableSharedFlow<E>()
-        }
-
-        return eventChannels[clazz]!! as MutableSharedFlow<E>
+        return eventChannels.computeIfAbsent(clazz) { MutableSharedFlow<E>() } as MutableSharedFlow<E>
     }
 
     /**
      * Get the list of filter predicates for the specific event
      */
     private fun <E : Event> getFilters(clazz: Class<out Event>): LinkedList<Predicate<E>> {
-        if (!eventFilter.containsKey(clazz)) {
-            eventFilter[clazz] = LinkedList<Predicate<E>>() as LinkedList<Predicate<out Event>>
-        }
-
-        return (eventFilter[clazz]!!) as LinkedList<Predicate<E>>
+        return eventFilter.computeIfAbsent(clazz) { LinkedList<Predicate<out Event>>() } as LinkedList<Predicate<E>>
     }
 
     /**
@@ -167,10 +159,10 @@ object EventManager {
      * Listen for new posts on the [Channel] on a separate coroutine
      */
     fun <E : Event> listen(event: Class<out Event>, listener: EventListener<E>) {
-        val current = listeners[event]
-
-        if (current == null) listeners[event] = listOf(listener)
-        else listeners[event] = listOf(listener) + listeners[event] as List<EventListener<out Event>>
+        listeners.compute(event) { _, old ->
+            if (old == null) listOf(listener)
+            else old + listener
+        }
 
         CoroutineScope(context).launch {
             try {
@@ -179,6 +171,9 @@ object EventManager {
                         if (listener.condition(it)) {
                             listener.action(it)
                             if (listener.singleUse) {
+                                listeners.compute(event) { _, old ->
+                                    old?.filter { it !== listener }
+                                }
                                 cancel(CancellationException())
                             }
                         } else {

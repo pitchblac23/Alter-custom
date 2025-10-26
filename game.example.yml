@@ -2,7 +2,8 @@
 # You want to edit these to fit your game.
 name: "Alter"
 game-port: 43594
-revision: 234
+revision: 234.2
+environment: "LIVE"
 
 # The coordinates for the home location.
 home-x: 3218

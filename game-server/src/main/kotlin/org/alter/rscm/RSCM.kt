@@ -15,6 +15,11 @@ object RSCM {
         return rscmList.entries.find { it.value == this && it.key.startsWith("$table.") }?.key
             ?: throw IllegalStateException("No RSCM entry found for ID $this with prefix '$table'.")
     }
+
+    fun String.asRSCM(): Int {
+        return getRSCM(this)
+    }
+
     fun getRSCM(entity: String) : Int {
         if (rscmList.isEmpty()) {
             throw IllegalStateException("RSCM List is empty.")

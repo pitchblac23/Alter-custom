@@ -9,19 +9,17 @@ class TestEvents : Script() {
 
     init {
 
-        on<ObjectClickEvent> {
-            where { optionName == "Chop down" }
+        /*on<ObjectClickEvent> {
+            where { optionName == "Option" }
             then {
-                player.message("Opening doorrrr... [${option}, ${gameObject.tile}]")
+                player.message("Text [${option}, ${gameObject.tile}]")
             }
-        }
+        }*/
 
         on<ButtonClickEvent> {
             then {
                 player.message("$component")
             }
         }
-
     }
-
 }

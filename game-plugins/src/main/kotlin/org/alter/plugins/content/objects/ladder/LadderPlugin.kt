@@ -1,27 +1,15 @@
 package org.alter.plugins.content.objects.ladder
 
-import org.alter.api.*
-import org.alter.api.cfg.*
-import org.alter.api.dsl.*
-import org.alter.api.ext.*
-import org.alter.game.*
-import org.alter.game.model.*
-import org.alter.game.model.attr.*
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
+import org.alter.api.ext.options
+import org.alter.api.ext.player
+import org.alter.game.Server
+import org.alter.game.model.World
+import org.alter.game.model.entity.Player
 import org.alter.game.model.move.moveTo
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
-import org.alter.game.plugin.*
+import org.alter.game.plugin.KotlinPlugin
+import org.alter.game.plugin.PluginRepository
 
-class LadderPlugin(
-    r: PluginRepository,
-    world: World,
-    server: Server
-) : KotlinPlugin(r, world, server) {
+class LadderPlugin(r: PluginRepository, world: World, server: Server) : KotlinPlugin(r, world, server) {
 
     init {
         /**Stairs*/
@@ -30,7 +18,9 @@ class LadderPlugin(
             arrayOf(
                 "objects.spiralstairsmiddle",
                 "objects.spiralstairstop",
+                "objects.spiralstairstop_3",
                 "objects.spiralstairs",
+                "objects.spiralstairsbottom_3",
             )
 
         stairs.forEach { stairs ->
@@ -47,6 +37,16 @@ class LadderPlugin(
             if (objHasOption(obj = stairs, option = "climb-down")) {
                 onObjOption(obj = stairs, option = "climb-down") {
                     climbdownstairs(player)
+                }
+            }
+            if (objHasOption(obj = stairs, option = "Top-floor")) {
+                onObjOption(obj = stairs, option = "Top-floor") {
+                    topfloorstairs(player)
+                }
+            }
+            if (objHasOption(obj = stairs, option = "Bottom-floor")) {
+                onObjOption(obj = stairs, option = "Bottom-floor") {
+                    bottomfloorstairs(player)
                 }
             }
         }
@@ -130,6 +130,12 @@ class LadderPlugin(
 
     fun climbdownstairs(player: Player) {
         player.moveTo(player.tile.x, player.tile.z, player.tile.height - 1)
+    }
+    fun topfloorstairs(player: Player) {
+        player.moveTo(player.tile.x, player.tile.z, 2)
+    }
+    fun bottomfloorstairs(player: Player) {
+        player.moveTo(player.tile.x, player.tile.z, 0)
     }
 
     fun climbstairs(player: Player) {

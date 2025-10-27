@@ -46,6 +46,7 @@ object Varbit {
     const val MOUSE_CAMERA_VARBIT = 4134
     const val PET_OPTIONS_VARBIT = 5599
     const val SHIFT_CLICK_DROP_VARBIT = 5542
+    const val SHIFT_DROP_ITEMS = 11556
     const val CHATBOX_SCROLLBAR_VARBIT = 6374
     const val DISABLE_SIDEPANELS_OPAQUE_VARBIT = 4609
     const val DISABLE_XP_TILL_LEVEL_VARBIT = 4181

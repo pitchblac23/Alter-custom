@@ -9,12 +9,12 @@ class TestEvents : Script() {
 
     init {
 
-        /*on<ObjectClickEvent> {
+        on<ObjectClickEvent> {
             where { optionName == "Option" }
             then {
                 player.message("Text [${option}, ${gameObject.tile}]")
             }
-        }*/
+        }
 
         on<ButtonClickEvent> {
             then {

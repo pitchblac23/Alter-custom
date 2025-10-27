@@ -1,6 +1,5 @@
 package org.alter.plugins.content.interfaces.bank
 
-import org.alter.api.BonusSlot
 import org.alter.api.ClientScript
 import org.alter.api.InterfaceDestination
 import org.alter.api.ext.*
@@ -10,7 +9,6 @@ import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.plugins.content.interfaces.bank.BankTabs.SELECTED_TAB_VARBIT
 import org.alter.plugins.content.interfaces.bank.BankTabs.getTabsItems
-import org.alter.plugins.content.interfaces.equipstats.EquipmentStats
 import org.alter.plugins.content.interfaces.equipstats.EquipmentStats.bonusTextMap
 
 /**
@@ -35,13 +33,7 @@ object Bank {
      */
     private const val BANK_YOUR_LOOT_VARBIT = 4139
 
-    fun withdraw(
-        p: Player,
-        id: Int,
-        amt: Int,
-        slot: Int,
-        placehold: Boolean,
-    ) {
+    fun withdraw(p: Player, id: Int, amt: Int, slot: Int, placehold: Boolean) {
         var withdrawn = 0
         val from = p.bank
         val to = p.inventory
@@ -62,7 +54,7 @@ object Bank {
             }
             val transfer = from.transfer(to, item = copy, fromSlot = i, note = note, unnote = false)
             withdrawn += transfer?.completed ?: 0
-            if (from[i] == null) {
+            /*if (from[i] == null) {
                 if (placehold || p.getVarbit(ALWAYS_PLACEHOLD_VARBIT) == 1) {
                     val def = item.getDef()
                     /**
@@ -73,7 +65,7 @@ object Bank {
                         p.bank[i] = Item(def.placeholderLink, -2)
                     }
                 }
-            }
+            }*/
         }
         if (withdrawn == 0) {
             p.message("You don't have enough inventory space.")
@@ -82,11 +74,7 @@ object Bank {
         }
     }
 
-    fun deposit(
-        player: Player,
-        id: Int,
-        amt: Int,
-    ) {
+    fun deposit(player: Player, id: Int, amt: Int) { //Deposit inventory
         println("Deposit method executed ====")
         val from = player.inventory
         val to = player.bank

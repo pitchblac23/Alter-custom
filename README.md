@@ -10,22 +10,17 @@ Due to the plugin capabilities, even owners without programming experience can j
 #### I found a bug, where can I report it?
 - You can report them by creating Issue on [GitHub](https://github.com/AlterRSPS/Alter/issues) or in Alter's [Discord Server](https://discord.gg/kdhBuRaduw)
 #  Server setup
-* Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
 
-* ### First of all Download:
-* [Xteas](https://archive.openrs2.org/caches/runescape/2038/keys.json) Save as `xteas.json` inside `/data/` Directory.
-* [cache-oldschool-live-en-b231-2025-06-11-10-45-05-openrs2](https://archive.openrs2.org/caches/runescape/2206/disk.zip) , And make sure you're using correct Java Version.
-* Also make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
+### First of all Download:
+* Youtube tutorial: https://www.youtube.com/watch?v=2Tu-NTzMbf0
+* Make sure you have [Intellij](https://www.jetbrains.com/idea/download/#section=windows) installed, how to install intellij: [Youtube](https://www.youtube.com/watch?v=t8T5Qwa5d_o)
 
 * First open Intellij, (If you already have a project open, either do `File -> Close`, or `File -> New -> Project from Version Control`)
 * If you decided to use `Close method` you will see this window, click on `Get from VCS`
   ![tutor1](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor1.png)
 * Second paste `https://github.com/AlterRSPS/Alter` in URL Field and hit Clone. </br>
   ![tutor2](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tuor2.png)
-* Hit `Clone` and Let the project fully load.
-* Now open the `cache-oldschool-live-en-b231-2025-06-11-10-45-05-openrs2` file that you downloaded. and drag out Xteas.json and Cache folder and pull it to `/Data/` Folder.
-  ![tutor6](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/tutor6.png)
-- `Xtea.json` has to be in same folder like: Data /`api.yml`, etc..
+* Hit `Clone` and let the project fully load.
 * Now click on `Gradle` button on right side. </br>
   ![tutor4](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Tutor4.png)
 * Expand `Alter` -> `other` and double click `install`
@@ -36,7 +31,8 @@ Due to the plugin capabilities, even owners without programming experience can j
 * Now the server should be running, you should see inside your terminal:
   ![tutor8](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Alter_Successfully_initialized.png)
 * If you only see `Alter Loaded up in x ms.` you messed up somewhere.
-* You can connect what ever client you want (ofc it has to follow OSRS protocols.)
+* You can connect whatever client you want (of course it has to follow OSRS protocols.)
+
 
 > [!NOTE]
 > When you have Intellij Open, navigate to `File` -> `Project Structure` -> And make sure SDK is set to `17 java version 17.x.x`

@@ -1,4 +1,4 @@
-package org.alter.plugins.content.skills.woodcutting
+package org.alter.skills.woodcutting
 
 import org.alter.api.Skills
 import org.alter.api.cfg.Sound

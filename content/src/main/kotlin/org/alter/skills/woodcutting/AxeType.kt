@@ -1,4 +1,4 @@
-package org.alter.plugins.content.skills.woodcutting
+package org.alter.skills.woodcutting
 
 import org.alter.api.cfg.Animation
 import org.alter.rscm.RSCM.getRSCM

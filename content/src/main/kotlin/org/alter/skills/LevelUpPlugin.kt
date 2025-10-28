@@ -1,4 +1,4 @@
-package org.alter.plugins.content.skills
+package org.alter.skills
 
 import org.alter.api.Skills
 import org.alter.api.ext.calculateAndSetCombatLevel

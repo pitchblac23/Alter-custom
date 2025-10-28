@@ -9,14 +9,14 @@ import org.alter.game.fs.EnumManager.forEachTyped
 import org.alter.game.model.LockState
 import org.alter.game.model.entity.Player
 import org.alter.game.model.move.stopMovement
-import org.alter.game.pluginnew.Script
+import org.alter.game.pluginnew.PluginEvent
 import org.alter.game.pluginnew.event.impl.ItemClickEvent
 import org.alter.rscm.RSCM.asRSCM
 import org.alter.skills.prayer.GildedAlterEvents.Companion.CHAOS_ALTAR_AREA
 
-class PrayerBuryEvents : Script() {
+class PrayerBuryEvents : PluginEvent() {
 
-    init {
+    override fun init() {
         EnumManager.lookup("enums.bone_data").forEachTyped<Int, Int> { boneId, dbRowId ->
             val row = DBHelper.getRow(dbRowId)
             val xp = row.column("columns.skill_prayer:exp").getInt()
@@ -62,4 +62,5 @@ class PrayerBuryEvents : Script() {
             player.unlock()
         }
     }
+
 }

@@ -13,12 +13,11 @@ import org.alter.game.model.Tile
 import org.alter.game.model.TileGraphic
 import org.alter.game.model.entity.GameObject
 import org.alter.game.model.entity.Player
-import org.alter.game.pluginnew.Script
+import org.alter.game.pluginnew.PluginEvent
 import org.alter.game.pluginnew.event.impl.ItemOnObject
 import org.alter.rscm.RSCM.asRSCM
-import kotlin.random.Random
 
-class GildedAlterEvents : Script() {
+class GildedAlterEvents : PluginEvent() {
 
     companion object {
         val CHAOS_ALTAR_AREA = Area(2946, 3825, 2957, 3816, true)
@@ -29,7 +28,7 @@ class GildedAlterEvents : Script() {
         )
     }
 
-    init {
+    override fun init() {
         EnumManager.lookup("enums.bone_data").forEachTyped<Int, Int> { boneId, dbRowId ->
             val row = DBHelper.getRow(dbRowId)
             val xp = row.column("columns.skill_prayer:exp").getInt()

@@ -1,4 +1,4 @@
-package org.alter.plugins.content.interfaces.attack
+package org.alter.plugins.content.interfaces.gameframe.tabs.combat_options
 
 import org.alter.api.ext.getVarp
 import org.alter.api.ext.secondsToTicks

@@ -21,7 +21,7 @@ import org.alter.game.plugin.KotlinPlugin
 import org.alter.game.plugin.PluginRepository
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks
 import org.alter.plugins.content.combat.strategy.magic.CombatSpell
-import org.alter.plugins.content.interfaces.attack.AttackTab
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab
 import java.util.*
 
 class CombatPlugin(

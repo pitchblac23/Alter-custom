@@ -6,7 +6,7 @@ import org.alter.rscm.RSCM.getRSCM
  * @author Tom <rspsmods@gmail.com>
  */
 enum class TreeType(val level: Int, val xp: Double, val log: Int, val depleteChance: Int, val respawnTime: IntRange) {
-    Trees(level = 1, xp = 25.0, getRSCM("items.logs"), depleteChance = 1, respawnTime = 15..25),
+    Trees(level = 1, xp = 25.0, getRSCM("items.logs"), depleteChance = 0, respawnTime = 15..25),
     ACHEY(level = 1, xp = 25.0, getRSCM("items.achey_tree_logs"), depleteChance = 1, respawnTime = 15..25),
     OAK(level = 15, xp = 37.5, getRSCM("items.oak_logs"), depleteChance = 2, respawnTime = 20..40),
     WILLOW(level = 30, xp = 67.5, getRSCM("items.willow_logs"), depleteChance = 8, respawnTime = 15..20),

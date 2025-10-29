@@ -6,7 +6,7 @@ import org.alter.game.model.World
 import org.alter.game.model.entity.Pawn
 import org.alter.game.model.entity.Player
 import org.alter.rscm.RSCM.getRSCM
-import org.alter.plugins.content.interfaces.attack.AttackTab
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab
 
 /**
  * @author Tom <rspsmods@gmail.com>

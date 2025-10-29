@@ -1,16 +1,12 @@
 package org.alter.skills.woodcutting
 
 import org.alter.api.ext.getInteractingGameObj
-import org.alter.api.ext.player
-import org.alter.game.Server
-import org.alter.game.model.World
-import org.alter.game.plugin.KotlinPlugin
-import org.alter.game.plugin.PluginRepository
+import org.alter.game.pluginnew.PluginEvent
+import org.alter.game.pluginnew.event.impl.ObjectClickEvent
 
-class WoodcuttingPlugin (
-    r: PluginRepository, world: World, server: Server) : KotlinPlugin(r, world, server) {
+class WoodcuttingPlugin : PluginEvent() {
 
-    init {
+    override fun init() {
         val TREES =
             setOf(
                 Woodcutting.Tree(TreeType.Trees, obj = 1276, trunk = 1342), // Tree
@@ -40,10 +36,13 @@ class WoodcuttingPlugin (
             )
 
         TREES.forEach { tree ->
-            onObjOption(obj = tree.obj, option = "Chop Down") {
-                val obj = player.getInteractingGameObj()
-                player.queue {
-                    Woodcutting.chopDownTree(this, obj, tree.type, tree.trunk)
+            on<ObjectClickEvent> {
+                where { gameObject.id == tree.obj }
+                then {
+                    val obj = player.getInteractingGameObj()
+                    player.queue {
+                        Woodcutting.chopDownTree(this, obj, tree.type, tree.trunk)
+                    }
                 }
             }
         }

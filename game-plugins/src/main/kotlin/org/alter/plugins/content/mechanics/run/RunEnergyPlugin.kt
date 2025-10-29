@@ -1,10 +1,13 @@
 package org.alter.plugins.content.mechanics.run
 
+import org.alter.api.cfg.Sound
+import org.alter.api.ext.playSound
 import org.alter.api.ext.player
 import org.alter.game.Server
 import org.alter.game.model.World
 import org.alter.game.plugin.KotlinPlugin
 import org.alter.game.plugin.PluginRepository
+import org.alter.plugins.content.interfaces.gameframe.config.Orbs
 
 class RunEnergyPlugin(r: PluginRepository, world: World, server: Server) : KotlinPlugin(r, world, server) {
         
@@ -21,8 +24,9 @@ class RunEnergyPlugin(r: PluginRepository, world: World, server: Server) : Kotli
         /**
          * Button by minimap.
          */
-        onButton(interfaceId = 160, component = 28) {
+        onButton(interfaceId = Orbs.ORBS_UNIVERSE, component = Orbs.RUN_ORB) {
             RunEnergy.toggle(player)
+            player.playSound(Sound.INTERFACE_SELECT1)
         }
 
         /**

@@ -1,28 +1,17 @@
 package org.alter.plugins.content.interfaces.gameframe.tabs.combat_options
 
 import org.alter.api.*
-import org.alter.api.cfg.*
-import org.alter.api.dsl.*
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
-import org.alter.game.model.attr.*
 import org.alter.game.model.attr.NEW_ACCOUNT_ATTR
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
-import org.alter.game.model.timer.*
 import org.alter.game.plugin.*
 import org.alter.plugins.content.combat.specialattack.SpecialAttacks
-import org.alter.plugins.content.interfaces.attack.AttackTab
-import org.alter.plugins.content.interfaces.attack.AttackTab.ATTACK_STYLE_VARP
-import org.alter.plugins.content.interfaces.attack.AttackTab.ATTACK_TAB_INTERFACE_ID
-import org.alter.plugins.content.interfaces.attack.AttackTab.DISABLE_AUTO_RETALIATE_VARP
-import org.alter.plugins.content.interfaces.attack.AttackTab.SPECIAL_ATTACK_VARP
-import org.alter.plugins.content.interfaces.attack.AttackTab.setEnergy
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab.ATTACK_STYLE_VARP
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab.ATTACK_TAB_INTERFACE_ID
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab.DISABLE_AUTO_RETALIATE_VARP
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab.SPECIAL_ATTACK_VARP
+import org.alter.plugins.content.interfaces.gameframe.tabs.combat_options.AttackTab.setEnergy
 
 class AttackTabPlugin(
     r: PluginRepository,
@@ -70,17 +59,6 @@ class AttackTabPlugin(
          */
         onButton(interfaceId = ATTACK_TAB_INTERFACE_ID, component = 31) {
             player.toggleVarp(DISABLE_AUTO_RETALIATE_VARP)
-        }
-
-        onButton(interfaceId = 160, component = 35) {
-            val weaponId = player.equipment[EquipmentType.WEAPON.id]!!.id
-            if (SpecialAttacks.executeOnEnable(weaponId)) {
-                if (!SpecialAttacks.execute(player, null, world)) {
-                    player.message("You don't have enough power left.")
-                }
-            } else {
-                player.toggleVarp(SPECIAL_ATTACK_VARP)
-            }
         }
 
         /**

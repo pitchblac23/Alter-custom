@@ -1,4 +1,4 @@
-package org.alter.plugins.content.interfaces.equipstats
+package org.alter.plugins.content.interfaces.gameframe.tabs.worn_equipment
 
 import org.alter.api.BonusSlot
 import org.alter.api.ClientScript
@@ -82,7 +82,7 @@ object EquipmentStats {
             "Magic: ${formatBonus(this, BonusSlot.DEFENCE_MAGIC)}",
             "Melee STR: ${formatBonus(this.getStrengthBonus())}",
             "Ranged STR: ${formatBonus(this.getRangedStrengthBonus())}",
-            "Magic DMG: ${formatBonus(magicDamageBonus).toDouble()}%",
+            "Magic DMG: ${formatBonus(this.getMagicDamageBonus())}",
             "Prayer: ${formatBonus(this.getPrayerBonus())}",
             "Undead: TODO",
             "Slayer: TODO"

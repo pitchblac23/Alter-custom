@@ -39,18 +39,9 @@ object Woodcutting {
 
             val level = p.getSkills().getCurrentLevel(Skills.WOODCUTTING)
             if (level.interpolate(minChance = 60, maxChance = 190, minLvl = 1, maxLvl = 99, cap = 255)) {
-                p.filterableMessage("You get some ${tree.log.getItemName(true)}.")
-                p.playSound(3600)
-                p.inventory.add(tree.log)
-                p.addXp(Skills.WOODCUTTING, tree.xp)
-
                 if (p.world.random(tree.depleteChance) == 0) {
-                    p.animate(-1)
-
                     if (trunkId != -1) {
                         val world = p.world
-
-                        p.playSound(Sound.TREE_FALL)
 
                         world.queue {
                             val trunk = DynamicObject(obj, trunkId)
@@ -61,6 +52,12 @@ object Woodcutting {
                             world.remove(trunk)
                             world.spawn(DynamicObject(obj))
                         }
+                        it.wait(1)
+                        p.animate(-1)
+                        p.addXp(Skills.WOODCUTTING, tree.xp)
+                        p.filterableMessage("You get some ${tree.log.getItemName(true)}.")
+                        p.inventory.add(tree.log)
+                        p.playSound(Sound.TREE_FALL)
                     }
                     break
                 }
@@ -110,7 +107,7 @@ object Woodcutting {
         } else if (player.getSkills().getBaseLevel(Skills.FIREMAKING) < 85 || player.getSkills().getBaseLevel(Skills.WOODCUTTING) < 61 &&
             player.getSkills().getBaseLevel(Skills.FIREMAKING) >= 85 || player.getSkills().getBaseLevel(Skills.WOODCUTTING) >= 61
         ) {
-            player.message("You need 61 woodcrafing and 85 firemaking to make this")
+            player.message("You need 61 woodcutting and 85 firemaking to make this")
         }
     }
 

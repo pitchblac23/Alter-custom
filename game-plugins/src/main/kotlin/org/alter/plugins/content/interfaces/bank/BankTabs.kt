@@ -6,38 +6,14 @@ import org.alter.game.model.attr.INTERACTING_ITEM_SLOT
 import org.alter.game.model.entity.Player
 import org.alter.game.model.item.Item
 import org.alter.plugins.content.interfaces.bank.Bank.insert
+import org.alter.plugins.content.interfaces.bank.config.Varbits
 
 /**
  * @author bmyte <bmytescape@gmail.com>
  */
 object BankTabs {
-    const val BANK_TABLIST_ID = 11
 
-    const val SELECTED_TAB_VARBIT = 4150
-
-    /**
-     * So when we set example: 4171 -> to 7
-     * From top 7 first items get sent to be at that tab[4171 : represents tab 1]
-     * When we do collapse we need to send the front items to the end of main Tab
-     * I think it would be just better to convert the entire bank tabs to dimensional array
-     */
-    const val BANK_TAB_ROOT_VARBIT = 4170
-
-    /**
-     * Handles the dropping of items into the specified tab of the player's [Bank].
-     *
-     * @param player
-     * The acting [Player] for which the [INTERACTING_ITEM_SLOT] [Item] should
-     * be dropped into the specified [dstTab]
-     *
-     * @param dstTab
-     * The bank tab number for which the [INTERACTING_ITEM_SLOT] [Item] is
-     * to be dropped into.
-     */
-    fun dropToTab(
-        player: Player,
-        dstTab: Int,
-    ) {
+    fun dropToTab(player: Player, dstTab: Int) {
         val container = player.bank
         val srcSlot = player.attr[INTERACTING_ITEM_SLOT]!!
         val curTab = getCurrentTab(player, srcSlot)
@@ -48,9 +24,9 @@ object BankTabs {
             if (dstTab == 0) { // add to main tab don't insert
                 println(":test 1")
                 container.insert(srcSlot, container.nextFreeSlot - 1)
-                player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
+                player.setVarbit(Varbits.TAB_DISPLAY + curTab, player.getVarbit(Varbits.TAB_DISPLAY + curTab) - 1)
                 // check for empty tab shift
-                if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
+                if (player.getVarbit(Varbits.TAB_DISPLAY + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
                     shiftTabs(player, curTab)
                 }
             } else {
@@ -61,12 +37,12 @@ object BankTabs {
                     println(":test 3")
                     container.insert(srcSlot, insertionPoint(player, dstTab) - 1)
                 }
-                player.setVarbit(BANK_TAB_ROOT_VARBIT + dstTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab) + 1)
+                player.setVarbit(Varbits.TAB_DISPLAY + dstTab, player.getVarbit(Varbits.TAB_DISPLAY + dstTab) + 1)
                 if (curTab != 0) {
                     println(":test 4")
-                    player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
+                    player.setVarbit(Varbits.TAB_DISPLAY + curTab, player.getVarbit(Varbits.TAB_DISPLAY + curTab) - 1)
                     // check for empty tab shift
-                    if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
+                    if (player.getVarbit(Varbits.TAB_DISPLAY + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
                         shiftTabs(player, curTab)
                     }
                 }
@@ -93,9 +69,9 @@ object BankTabs {
         } else {
             if (dstTab == 0) { // add to main tab don't insert
                 container.insert(srcSlot, container.nextFreeSlot - 1)
-                player.setVarbit(BANK_TAB_ROOT_VARBIT + curTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) - 1)
+                player.setVarbit(Varbits.TAB_DISPLAY + curTab, player.getVarbit(Varbits.TAB_DISPLAY + curTab) - 1)
                 // check for empty tab shift
-                if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
+                if (player.getVarbit(Varbits.TAB_DISPLAY + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
                     shiftTabs(player, curTab)
                 }
             } else {
@@ -108,12 +84,12 @@ object BankTabs {
                     container.insert(srcSlot, insertionPoint.first - 1)
                 }
                 if (!hasEmptySlot) {
-                    player.setVarbit(BANK_TAB_ROOT_VARBIT + dstTab, player.getVarbit(BANK_TAB_ROOT_VARBIT + dstTab) + 1)
+                    player.setVarbit(Varbits.TAB_DISPLAY + dstTab, player.getVarbit(Varbits.TAB_DISPLAY + dstTab) + 1)
                 }
 
                 if (curTab != 0) {
                     println("HERE 4")
-                    if (player.getVarbit(BANK_TAB_ROOT_VARBIT + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
+                    if (player.getVarbit(Varbits.TAB_DISPLAY + curTab) == 0 && curTab <= numTabsUnlocked(player)) {
                         shiftTabs(player, curTab)
                     }
                 }
@@ -133,13 +109,10 @@ object BankTabs {
      * @return -> Int
      * The tab which the specified [slot] resides
      */
-    fun getCurrentTab(
-        player: Player,
-        slot: Int,
-    ): Int {
+    fun getCurrentTab(player: Player, slot: Int): Int {
         var current = 0
         for (tab in 1..9) {
-            current += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
+            current += player.getVarbit(Varbits.TAB_DISPLAY + tab)
             if (slot < current) {
                 return tab
             }
@@ -160,7 +133,7 @@ object BankTabs {
     fun numTabsUnlocked(player: Player): Int {
         var tabsUnlocked = 0
         for (tab in 1..9)
-            if (player.getVarbit(BANK_TAB_ROOT_VARBIT + tab) > 0) {
+            if (player.getVarbit(Varbits.TAB_DISPLAY + tab) > 0) {
                 tabsUnlocked++
             }
         return tabsUnlocked
@@ -181,10 +154,7 @@ object BankTabs {
      * @return -> Int
      * The insertion index for inserting into the desired tab
      */
-    fun insertionPoint(
-        player: Player,
-        tabIndex: Int = 0,
-    ): Int {
+    fun insertionPoint(player: Player, tabIndex: Int = 0): Int {
         if (tabIndex == 0) {
             return player.bank.nextFreeSlot
         }
@@ -192,7 +162,7 @@ object BankTabs {
         var dex = 0
         for (tab in 1..tabIndex) {
             prevDex = dex
-            dex += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
+            dex += player.getVarbit(Varbits.TAB_DISPLAY + tab)
         }
 
         // truncate empty spots, but stay in current tab
@@ -205,10 +175,7 @@ object BankTabs {
     /**
      * Returns if it had to replace null
      */
-    fun newInsertionPoint(
-        player: Player,
-        tabIndex: Int = 0,
-    ): Pair<Int, Boolean> {
+    fun newInsertionPoint(player: Player, tabIndex: Int = 0): Pair<Int, Boolean> {
         var state = false
         if (tabIndex == 0) {
             return Pair(player.bank.nextFreeSlot, state)
@@ -217,7 +184,7 @@ object BankTabs {
         var dex = 0
         for (tab in 1..tabIndex) {
             prevDex = dex
-            dex += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
+            dex += player.getVarbit(Varbits.TAB_DISPLAY + tab)
         }
 
         // truncate empty spots, but stay in current tab
@@ -244,17 +211,14 @@ object BankTabs {
      * @return -> Int
      * The start index for the beginning of the desired tab
      */
-    fun startPoint(
-        player: Player,
-        tabIndex: Int = 0,
-    ): Int {
+    fun startPoint(player: Player, tabIndex: Int = 0): Int {
         var dex = 0
         if (tabIndex == 0) {
             for (tab in 1..9)
-                dex += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
+                dex += player.getVarbit(Varbits.TAB_DISPLAY + tab)
         } else {
             for (tab in 1 until tabIndex)
-                dex += player.getVarbit(BANK_TAB_ROOT_VARBIT + tab)
+                dex += player.getVarbit(Varbits.TAB_DISPLAY + tab)
         }
         return dex
     }
@@ -269,21 +233,18 @@ object BankTabs {
      * @param emptyTabIdx
      * The newly emptied bank tab to shift out
      */
-    fun shiftTabs(
-        player: Player,
-        emptyTabIdx: Int,
-    ) {
+    fun shiftTabs(player: Player, emptyTabIdx: Int) {
         val numUnlocked = numTabsUnlocked(player)
         for (tab in emptyTabIdx..numUnlocked)
-            player.setVarbit(BANK_TAB_ROOT_VARBIT + tab, player.getVarbit(BANK_TAB_ROOT_VARBIT + tab + 1))
-        player.setVarbit(BANK_TAB_ROOT_VARBIT + numUnlocked + 1, 0)
+            player.setVarbit(Varbits.TAB_DISPLAY + tab, player.getVarbit(Varbits.TAB_DISPLAY + tab + 1))
+        player.setVarbit(Varbits.TAB_DISPLAY + numUnlocked + 1, 0)
     }
 
     fun getTabsItems(p: Player, tab: Int) : List<Item?> {
         var container = p.bank.toMutableList()
         var tabsItems = mutableListOf<Item?>()
-        for (currentTab in BANK_TAB_ROOT_VARBIT + 1.. BANK_TAB_ROOT_VARBIT + tab) {
-            if (BANK_TAB_ROOT_VARBIT+tab == currentTab) {
+        for (currentTab in Varbits.TAB_DISPLAY + 1.. Varbits.TAB_DISPLAY + tab) {
+            if (Varbits.TAB_DISPLAY+tab == currentTab) {
                 tabsItems = container.take(p.getVarbit(currentTab)).toMutableList()
             } else {
                 container = container.drop(p.getVarbit(currentTab)).toMutableList()

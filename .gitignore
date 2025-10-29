@@ -6,11 +6,11 @@ gen/
 gradlew
 gradlew.bat
 
-/data/saves/
-/data/rsa/
-/data/xteas.json
-/data/xteas.json.backup
-/cfg/
+/data/backup
+/data/cache
+/data/rsa
+/data/saves
+/data/Xteas.json
 
 error.log
 modulus
@@ -21,4 +21,3 @@ first-launch-example
 /dev-settings.yml
 dump.hprof
 /.kotlin/
-/data/cache

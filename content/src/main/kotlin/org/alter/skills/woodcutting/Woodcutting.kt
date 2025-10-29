@@ -116,7 +116,7 @@ object Woodcutting {
     }
 
     private fun selectAxe(p: Player): AxeType? {
-        return AxeType.values.firstOrNull {
+        return AxeType.values.lastOrNull {
             p.getSkills().getBaseLevel(Skills.WOODCUTTING) >= it.level &&
                     (p.equipment.contains(it.item) || p.inventory.contains(it.item))
         }

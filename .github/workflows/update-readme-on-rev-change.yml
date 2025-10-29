@@ -1,7 +1,7 @@
 name: Sync Revision with README
 
 permissions:
-  contents: write   # allows pushing commits
+  contents: write
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Determine revision
         id: determine_rev
@@ -38,7 +38,7 @@ jobs:
 
           echo "revision=$REVISION" >> $GITHUB_OUTPUT
 
-          # Extract integer part only (e.g., 235.1 → 235)
+          # Extract integer part for jav_config_url
           REV_INT=$(echo "$REVISION" | cut -d'.' -f1)
           echo "revision_int=$REV_INT" >> $GITHUB_OUTPUT
 
@@ -50,11 +50,17 @@ jobs:
 
           cp README.md README.md.bak
 
-          # Replace badge revision
+          # Update inline badge text
           sed -i -E "s/\[!\[revision: [0-9.]+\]\[rev-badge\]\]/[![revision: ${REV}][rev-badge]]/g" README.md
 
-          # Replace jav_config_url
+          # Update badge URL with full revision
+          sed -i -E "s|(\[rev-badge\]: https://img\.shields\.io/badge/Revision-)[0-9.]+(-blueviolet)|\1${REV}\2|g" README.md
+
+          # Update jav_config_url integer part only
           sed -i -E "s|(jav_config_url: https://client\.blurite\.io/jav_local_)[0-9]+(\.ws)|\1${REV_INT}\2|g" README.md
+
+          # Update all revision: lines (indented or not)
+          sed -i -E "s|([[:space:]]*revision: )[0-9.]+|\1${REV}|" README.md
 
           if diff -q README.md README.md.bak > /dev/null; then
             echo "README.md already up-to-date."

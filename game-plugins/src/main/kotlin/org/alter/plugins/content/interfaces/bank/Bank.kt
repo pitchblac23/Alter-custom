@@ -54,7 +54,7 @@ object Bank {
             }
             val transfer = from.transfer(to, item = copy, fromSlot = i, note = note, unnote = false)
             withdrawn += transfer?.completed ?: 0
-            /*if (from[i] == null) {
+            if (from[i] == null) {
                 if (placehold || p.getVarbit(ALWAYS_PLACEHOLD_VARBIT) == 1) {
                     val def = item.getDef()
                     /**
@@ -65,7 +65,7 @@ object Bank {
                         p.bank[i] = Item(def.placeholderLink, -2)
                     }
                 }
-            }*/
+            }
         }
         if (withdrawn == 0) {
             p.message("You don't have enough inventory space.")

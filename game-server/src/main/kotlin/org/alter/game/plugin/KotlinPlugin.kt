@@ -3,7 +3,6 @@ package org.alter.game.plugin
 import dev.openrune.ServerCacheManager.getItem
 import dev.openrune.ServerCacheManager.getNpc
 import dev.openrune.ServerCacheManager.getObject
-import org.alter.rscm.RSCM.getRSCM
 import org.alter.game.Server
 import org.alter.game.event.Event
 import org.alter.game.fs.ObjectExamineHolder
@@ -23,7 +22,7 @@ import org.alter.game.model.shop.ShopCurrency
 import org.alter.game.model.shop.StockType
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
-import kotlin.script.experimental.annotations.KotlinScript
+import org.alter.rscm.RSCM.getRSCM
 
 /**
  * Represents a KotlinScript plugin.

@@ -22,7 +22,6 @@ import org.alter.game.model.entity.*
 import org.alter.game.model.shop.Shop
 import org.alter.game.model.timer.TimerKey
 import org.alter.game.service.Service
-import java.net.URLClassLoader
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths

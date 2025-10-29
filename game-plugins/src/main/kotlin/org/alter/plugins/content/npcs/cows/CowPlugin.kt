@@ -1,18 +1,10 @@
-package org.alter.plugins.content.npcs
+package org.alter.plugins.content.npcs.cows
 
-import org.alter.api.*
 import org.alter.api.cfg.*
 import org.alter.api.dsl.*
 import org.alter.api.ext.*
 import org.alter.game.*
 import org.alter.game.model.*
-import org.alter.game.model.attr.*
-import org.alter.game.model.container.*
-import org.alter.game.model.container.key.*
-import org.alter.game.model.entity.*
-import org.alter.game.model.item.*
-import org.alter.game.model.queue.*
-import org.alter.game.model.shop.*
 import org.alter.game.model.timer.*
 import org.alter.game.plugin.*
 import org.alter.plugins.content.combat.isBeingAttacked
@@ -29,10 +21,7 @@ class CowPlugin(
 ) : KotlinPlugin(r, world, server) {
         
     init {
-        val cow_npc_list =
-            listOf(
-                "npcs.cow",
-            )
+        val cow_npc_list = listOf("npcs.cow")
 
         val COW_YELL_DELAY = TimerKey()
 

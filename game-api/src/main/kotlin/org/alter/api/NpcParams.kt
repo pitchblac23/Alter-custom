@@ -12,16 +12,8 @@ data class RangeDefence(val darts: Int, val arrows: Int, val bolts: Int)
 
 data class MagicDefence(val magic: Int, val elementsWeakness: ElementalWeakness?)
 
-enum class Elements {
-    EARTH,
-    AIR,
-    WATER,
-    FIRE
-}
+enum class Elements { EARTH, AIR, WATER, FIRE }
 data class ElementalWeakness(var element: Elements, var percent: Int)
-
-
-
 
 
 /**
@@ -510,12 +502,6 @@ class NpcCombatBuilder {
         immuneThralls = state
         return this
     }
-
-
-
-
-
-
 
     companion object {
         private const val BONUS_COUNT = 14

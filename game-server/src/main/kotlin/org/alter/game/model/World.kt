@@ -1,7 +1,6 @@
 package org.alter.game.model
 
 import dev.openrune.ServerCacheManager.getItem
-import dev.openrune.ServerCacheManager.getNpc
 import dev.openrune.filesystem.Cache
 import gg.rsmod.util.ServerProperties
 import gg.rsmod.util.Stopwatch
@@ -637,6 +636,7 @@ class World(val gameContext: GameContext, val devContext: DevContext) {
     fun setNpcDefaults(npc: Npc) {
         val combatDef = plugins.npcCombatDefs.getOrDefault(npc.id, null) ?: NpcCombatDef.DEFAULT
         npc.combatDef = combatDef
+
         npc.combatDef.bonuses.forEachIndexed { index, bonus -> npc.equipmentBonuses[index] = bonus }
         npc.respawns = combatDef.respawnDelay > 0
         npc.setCurrentHp(npc.combatDef.hitpoints)

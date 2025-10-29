@@ -1,7 +1,6 @@
 package org.alter.game.action
 
 import dev.openrune.ServerCacheManager.getAnim
-import org.alter.game.action.NpcDeathAction.reset
 import org.alter.game.info.NpcInfo
 import org.alter.game.model.LockState
 import org.alter.game.model.attr.KILLER_ATTR
@@ -13,7 +12,6 @@ import org.alter.game.model.move.moveTo
 import org.alter.game.model.move.stopMovement
 import org.alter.game.model.queue.QueueTask
 import org.alter.game.model.queue.TaskPriority
-import org.alter.game.model.weightedTableBuilder.roll
 import org.alter.game.plugin.Plugin
 import org.alter.game.service.log.LoggerService
 import java.lang.ref.WeakReference
@@ -70,6 +68,7 @@ object NpcDeathAction {
         world.plugins.anyNpcDeath.forEach {
             npc.executePlugin(it)
         }
+
         if (npc.respawns) {
             NpcInfo(npc).setInaccessible(true)
             npc.reset()

@@ -99,7 +99,7 @@ tradeable = false
 [[item]]
 id = "obj.skillcape_attack_hood"
 inherit = "obj.skillcape_attack_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=0
 "param.statreq1_level"=99
@@ -108,7 +108,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_attack"
 inherit = "obj.skillcape_attack"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=0
 "param.statreq1_level"=99
@@ -117,7 +117,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_attack_trimmed"
 inherit = "obj.skillcape_attack_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=0
 "param.statreq1_level"=99
@@ -126,7 +126,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_defence_hood"
 inherit = "obj.skillcape_defence_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=1
 "param.statreq1_level"=99
@@ -135,7 +135,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_defence"
 inherit = "obj.skillcape_defence"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=1
 "param.statreq1_level"=99
@@ -144,7 +144,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_defence_trimmed"
 inherit = "obj.skillcape_defence_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=1
 "param.statreq1_level"=99
@@ -153,7 +153,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_strength_hood"
 inherit = "obj.skillcape_strength_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=2
 "param.statreq1_level"=99
@@ -162,7 +162,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_strength"
 inherit = "obj.skillcape_strength"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=2
 "param.statreq1_level"=99
@@ -171,7 +171,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_strength_trimmed"
 inherit = "obj.skillcape_strength_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=2
 "param.statreq1_level"=99
@@ -180,7 +180,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_hitpoints_hood"
 inherit = "obj.skillcape_hitpoints_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=3
 "param.statreq1_level"=99
@@ -189,7 +189,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_hitpoints"
 inherit = "obj.skillcape_hitpoints"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=3
 "param.statreq1_level"=99
@@ -198,7 +198,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_hitpoints_trimmed"
 inherit = "obj.skillcape_hitpoints_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=3
 "param.statreq1_level"=99
@@ -207,7 +207,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_ranging_hood"
 inherit = "obj.skillcape_ranging_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=4
 "param.statreq1_level"=99
@@ -216,7 +216,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_ranging"
 inherit = "obj.skillcape_ranging"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=4
 "param.statreq1_level"=99
@@ -225,7 +225,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_ranging_trimmed"
 inherit = "obj.skillcape_ranging_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=4
 "param.statreq1_level"=99
@@ -234,7 +234,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_prayer_hood"
 inherit = "obj.skillcape_prayer_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=5
 "param.statreq1_level"=99
@@ -243,7 +243,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_prayer"
 inherit = "obj.skillcape_prayer"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=5
 "param.statreq1_level"=99
@@ -252,7 +252,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_prayer_trimmed"
 inherit = "obj.skillcape_prayer_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=5
 "param.statreq1_level"=99
@@ -261,7 +261,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_magic_hood"
 inherit = "obj.skillcape_magic_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=6
 "param.statreq1_level"=99
@@ -270,7 +270,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_magic"
 inherit = "obj.skillcape_magic"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=6
 "param.statreq1_level"=99
@@ -279,7 +279,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_magic_trimmed"
 inherit = "obj.skillcape_magic_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=6
 "param.statreq1_level"=99
@@ -288,7 +288,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_cooking_hood"
 inherit = "obj.skillcape_cooking_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=7
 "param.statreq1_level"=99
@@ -297,7 +297,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_cooking"
 inherit = "obj.skillcape_cooking"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=7
 "param.statreq1_level"=99
@@ -306,7 +306,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_cooking_trimmed"
 inherit = "obj.skillcape_cooking_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=7
 "param.statreq1_level"=99
@@ -315,7 +315,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_woodcutting_hood"
 inherit = "obj.skillcape_woodcutting_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=8
 "param.statreq1_level"=99
@@ -324,7 +324,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_woodcutting"
 inherit = "obj.skillcape_woodcutting"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=8
 "param.statreq1_level"=99
@@ -333,7 +333,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_woodcutting_trimmed"
 inherit = "obj.skillcape_woodcutting_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=8
 "param.statreq1_level"=99
@@ -342,7 +342,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_fletching_hood"
 inherit = "obj.skillcape_fletching_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=9
 "param.statreq1_level"=99
@@ -351,7 +351,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_fletching"
 inherit = "obj.skillcape_fletching"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=9
 "param.statreq1_level"=99
@@ -360,7 +360,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_fletching_trimmed"
 inherit = "obj.skillcape_fletching_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=9
 "param.statreq1_level"=99
@@ -369,7 +369,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_fishing_hood"
 inherit = "obj.skillcape_fishing_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=10
 "param.statreq1_level"=99
@@ -378,7 +378,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_fishing"
 inherit = "obj.skillcape_fishing"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=10
 "param.statreq1_level"=99
@@ -387,7 +387,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_fishing_trimmed"
 inherit = "obj.skillcape_fishing_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=10
 "param.statreq1_level"=99
@@ -396,7 +396,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_firemaking_hood"
 inherit = "obj.skillcape_firemaking_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=11
 "param.statreq1_level"=99
@@ -405,7 +405,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_firemaking"
 inherit = "obj.skillcape_firemaking"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=11
 "param.statreq1_level"=99
@@ -414,7 +414,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_firemaking_trimmed"
 inherit = "obj.skillcape_firemaking_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=11
 "param.statreq1_level"=99
@@ -423,7 +423,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_crafting_hood"
 inherit = "obj.skillcape_crafting_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=12
 "param.statreq1_level"=99
@@ -432,7 +432,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_crafting"
 inherit = "obj.skillcape_crafting"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=12
 "param.statreq1_level"=99
@@ -441,7 +441,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_crafting_trimmed"
 inherit = "obj.skillcape_crafting_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=12
 "param.statreq1_level"=99
@@ -450,7 +450,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_smithing_hood"
 inherit = "obj.skillcape_smithing_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=13
 "param.statreq1_level"=99
@@ -459,7 +459,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_smithing"
 inherit = "obj.skillcape_smithing"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=13
 "param.statreq1_level"=99
@@ -468,7 +468,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_smithing_trimmed"
 inherit = "obj.skillcape_smithing_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=13
 "param.statreq1_level"=99
@@ -477,7 +477,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_mining_hood"
 inherit = "obj.skillcape_mining_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=14
 "param.statreq1_level"=99
@@ -486,7 +486,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_mining"
 inherit = "obj.skillcape_mining"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=14
 "param.statreq1_level"=99
@@ -495,7 +495,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_mining_trimmed"
 inherit = "obj.skillcape_mining_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=14
 "param.statreq1_level"=99
@@ -504,7 +504,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_herblore_hood"
 inherit = "obj.skillcape_herblore_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=15
 "param.statreq1_level"=99
@@ -513,7 +513,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_herblore"
 inherit = "obj.skillcape_herblore"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=15
 "param.statreq1_level"=99
@@ -522,7 +522,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_herblore_trimmed"
 inherit = "obj.skillcape_herblore_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=15
 "param.statreq1_level"=99
@@ -531,7 +531,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_agility_hood"
 inherit = "obj.skillcape_agility_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=16
 "param.statreq1_level"=99
@@ -540,7 +540,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_agility"
 inherit = "obj.skillcape_agility"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=16
 "param.statreq1_level"=99
@@ -549,7 +549,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_agility_trimmed"
 inherit = "obj.skillcape_agility_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=16
 "param.statreq1_level"=99
@@ -558,7 +558,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_thieving_hood"
 inherit = "obj.skillcape_thieving_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=17
 "param.statreq1_level"=99
@@ -567,7 +567,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_thieving"
 inherit = "obj.skillcape_thieving"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=17
 "param.statreq1_level"=99
@@ -576,7 +576,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_thieving_trimmed"
 inherit = "obj.skillcape_thieving_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=17
 "param.statreq1_level"=99
@@ -585,7 +585,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_slayer_hood"
 inherit = "obj.skillcape_slayer_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=18
 "param.statreq1_level"=99
@@ -594,7 +594,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_slayer"
 inherit = "obj.skillcape_slayer"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=18
 "param.statreq1_level"=99
@@ -603,7 +603,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_slayer_trimmed"
 inherit = "obj.skillcape_slayer_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=18
 "param.statreq1_level"=99
@@ -612,7 +612,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_farming_hood"
 inherit = "obj.skillcape_farming_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=19
 "param.statreq1_level"=99
@@ -621,7 +621,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_farming"
 inherit = "obj.skillcape_farming"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=19
 "param.statreq1_level"=99
@@ -630,7 +630,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_farming_trimmed"
 inherit = "obj.skillcape_farming_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=19
 "param.statreq1_level"=99
@@ -639,7 +639,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_runecrafting_hood"
 inherit = "obj.skillcape_runecrafting_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=20
 "param.statreq1_level"=99
@@ -648,7 +648,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_runecrafting"
 inherit = "obj.skillcape_runecrafting"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=20
 "param.statreq1_level"=99
@@ -657,7 +657,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_runecrafting_trimmed"
 inherit = "obj.skillcape_runecrafting_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=20
 "param.statreq1_level"=99
@@ -666,7 +666,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_hunting_hood"
 inherit = "obj.skillcape_hunting_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=21
 "param.statreq1_level"=99
@@ -675,7 +675,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_hunting"
 inherit = "obj.skillcape_hunting"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=21
 "param.statreq1_level"=99
@@ -684,7 +684,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_hunting_trimmed"
 inherit = "obj.skillcape_hunting_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=21
 "param.statreq1_level"=99
@@ -693,7 +693,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_construction_hood"
 inherit = "obj.skillcape_construction_hood"
-contentGroup = 35
+contentGroup = 37
 [item.params]
 "param.statreq1_skill"=22
 "param.statreq1_level"=99
@@ -702,7 +702,7 @@ contentGroup = 35
 [[item]]
 id = "obj.skillcape_construction"
 inherit = "obj.skillcape_construction"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=22
 "param.statreq1_level"=99
@@ -711,7 +711,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_construction_trimmed"
 inherit = "obj.skillcape_construction_trimmed"
-contentGroup = 34
+contentGroup = 36
 [item.params]
 "param.statreq1_skill"=22
 "param.statreq1_level"=99
@@ -720,7 +720,7 @@ contentGroup = 34
 [[item]]
 id = "obj.skillcape_max"
 inherit = "obj.skillcape_max"
-contentGroup = 36
+contentGroup = 38
 
 transformlink="obj.skillcape_max_worn"
 
@@ -728,7 +728,7 @@ transformlink="obj.skillcape_max_worn"
 [[item]]
 id = "obj.skillcape_max_worn"
 inherit = "obj.skillcape_max_worn"
-contentGroup = 36
+contentGroup = 38
 
 transformlink="obj.skillcape_max"
 transformtemplate="obj.template_for_transform"
@@ -737,7 +737,7 @@ transformtemplate="obj.template_for_transform"
 [[item]]
 id = "obj.skillcape_max_hood"
 inherit = "obj.skillcape_max_hood"
-contentGroup = 37
+contentGroup = 39
 
 
 [[item]]
@@ -4111,7 +4111,7 @@ weaponCategory="PoweredStaff"
 [[item]]
 id = "obj.bronze_axe"
 inherit = "obj.bronze_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=879
@@ -4131,7 +4131,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.iron_axe"
 inherit = "obj.iron_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=877
@@ -4152,7 +4152,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.steel_axe"
 inherit = "obj.steel_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=875
@@ -4172,7 +4172,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.black_axe"
 inherit = "obj.black_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=873
@@ -4192,7 +4192,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.mithril_axe"
 inherit = "obj.mithril_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=871
@@ -4212,7 +4212,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.adamant_axe"
 inherit = "obj.adamant_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=869
@@ -4254,7 +4254,7 @@ tradeable = false
 [[item]]
 id = "obj.rune_axe"
 inherit = "obj.rune_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=867
@@ -4274,7 +4274,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.trail_gilded_axe"
 inherit = "obj.trail_gilded_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=8303
@@ -4294,7 +4294,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.dragon_axe"
 inherit = "obj.dragon_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=2846
@@ -4314,7 +4314,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.trailblazer_axe_no_infernal"
 inherit = "obj.trailblazer_axe_no_infernal"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 tradeable = false
 [item.params]
@@ -4335,7 +4335,7 @@ tradeable = false
 [[item]]
 id = "obj.3a_axe"
 inherit = "obj.3a_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 [item.params]
 "param.skill_anim"=7264
@@ -4355,7 +4355,7 @@ weaponCategory="Axe"
 [[item]]
 id = "obj.infernal_axe"
 inherit = "obj.infernal_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 tradeable = false
 [item.params]
@@ -4376,7 +4376,7 @@ tradeable = false
 [[item]]
 id = "obj.trailblazer_axe"
 inherit = "obj.trailblazer_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 tradeable = false
 [item.params]
@@ -4397,7 +4397,7 @@ tradeable = false
 [[item]]
 id = "obj.crystal_axe"
 inherit = "obj.crystal_axe"
-contentGroup = 26
+contentGroup = 28
 weaponCategory="Axe"
 tradeable = false
 [item.params]

@@ -1,121 +1,60 @@
-[[npc]]
-id = "npc.0_50_50_freshfish"
-inherit = "npc.0_50_50_freshfish"
-moveRestrict = "NoMove"
-wanderRange = 0
-
-[[npc]]
-id = "npc.0_50_49_saltfish"
-inherit = "npc.0_50_49_saltfish"
-moveRestrict = "NoMove"
-wanderRange = 0
-respawnRate = 50
-
-[[npc]]
-id = "npc.imp"
-inherit = "npc.imp"
-giveChase = false
-[npc.params]
-"param.shop_sell_percentage" = 1000
-"param.shop_buy_percentage" = 600
-"param.shop_change_percentage" = 20
-26=0
-10=-37
-5=-42
-6=-42
-7=-42
-8=-42
-46="obj.fiendish_ashes"
-"param.attack_sound"=534
-"param.defend_sound"=536
-"param.death_sound"=535
-"param.defence_light"=-42
-"param.defence_standard"=-42
-"param.defence_heavy"=-42
-"param.attack_melee"=-42
-"param.attack_anim"="seq.imp_attack"
-"param.defend_anim"="seq.imp_block"
-"param.death_anim"="seq.imp_death"
-"param.npc_attack_type"="category.attacktype_stab"
-
+##No Move NPCs
 [[npc]]
 id = "npc.farming_tools_leprechaun"
 inherit = "npc.farming_tools_leprechaun"
 wanderRange = 0
 
 [[npc]]
-id = "npc.generalshopkeeper1"
-inherit = "npc.generalshopkeeper1"
-moveRestrict = "Indoors"
+id = "npc.deadman_banker_blue_north"
+inherit = "npc.deadman_banker_blue_north"
+wanderRange = 0
+respawnRate = 50
 
 [[npc]]
-id = "npc.generalassistant1"
-inherit = "npc.generalassistant1"
-moveRestrict = "Indoors"
+id = "npc.tea_seller"
+inherit = "npc.tea_seller"
+wanderRange = 0
 
 [[npc]]
-id = "npc.deadman_banker_blue_south"
-inherit = "npc.deadman_banker_blue_south"
-contentGroup = "content.banker"
+id = "npc.bioguard1"
+inherit = "npc.bioguard1"
+wanderRange = 0
 
 [[npc]]
-id = "npc.aide_tutor_banker"
-inherit = "npc.aide_tutor_banker"
-contentGroup = "content.banker_tutor"
+id = "npc.vm_museum_guard"
+inherit = "npc.vm_museum_guard"
+wanderRange = 0
 
 [[npc]]
-id = "npc.aide_tutor_prayer"
-inherit = "npc.aide_tutor_prayer"
-moveRestrict = "Indoors"
+id = "npc.vm_museum_guard3"
+inherit = "npc.vm_museum_guard3"
+wanderRange = 0
 
 [[npc]]
-id = "npc.father_aereck"
-inherit = "npc.father_aereck"
-moveRestrict = "Indoors"
+id = "npc.romeo_juliet_pew_sleeping_man"
+inherit = "npc.romeo_juliet_pew_sleeping_man"
+wanderRange = 0
 
 [[npc]]
-id = "npc.hans"
-inherit = "npc.hans"
-defaultMode = "Patrol"
-maxRange = 40
-
-
-[[npc.waypoints]]
-destination = { x = 3207, z = 3233, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3211, z = 3230, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3219, z = 3230, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3219, z = 3222, level = 0 }
-pause_delay = 10
-
-[[npc.waypoints]]
-destination = { x = 3221, z = 3222, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3221, z = 3212, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3218, z = 3209, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3214, z = 3205, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3202, z = 3205, level = 0 }
-
-[[npc.waypoints]]
-destination = { x = 3202, z = 3232, level = 0 }
-
+id = "npc.romeo_juliet_pew_sleeping_woman"
+inherit = "npc.romeo_juliet_pew_sleeping_woman"
+wanderRange = 0
 
 [[npc]]
-id = "npc.cook"
-inherit = "npc.cook"
-moveRestrict = "Indoors"
+id = "npc.varrock_granny_1"
+inherit = "npc.varrock_granny_1"
+wanderRange = 0
+
+[[npc]]
+id = "npc.events_shop"
+inherit = "npc.events_shop"
+wanderRange = 0
+
+[[npc]]
+id = "npc.speedrunning_shop"
+inherit = "npc.speedrunning_shop"
+wanderRange = 0
+respawnDir = "West"
 
 [[npc]]
 id = "npc.lost_property_merchant_standard"
@@ -186,15 +125,179 @@ inherit = "npc.aide_tutor_fishing"
 wanderRange = 0
 respawnDir = "East"
 
+##Indoor NPCs
+[[npc]]
+id = "npc.generalshopkeeper1"
+inherit = "npc.generalshopkeeper1"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.generalassistant1"
+inherit = "npc.generalassistant1"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.aubury"
+inherit = "npc.aubury"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.aide_tutor_prayer"
+inherit = "npc.aide_tutor_prayer"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.father_aereck"
+inherit = "npc.father_aereck"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.cook"
+inherit = "npc.cook"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.zaff"
+inherit = "npc.zaff"
+moveRestrict = "Indoors"
+
+[[npc]]
+id = "npc.aide_tutor_smithing_apprentice"
+inherit = "npc.aide_tutor_smithing_apprentice"
+moveRestrict = "Indoors"
+
 [[npc]]
 id = "npc.bob"
 inherit = "npc.bob"
 moveRestrict = "Indoors"
 
 [[npc]]
+id = "npc.aris"
+inherit = "npc.aris"
+moveRestrict = "Indoors"
+
+
+##Moveable NPCs
+[[npc]]
 id = "npc.millie_the_miller"
 inherit = "npc.millie_the_miller"
 wanderRange = 1
+
+[[npc]]
+id = "npc.pmod_town_crier_varrock"
+inherit = "npc.pmod_town_crier_varrock"
+contentGroup = "content.town_crier"
+timer = 20
+wanderRange = 3
+
+##
+
+[[npc]]
+id = "npc.0_50_50_freshfish"
+inherit = "npc.0_50_50_freshfish"
+moveRestrict = "NoMove"
+wanderRange = 0
+
+[[npc]]
+id = "npc.0_50_49_saltfish"
+inherit = "npc.0_50_49_saltfish"
+moveRestrict = "NoMove"
+wanderRange = 0
+respawnRate = 50
+
+[[npc]]
+id = "npc.deadman_banker_blue_south"
+inherit = "npc.deadman_banker_blue_south"
+contentGroup = "content.banker"
+
+[[npc]]
+id = "npc.deadman_banker_blue_west"
+inherit = "npc.deadman_banker_blue_west"
+contentGroup = "content.banker"
+
+[[npc]]
+id = "npc.banker1_new"
+inherit = "npc.banker1_new"
+contentGroup = "content.banker"
+wanderRange = 0
+
+[[npc]]
+id = "npc.banker2_new"
+inherit = "npc.banker2_new"
+contentGroup = "content.banker"
+wanderRange = 0
+
+[[npc]]
+id = "npc.aide_tutor_banker"
+inherit = "npc.aide_tutor_banker"
+contentGroup = "content.banker_tutor"
+
+[[npc]]
+id = "npc.hans"
+inherit = "npc.hans"
+defaultMode = "Patrol"
+maxRange = 40
+
+
+[[npc.waypoints]]
+destination = { x = 3207, z = 3233, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3211, z = 3230, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3219, z = 3230, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3219, z = 3222, level = 0 }
+pause_delay = 10
+
+[[npc.waypoints]]
+destination = { x = 3221, z = 3222, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3221, z = 3212, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3218, z = 3209, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3214, z = 3205, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3202, z = 3205, level = 0 }
+
+[[npc.waypoints]]
+destination = { x = 3202, z = 3232, level = 0 }
+
+
+##NPC's with combat stats
+[[npc]]
+id = "npc.imp"
+inherit = "npc.imp"
+giveChase = false
+[npc.params]
+"param.shop_sell_percentage" = 1000
+"param.shop_buy_percentage" = 600
+"param.shop_change_percentage" = 20
+26=0
+10=-37
+5=-42
+6=-42
+7=-42
+8=-42
+46="obj.fiendish_ashes"
+"param.attack_sound"=534
+"param.defend_sound"=536
+"param.death_sound"=535
+"param.defence_light"=-42
+"param.defence_standard"=-42
+"param.defence_heavy"=-42
+"param.attack_melee"=-42
+"param.attack_anim"="seq.imp_attack"
+"param.defend_anim"="seq.imp_block"
+"param.death_anim"="seq.imp_death"
+"param.npc_attack_type"="category.attacktype_stab"
 
 [[npc]]
 id = "npc.cow"
@@ -1348,82 +1451,3 @@ respawnRate = 16
 [npc.params]
 "param.boss_hp_bar_mode"=1
 
-[[npc]]
-id = "npc.wilderness_capeseller_1"
-inherit = "npc.wilderness_capeseller_1"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop1"
-"param.shop_name" = "William's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_2"
-inherit = "npc.wilderness_capeseller_2"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop2"
-"param.shop_name" = "Ian's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_3"
-inherit = "npc.wilderness_capeseller_3"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop3"
-"param.shop_name" = "Larry's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_4"
-inherit = "npc.wilderness_capeseller_4"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop4"
-"param.shop_name" = "Darren's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_5"
-inherit = "npc.wilderness_capeseller_5"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop5"
-"param.shop_name" = "Edward's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_6"
-inherit = "npc.wilderness_capeseller_6"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop6"
-"param.shop_name" = "Richard's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_7"
-inherit = "npc.wilderness_capeseller_7"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop7"
-"param.shop_name" = "Neil's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_8"
-inherit = "npc.wilderness_capeseller_8"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop8"
-"param.shop_name" = "Edmond's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_9"
-inherit = "npc.wilderness_capeseller_9"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop9"
-"param.shop_name" = "Simon's Wilderness Cape Shop"
-
-[[npc]]
-id = "npc.wilderness_capeseller_10"
-inherit = "npc.wilderness_capeseller_10"
-
-[npc.params]
-"param.shop_inventory" = "inv.wildernesscapeshop10"
-"param.shop_name" = "Sam's Wilderness Cape Shop"

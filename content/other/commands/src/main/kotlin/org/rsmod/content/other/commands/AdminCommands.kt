@@ -64,7 +64,7 @@ constructor(
     private val locRepo: LocRepository,
     private val npcRepo: NpcRepository,
     private val update: GameUpdate,
-) : PluginScript() {
+    ) : PluginScript() {
     private val logger = InlineLogger()
 
     private val levenshteinMetric = StringMetrics.levenshtein()
@@ -138,100 +138,88 @@ constructor(
         onCommand("openbank", "Open the bank", ::bank)
     }
 
-    private fun god(cheat: Cheat) =
-        with(cheat) {
-            player.adminGodMode = !player.adminGodMode
-            player.mes("God mode ${if (player.adminGodMode) "enabled" else "disabled"}.")
-        }
+    private fun god(cheat: Cheat) = with(cheat) {
+        player.adminGodMode = !player.adminGodMode
+        player.mes("God mode ${if (player.adminGodMode) "enabled" else "disabled"}.")
+    }
 
-    private fun maxhit(cheat: Cheat) =
-        with(cheat) {
-            player.adminMaxHit = !player.adminMaxHit
-            player.mes("Max hit ${if (player.adminMaxHit) "enabled" else "disabled"}.")
-        }
+    private fun maxhit(cheat: Cheat) = with(cheat) {
+        player.adminMaxHit = !player.adminMaxHit
+        player.mes("Max hit ${if (player.adminMaxHit) "enabled" else "disabled"}.")
+    }
 
-    private fun poisonTest(cheat: Cheat) =
-        with(cheat) {
-            val initialDamage = args.getOrNull(0)?.toIntOrNull() ?: 0
-            val severity = args.getOrNull(1)?.toIntOrNull() ?: 0
-            val ok = PlayerPoison.tryPoison(player, initialDamage = initialDamage, severity = severity)
-            player.mes(
-                if (ok) {
-                    "Poison applied (initialDamage=$initialDamage severityParam=$severity)."
-                } else {
-                    "Poison not applied (weaker/equal than current, or both inputs zero)."
-                },
-            )
-        }
+    private fun poisonTest(cheat: Cheat) = with(cheat) {
+        val initialDamage = args.getOrNull(0)?.toIntOrNull() ?: 0
+        val severity = args.getOrNull(1)?.toIntOrNull() ?: 0
+        val ok = PlayerPoison.tryPoison(player, initialDamage = initialDamage, severity = severity)
+        player.mes(
+            if (ok) {
+                "Poison applied (initialDamage=$initialDamage severityParam=$severity)."
+            } else {
+                "Poison not applied (weaker/equal than current, or both inputs zero)."
+            },
+        )
+    }
 
-    private fun venomTest(cheat: Cheat) =
-        with(cheat) {
-            PlayerVenom.tryVenom(player)
-        }
+    private fun venomTest(cheat: Cheat) = with(cheat) {
+        PlayerVenom.tryVenom(player)
+    }
 
-    private fun venomClear(cheat: Cheat) =
-        with(cheat) {
-            PlayerVenom.clear(player)
-        }
+    private fun venomClear(cheat: Cheat) = with(cheat) {
+        PlayerVenom.clear(player)
+    }
 
-    private fun diseaseTest(cheat: Cheat) =
-        with(cheat) {
-            val drain = args.getOrNull(0)?.toIntOrNull() ?: 3
-            val ok = PlayerDisease.tryDisease(player, drain)
-            player.mes(
-                if (ok) {
-                    "Disease applied (drain per tick=$drain)."
-                } else {
-                    "Disease not applied (no eligible skill)."
-                },
-            )
-        }
+    private fun diseaseTest(cheat: Cheat) = with(cheat) {
+        val drain = args.getOrNull(0)?.toIntOrNull() ?: 3
+        val ok = PlayerDisease.tryDisease(player, drain)
+        player.mes(
+            if (ok) {
+                "Disease applied (drain per tick=$drain)."
+            } else {
+                "Disease not applied (no eligible skill)."
+            },
+        )
+    }
 
-    private fun diseaseClear(cheat: Cheat) =
-        with(cheat) {
-            PlayerDisease.clear(player)
-            player.mes("Disease cleared.")
-        }
+    private fun diseaseClear(cheat: Cheat) = with(cheat) {
+        PlayerDisease.clear(player)
+        player.mes("Disease cleared.")
+    }
 
     private fun master(cheat: Cheat) = with(cheat) { player.setStatLevels(level = 99) }
 
     private fun reset(cheat: Cheat) = with(cheat) { player.setStatLevels(level = 1) }
 
-    private fun mypos(cheat: Cheat) =
-        with(cheat) {
-            player.mes("${player.coords}:")
-            player.mes("  ${ZoneKey.from(player.coords)} - ${ZoneGrid.from(player.coords)}")
-            player.mes(
-                "  ${MapSquareKey.from(player.coords)} - ${MapSquareGrid.from(player.coords)}"
-            )
-            player.mes("  BuildArea(${player.buildArea})")
-        }
+    private fun mypos(cheat: Cheat) = with(cheat) {
+        player.mes("${player.coords}:")
+        player.mes("  ${ZoneKey.from(player.coords)} - ${ZoneGrid.from(player.coords)}")
+        player.mes("  ${MapSquareKey.from(player.coords)} - ${MapSquareGrid.from(player.coords)}")
+        player.mes("  BuildArea(${player.buildArea})")
+    }
 
-    private fun tele(cheat: Cheat) =
-        with(cheat) {
-            val args = if (args.size == 1) args[0].split(",") else args
-            val x = args[0].toInt()
-            val y = args[1].toInt()
-            val level = args.getOrNull(2)?.toInt() ?: 0
-            val coords = CoordGrid(x,y,level)
-            protectedAccess.launch(player) {
-                player.mes("Teleported to $coords.")
-                telejump(coords)
-            }
+    private fun tele(cheat: Cheat) = with(cheat) {
+        val args = if (args.size == 1) args[0].split(",") else args
+        val x = args[0].toInt()
+        val y = args[1].toInt()
+        val level = args.getOrNull(2)?.toInt() ?: 0
+        val coords = CoordGrid(x,y,level)
+        protectedAccess.launch(player) {
+            player.mes("Teleported to $coords.")
+            telejump(coords)
         }
+    }
 
-    private fun teleZone(cheat: Cheat) =
-        with(cheat) {
-            val args = if (args.size == 1) args[0].split(",") else args
-            val zoneX = args[0].toInt()
-            val zoneZ = args[1].toInt()
-            val level = args[2].toInt()
-            val coords = ZoneKey(zoneX, zoneZ, level).toCoords()
-            protectedAccess.launch(player) {
-                player.mes("Teleported to $coords.")
-                telejump(coords)
-            }
+    private fun teleZone(cheat: Cheat) = with(cheat) {
+        val args = if (args.size == 1) args[0].split(",") else args
+        val zoneX = args[0].toInt()
+        val zoneZ = args[1].toInt()
+        val level = args[2].toInt()
+        val coords = ZoneKey(zoneX, zoneZ, level).toCoords()
+        protectedAccess.launch(player) {
+            player.mes("Teleported to $coords.")
+            telejump(coords)
         }
+    }
 
     private fun up(cheat: Cheat) {
         teleLevel(cheat, levelDelta = 1)
@@ -275,141 +263,133 @@ constructor(
         }
     }
 
-    private fun anim(cheat: Cheat) =
-        with(cheat) {
-            val typeId = RSCM.getRSCM("seq.${args.asTypeName()}")
-            if (typeId == -1) {
-                player.mes("There is no seq mapped to: '${args.asTypeName()}'")
-                return
-            }
-            val type = ServerCacheManager.getAnim(typeId)
-            if (type == null) {
-                player.mes("That seq does not exist: $typeId")
-                return
-            }
-            player.anim("seq.${args.asTypeName()}")
-            player.mes("Anim: '${args.asTypeName()}' (priority=${type.priority})")
-            logger.debug { "Anim: $type" }
+    private fun anim(cheat: Cheat) = with(cheat) {
+        val typeId = RSCM.getRSCM("seq.${args.asTypeName()}")
+        if (typeId == -1) {
+            player.mes("There is no seq mapped to: '${args.asTypeName()}'")
+            return
+        }
+        val type = ServerCacheManager.getAnim(typeId)
+        if (type == null) {
+            player.mes("That seq does not exist: $typeId")
+            return
+        }
+        player.anim("seq.${args.asTypeName()}")
+        player.mes("Anim: '${args.asTypeName()}' (priority=${type.priority})")
+        logger.debug { "Anim: $type" }
+    }
+
+    private fun spotanim(cheat: Cheat) = with(cheat) {
+        val (typeName, heightArg) = args.asTypeNameAndNumber(defaultNumber = 0)
+        val typeId = "spotanim.${typeName}".asRSCM()
+        if (typeId == -1) {
+            player.mes("There is no spotanim mapped to: '${typeName}'")
+            return
         }
 
-    private fun spotanim(cheat: Cheat) =
-        with(cheat) {
-            val (typeName, heightArg) = args.asTypeNameAndNumber(defaultNumber = 0)
-            val typeId = "spotanim.${typeName}".asRSCM()
-            if (typeId == -1) {
-                player.mes("There is no spotanim mapped to: '${typeName}'")
-                return
-            }
+        val height = min(heightArg.toInt(), Short.MAX_VALUE.toInt())
+        player.spotanim("spotanim.${typeName}", delay = 0, height = height, slot = 0)
+        player.mes("Spotanim: '${typeName}' (height=$height)")
+        logger.debug { "Spotanim: $typeName" }
+    }
 
-            val height = min(heightArg.toInt(), Short.MAX_VALUE.toInt())
-            player.spotanim("spotanim.${typeName}", delay = 0, height = height, slot = 0)
-            player.mes("Spotanim: '${typeName}' (height=$height)")
-            logger.debug { "Spotanim: $typeName" }
+    private fun locAdd(cheat: Cheat) = with(cheat) {
+        val typeId = "loc.${args[1]}".asRSCM()
+
+        val type = ServerCacheManager.getObject(typeId)!!
+        if (type == null) {
+            player.mes("That loc does not exist: $typeId")
+            return
         }
+        val duration = args[0].toInt()
+        val angle = args.getOrNull(2)?.toInt() ?: LocAngle.West.id
+        val shape = args.getOrNull(3)?.toInt() ?: LocShape.CentrepieceStraight.id
+        val layer = LocLayerConstants.of(shape)
+        val loc = LocInfo(layer, player.coords, LocEntity(type.id, shape, angle))
+        locRepo.add(loc, duration)
+        player.mes("Spawned loc '${type.internalName}' (duration: $duration cycles)")
+        logger.debug { "Spawned loc: loc=$loc, type=$type" }
+    }
 
-    private fun locAdd(cheat: Cheat) =
-        with(cheat) {
-            val typeId = "loc.${args[1]}".asRSCM()
-
-            val type = ServerCacheManager.getObject(typeId)!!
-            if (type == null) {
-                player.mes("That loc does not exist: $typeId")
-                return
-            }
-            val duration = args[0].toInt()
-            val angle = args.getOrNull(2)?.toInt() ?: LocAngle.West.id
-            val shape = args.getOrNull(3)?.toInt() ?: LocShape.CentrepieceStraight.id
-            val layer = LocLayerConstants.of(shape)
-            val loc = LocInfo(layer, player.coords, LocEntity(type.id, shape, angle))
-            locRepo.add(loc, duration)
-            player.mes("Spawned loc '${type.internalName}' (duration: $duration cycles)")
-            logger.debug { "Spawned loc: loc=$loc, type=$type" }
+    private fun locDel(cheat: Cheat) = with(cheat) {
+        val zone = ZoneKey.from(player.coords)
+        val locs = locRepo.findAll(zone).filter { it.coords == player.coords }.toList()
+        if (locs.isEmpty()) {
+            player.mes("No loc found on ${player.coords}")
+            return
         }
-
-    private fun locDel(cheat: Cheat) =
-        with(cheat) {
-            val zone = ZoneKey.from(player.coords)
-            val locs = locRepo.findAll(zone).filter { it.coords == player.coords }.toList()
-            if (locs.isEmpty()) {
-                player.mes("No loc found on ${player.coords}")
-                return
-            }
-            val duration = args[0].toInt()
-            val shape = args.getOrNull(1)?.toIntOrNull() ?: LocShape.CentrepieceStraight.id
-            val loc = locs.firstOrNull { it.shapeId == shape }
-            if (loc == null) {
-                player.mes("No loc with shape `${LocShape[shape]}` found on ${player.coords}")
-                return
-            }
-            val type = ServerCacheManager.getObject(loc.id)!!
-            locRepo.del(loc, duration)
-            player.mes("Deleted loc `${type.internalName}` (duration: $duration cycles)")
-            logger.debug { "Deleted loc: loc=$loc, type=$type" }
+        val duration = args[0].toInt()
+        val shape = args.getOrNull(1)?.toIntOrNull() ?: LocShape.CentrepieceStraight.id
+        val loc = locs.firstOrNull { it.shapeId == shape }
+        if (loc == null) {
+            player.mes("No loc with shape `${LocShape[shape]}` found on ${player.coords}")
+            return
         }
+        val type = ServerCacheManager.getObject(loc.id)!!
+        locRepo.del(loc, duration)
+        player.mes("Deleted loc `${type.internalName}` (duration: $duration cycles)")
+        logger.debug { "Deleted loc: loc=$loc, type=$type" }
+    }
 
-    private fun npcAdd(cheat: Cheat) =
-        with(cheat) {
-            val typeId = "npc.${args[1]}".asRSCM()
+    private fun npcAdd(cheat: Cheat) = with(cheat) {
+        val typeId = "npc.${args[1]}".asRSCM()
 
-            val type = ServerCacheManager.getNpc(typeId)
-            if (type == null) {
-                player.mes("That npc does not exist: $typeId")
-                return
-            }
-            val duration = args[0].toInt()
-            val npc = Npc(type, player.coords)
-            npc.mode = NpcMode.None
-            npcRepo.add(npc, duration)
-            player.mes("Spawned npc `${args[1]}` (duration: $duration cycles)")
+        val type = ServerCacheManager.getNpc(typeId)
+        if (type == null) {
+            player.mes("That npc does not exist: $typeId")
+            return
         }
+        val duration = args[0].toInt()
+        val npc = Npc(type, player.coords)
+        npc.mode = NpcMode.None
+        npcRepo.add(npc, duration)
+        player.mes("Spawned npc `${args[1]}` (duration: $duration cycles)")
+    }
 
-    private fun invAdd(cheat: Cheat) =
-        with(cheat) {
-            val (typeName, countArg) = args.asTypeNameAndNumber(defaultNumber = 1)
-            val normalizedName = "obj.$typeName"
-            val type = ServerCacheManager.getItem(normalizedName.asRSCM(RSCMType.OBJ))?: return@with
+    private fun invAdd(cheat: Cheat) = with(cheat) {
+        val (typeName, countArg) = args.asTypeNameAndNumber(defaultNumber = 1)
+        val normalizedName = "obj.$typeName"
+        val type = ServerCacheManager.getItem(normalizedName.asRSCM(RSCMType.OBJ))?: return@with
 
-            val count = countArg.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
-            val objName = type.name.ifEmpty { normalizedName }
+        val count = countArg.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+        val objName = type.name.ifEmpty { normalizedName }
 
-            val spawned = player.invAdd(player.inv, normalizedName, count, strict = false)
-            if (spawned.err is TransactionResult.RestrictedDummyitem) {
-                player.mes("You can't spawn this item!")
-                return
-            }
-            player.mes("Spawned inv obj `$objName` x ${spawned.completed().formatAmount}")
+        val spawned = player.invAdd(player.inv, normalizedName, count, strict = false)
+        if (spawned.err is TransactionResult.RestrictedDummyitem) {
+            player.mes("You can't spawn this item!")
+            return
         }
+        player.mes("Spawned inv obj `$objName` x ${spawned.completed().formatAmount}")
+    }
 
     private fun invClear(cheat: Cheat) = with(cheat) { player.invClear(player.inv) }
 
-    private fun setVarp(cheat: Cheat) =
-        with(cheat) {
-            val typeId = "varp.${args[0]}".asRSCM()
+    private fun setVarp(cheat: Cheat) = with(cheat) {
+        val typeId = "varp.${args[0]}".asRSCM()
 
-            val type = ServerCacheManager.getVarp(typeId)
-            if (type == null) {
-                player.mes("That varp does not exist: $typeId")
-                return
-            }
-            val value = args[1].toInt()
-            player.vars.backing[type.id] = value
-            player.resyncVar(type)
-            player.mes("Set varp '${args[0]}' to value: ${player.vars[type]}")
+        val type = ServerCacheManager.getVarp(typeId)
+        if (type == null) {
+            player.mes("That varp does not exist: $typeId")
+            return
         }
+        val value = args[1].toInt()
+        player.vars.backing[type.id] = value
+        player.resyncVar(type)
+        player.mes("Set varp '${args[0]}' to value: ${player.vars[type]}")
+    }
 
-    private fun setVarBit(cheat: Cheat) =
-        with(cheat) {
-            val typeId = "varbit.${args[0]}".asRSCM()
+    private fun setVarBit(cheat: Cheat) = with(cheat) {
+        val typeId = "varbit.${args[0]}".asRSCM()
 
-            val type = ServerCacheManager.getVarbit(typeId)
-            if (type == null) {
-                player.mes("That varbit does not exist: $typeId")
-                return
-            }
-            val value = args[1].toInt()
-            VarPlayerIntMapSetter.set(player, type, value)
-            player.mes("Set varbit '${args[0]}' to value: ${player.vars[type]}")
+        val type = ServerCacheManager.getVarbit(typeId)
+        if (type == null) {
+            player.mes("That varbit does not exist: $typeId")
+            return
         }
+        val value = args[1].toInt()
+        VarPlayerIntMapSetter.set(player, type, value)
+        player.mes("Set varbit '${args[0]}' to value: ${player.vars[type]}")
+    }
 
     @OptIn(InternalApi::class)
     private fun Player.setStatLevels(level: Int) {
@@ -448,18 +428,17 @@ constructor(
         SafeServiceExit.terminate()
     }
 
-    private fun slowReboot(cheat: Cheat) =
-        with(cheat) {
-            val cycles = min(args[0].toInt(), 65535)
-            if (cycles <= 0) {
-                update.clear()
-                return@with
-            }
-            update.startCountdown(cycles)
-            for (p in playerList) {
-                MiscOutput.updateRebootTimer(p, cycles)
-            }
+    private fun slowReboot(cheat: Cheat) = with(cheat) {
+        val cycles = min(args[0].toInt(), 65535)
+        if (cycles <= 0) {
+            update.clear()
+            return@with
         }
+        update.startCountdown(cycles)
+        for (p in playerList) {
+            MiscOutput.updateRebootTimer(p, cycles)
+        }
+    }
 
     private fun dieTest(cheat: Cheat) = with(cheat) {
         val mode = args.getOrNull(0)?.lowercase()

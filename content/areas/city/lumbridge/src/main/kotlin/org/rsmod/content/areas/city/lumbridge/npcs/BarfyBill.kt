@@ -24,12 +24,11 @@ class BarfyBill : PluginScript() {
     }
 
     private suspend fun Dialogue.mainDialogueOptions() {
-        val selection = choice2("Who are you?", 1, "Can you teach me about Canoeing?", 2)
+        val choice = choice2("Who are you?", 1, "Can you teach me about Canoeing?", 2)
 
-        if (selection == 1) {
-            whoAreYou()
-        } else if (selection == 2) {
-            askAboutCanoeing()
+        when (choice) {
+            1 -> whoAreYou()
+            2 -> askAboutCanoeing()
         }
     }
 

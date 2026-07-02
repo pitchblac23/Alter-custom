@@ -42,7 +42,7 @@ public val manDropTable: RSDropTable<Player, DropRollItem> = RSDropTable(
         23 weight SharedDropTables.herb
     },
     tertiaries = rsPlayerTertiaryTable {
-        1 outOf 1 weight "obj.trail_elite_riddle_key32" count 1 condition { player ->
+        1 outOf 90 weight "obj.trail_elite_riddle_key32" count 1 condition { player ->
             // Drops Need Manual: The key is only dropped when completing a medium clue scroll asking the player to kill a Man.
              true
         }

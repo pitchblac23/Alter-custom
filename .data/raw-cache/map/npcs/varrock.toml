@@ -39,6 +39,10 @@ npc = "npc.baraek"
 coords = "0_50_53_17_43"
 
 [[spawn]]
+npc = "npc.events_shop"
+coords = "0_50_53_9_43"
+
+[[spawn]]
 npc = "npc.black_knight"
 coords = "0_50_54_26_59"
 

@@ -35,10 +35,10 @@ class WoodsmanTutor : PluginScript() {
                 "What is that cape you're wearing?",
                 2,
             )
-        if (choice == 1) {
-            noviceBasics()
-        } else if (choice == 2) {
-            capeExplanationNonMastery()
+
+        when (choice) {
+            1 -> noviceBasics()
+            2 -> capeExplanationNonMastery()
         }
     }
 

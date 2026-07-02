@@ -1,4 +1,4 @@
-package org.rsmod.content.areas.city.lumbridge.npcs
+package org.rsmod.content.areas.city.varrock.npcs
 
 import jakarta.inject.Inject
 import org.rsmod.api.player.dialogue.Dialogue
@@ -11,30 +11,32 @@ import org.rsmod.game.entity.Player
 import org.rsmod.plugin.scripts.PluginScript
 import org.rsmod.plugin.scripts.ScriptContext
 
-class GeneralStore @Inject constructor(private val shops: Shops) : PluginScript() {
+class Lowe @Inject constructor(private val shops: Shops) : PluginScript() {
     override fun ScriptContext.startup() {
-        onOpNpc1("npc.generalshopkeeper1") { shopDialogue(it.npc) }
-        onOpNpc3("npc.generalshopkeeper1") { player.openGeneralStore(it.npc) }
-        onOpNpc1("npc.generalassistant1") { shopDialogue(it.npc) }
-        onOpNpc3("npc.generalassistant1") { player.openGeneralStore(it.npc) }
+        onOpNpc1("npc.lowe") { shopDialogue(it.npc) }
+        onOpNpc3("npc.lowe") { player.openGeneralStore(it.npc) }
     }
 
     private fun Player.openGeneralStore(npc: Npc) {
-        shops.open(this, npc, "Lumbridge General Store", "inv.generalshop1")
+        shops.open(this, npc, "Lowe's Archery Emporium", "inv.archeryshop")
     }
 
     private suspend fun ProtectedAccess.shopDialogue(npc: Npc) =
         startDialogue(npc) { shopKeeper(npc) }
 
     private suspend fun Dialogue.shopKeeper(npc: Npc) {
-        chatNpc(happy, "Can I help you at all?")
+        chatNpc(neutral, "Welcome to Lowe's Archery Emporium. do you want to see my wares?")
+
         val choice = choice2(
-            "Yes please. What are you selling?", 1,
-            "No thanks.", 2)
+            "Yes, please.", 1,
+            "No, I prefer to bash things close up.", 2)
 
         when (choice) {
             1 -> player.openGeneralStore(npc)
-            2 -> chatPlayer(neutral, "No thanks.")
+            2 -> {
+                chatPlayer(neutral, "No, I prefer to bash things close up.")
+                chatNpc(neutral, "Humph, philistine.")
+            }
         }
     }
 }

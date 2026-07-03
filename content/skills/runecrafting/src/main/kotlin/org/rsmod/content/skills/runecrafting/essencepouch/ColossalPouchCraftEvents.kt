@@ -1,13 +1,10 @@
 package org.rsmod.content.skills.runecrafting.essencepouch
 
-import org.rsmod.api.invtx.invAdd
-import org.rsmod.api.invtx.invDel
 import org.rsmod.api.player.events.interact.HeldUEvents
 import org.rsmod.api.player.protect.ProtectedAccess
 import org.rsmod.api.player.stat.baseCraftingLvl
 import org.rsmod.api.player.stat.baseRunecraftingLvl
 import org.rsmod.api.script.onOpHeldU
-import org.rsmod.game.inv.isType
 import org.rsmod.plugin.scripts.PluginScript
 import org.rsmod.plugin.scripts.ScriptContext
 

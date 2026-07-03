@@ -5,14 +5,24 @@ inherit = "npc.farming_tools_leprechaun"
 wanderRange = 0
 
 [[npc]]
-id = "npc.deadman_banker_blue_north"
-inherit = "npc.deadman_banker_blue_north"
-wanderRange = 0
-respawnRate = 50
-
-[[npc]]
 id = "npc.tea_seller"
 inherit = "npc.tea_seller"
+wanderRange = 0
+
+[[npc]]
+id = "npc.master_crafter"
+inherit = "npc.master_crafter"
+wanderRange = 0
+
+[[npc]]
+id = "npc.master_crafter_2"
+inherit = "npc.master_crafter_2"
+wanderRange = 0
+respawnDir = "East"
+
+[[npc]]
+id = "npc.master_crafter_3"
+inherit = "npc.master_crafter_3"
 wanderRange = 0
 
 [[npc]]
@@ -125,6 +135,54 @@ inherit = "npc.aide_tutor_fishing"
 wanderRange = 0
 respawnDir = "East"
 
+##Bankers
+[[npc]]
+id = "npc.falador_banker"
+inherit = "npc.falador_banker"
+wanderRange = 0
+
+[[npc]]
+id = "npc.banker2"
+inherit = "npc.banker2"
+wanderRange = 0
+
+[[npc]]
+id = "npc.banker1_new"
+inherit = "npc.banker1_new"
+contentGroup = "content.banker"
+wanderRange = 0
+
+[[npc]]
+id = "npc.banker2_new"
+inherit = "npc.banker2_new"
+contentGroup = "content.banker"
+wanderRange = 0
+
+[[npc]]
+id = "npc.deadman_banker_grey_north"
+inherit = "npc.deadman_banker_grey_north"
+wanderRange = 0
+
+[[npc]]
+id = "npc.deadman_banker_blue_north"
+inherit = "npc.deadman_banker_blue_north"
+wanderRange = 0
+
+[[npc]]
+id = "npc.deadman_banker_blue_south"
+inherit = "npc.deadman_banker_blue_south"
+contentGroup = "content.banker"
+
+[[npc]]
+id = "npc.deadman_banker_blue_west"
+inherit = "npc.deadman_banker_blue_west"
+contentGroup = "content.banker"
+
+[[npc]]
+id = "npc.aide_tutor_banker"
+inherit = "npc.aide_tutor_banker"
+contentGroup = "content.banker_tutor"
+
 ##Indoor NPCs
 [[npc]]
 id = "npc.generalshopkeeper1"
@@ -176,7 +234,6 @@ id = "npc.aris"
 inherit = "npc.aris"
 moveRestrict = "Indoors"
 
-
 ##Moveable NPCs
 [[npc]]
 id = "npc.millie_the_miller"
@@ -190,8 +247,6 @@ contentGroup = "content.town_crier"
 timer = 20
 wanderRange = 3
 
-##
-
 [[npc]]
 id = "npc.0_50_50_freshfish"
 inherit = "npc.0_50_50_freshfish"
@@ -204,33 +259,6 @@ inherit = "npc.0_50_49_saltfish"
 moveRestrict = "NoMove"
 wanderRange = 0
 respawnRate = 50
-
-[[npc]]
-id = "npc.deadman_banker_blue_south"
-inherit = "npc.deadman_banker_blue_south"
-contentGroup = "content.banker"
-
-[[npc]]
-id = "npc.deadman_banker_blue_west"
-inherit = "npc.deadman_banker_blue_west"
-contentGroup = "content.banker"
-
-[[npc]]
-id = "npc.banker1_new"
-inherit = "npc.banker1_new"
-contentGroup = "content.banker"
-wanderRange = 0
-
-[[npc]]
-id = "npc.banker2_new"
-inherit = "npc.banker2_new"
-contentGroup = "content.banker"
-wanderRange = 0
-
-[[npc]]
-id = "npc.aide_tutor_banker"
-inherit = "npc.aide_tutor_banker"
-contentGroup = "content.banker_tutor"
 
 [[npc]]
 id = "npc.hans"

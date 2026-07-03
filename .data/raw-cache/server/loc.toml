@@ -1513,6 +1513,16 @@ id = "loc.varrock_spiralstairstop"
 inherit = "loc.varrock_spiralstairstop"
 contentGroup = "content.spiralstaircase_down"
 
+[[object]]
+id = "loc.sarim_spiralstairs"
+inherit = "loc.sarim_spiralstairs"
+contentGroup = "content.spiralstaircase_up"
+
+[[object]]
+id = "loc.sarim_spiralstairstop"
+inherit = "loc.sarim_spiralstairstop"
+contentGroup = "content.spiralstaircase_down"
+
 ##Bankbooths
 [[object]]
 id = "loc.aide_bankbooth"
@@ -1534,10 +1544,31 @@ id = "loc.fai_varrock_bankbooth_multi"
 inherit = "loc.fai_varrock_bankbooth_multi"
 contentGroup = "content.bank_booth"
 
+[[object]]
+id = "loc.fai_falador_bankbooth"
+inherit = "loc.fai_falador_bankbooth"
+contentGroup = "content.bank_booth"
+
+[[object]]
+id = "loc.fai_falador_bankbooth_multi"
+inherit = "loc.fai_falador_bankbooth_multi"
+contentGroup = "content.bank_booth"
+
+##BankChests
+[[object]]
+id = "loc.diary_guild_bankchest"
+inherit = "loc.diary_guild_bankchest"
+contentGroup = "content.bank_chest"
+
 ##BankDepositBoxes
 [[object]]
 id = "loc.bank_deposit_box"
 inherit = "loc.bank_deposit_box"
+contentGroup = "content.bank_deposit_box"
+
+[[object]]
+id = "loc.diary_guild_deposit_box"
+inherit = "loc.diary_guild_deposit_box"
 contentGroup = "content.bank_deposit_box"
 
 ##Doors

@@ -59,12 +59,7 @@ class InstanceSession(
 
     fun removeOccupant(player: Long, currentTick: Int) {
         occupants -= player
-        if (
-            !isServerOwned &&
-                occupants.isEmpty() &&
-                state !is SessionState.Grace &&
-                !spec.destroyWhenEmpty
-        ) {
+        if (!isServerOwned && occupants.isEmpty() && state !is SessionState.Grace) {
             state = SessionState.Reclaim(currentTick + spec.reclaimTicks)
         }
     }

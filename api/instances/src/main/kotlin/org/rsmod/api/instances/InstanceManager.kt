@@ -3,6 +3,7 @@ package org.rsmod.api.instances
 import dev.openrune.ServerCacheManager
 import dev.openrune.rscm.RSCM.asRSCM
 import dev.openrune.rscm.RSCMType
+import dev.openrune.types.NpcMode
 import dev.openrune.types.NpcServerType
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
@@ -117,12 +118,15 @@ constructor(
         ownerIndex[ownerId] = instanceId
 
         startSession(session, currentTick)
+        assignOccupant(owner, session)
 
         val spawned = mutableListOf<Npc>()
         if (!spec.spawnOnFirstJoin) {
             spawnSessionNpcs(session, region, spawned, currentTick)
         }
         spawnedNpcs[instanceId] = spawned
+
+        publishPlayerJoin(owner, session)
 
         return Result.Created(session, session.enterCoord(region))
     }
@@ -269,31 +273,9 @@ constructor(
             resetNpcs(session, region, currentTick)
             startSession(session, currentTick)
         }
-        return Result.Joined(session, session.enterCoord(region))
-    }
-
-    /** Call after the player has telejumped into the instance (e.g. after an enter transition). */
-    public fun finalizeEntry(player: Player, session: InstanceSession, currentTick: Int) {
-        val playerId = player.playerId()
-        if (playerId in session.occupants) {
-            return
-        }
         assignOccupant(player, session)
         publishPlayerJoin(player, session)
-    }
-
-    /** Destroys an owned instance that was created but never entered (e.g. logout during fade). */
-    public fun cancelPendingEntry(player: Player, currentTick: Int) {
-        val playerId = player.playerId()
-        val ownedId = ownerIndex[playerId] ?: return
-        val session = sessions[ownedId] ?: run {
-            ownerIndex.remove(playerId)
-            return
-        }
-        if (playerId in session.occupants) {
-            return
-        }
-        destroy(session)
+        return Result.Joined(session, session.enterCoord(region))
     }
 
     private fun abandonOwnedSessionIfEmpty(
@@ -309,8 +291,6 @@ constructor(
         val owned = sessions[ownedId] ?: return
         if (playerId in owned.occupants) {
             removeOccupant(player, owned, currentTick)
-        } else if (owned.owner == playerId) {
-            destroy(owned)
         }
     }
 
@@ -334,7 +314,7 @@ constructor(
         for (entry in placement.npcSpawns) {
             val type = ServerCacheManager.getNpc(entry.npcType.asRSCM(RSCMType.NPC)) ?: continue
             val npc = Npc(type, session.localCoord(region, entry.coord))
-            npc.mode = type.defaultMode
+            npc.mode = NpcMode.None
             npcRepo.add(npc, Int.MAX_VALUE)
             indexNpc(session.id, npc)
             out += npc
@@ -355,14 +335,10 @@ constructor(
     }
 
     public fun handleLogout(player: Player, currentTick: Int) {
-        val session = sessionForPlayer(player)
-        if (session != null) {
-            val exit = session.placement.exitCoord
-            removeOccupant(player, session, currentTick)
-            player.attr[InstanceAttributes.LOGIN_EXIT_COORD] = exit.packed
-            return
-        }
-        cancelPendingEntry(player, currentTick)
+        val session = sessionForPlayer(player) ?: return
+        val exit = session.placement.exitCoord
+        removeOccupant(player, session, currentTick)
+        player.attr[InstanceAttributes.LOGIN_EXIT_COORD] = exit.packed
     }
 
     public fun handleDeath(player: Player, currentTick: Int) {
@@ -642,15 +618,6 @@ constructor(
         session.removeOccupant(playerId, currentTick)
         clearOccupant(player)
         publishPlayerLeave(player, session)
-        if (
-            session.spec.destroyWhenEmpty &&
-                !session.isServerOwned &&
-                session.occupants.isEmpty() &&
-                session.state !is SessionState.Grace
-        ) {
-            destroy(session)
-            return
-        }
         if (session.isServerOwned && session.occupants.isEmpty() && session.state is SessionState.Grace) {
             resetServerOwned(session, currentTick)
         }

@@ -24,11 +24,6 @@ constructor(
     private val eventBus: EventBus,
 ) {
     public fun process(npc: Npc) {
-        if (npc.movementLocked) {
-            npc.routeRequest = null
-            npc.routeDestination.clear()
-            return
-        }
         npc.routeRequest?.let { consumeRequest(npc, it) }
         npc.routeRequest = null
         npc.processMovement()

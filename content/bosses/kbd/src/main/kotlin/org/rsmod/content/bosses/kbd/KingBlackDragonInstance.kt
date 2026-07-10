@@ -6,10 +6,8 @@ import org.rsmod.api.instances.InstanceArea
 import org.rsmod.api.instances.InstanceNpc
 import org.rsmod.api.instances.InstanceScript
 import org.rsmod.api.instances.RegionLocal
-import org.rsmod.api.instances.enterLocObjects
 import org.rsmod.api.player.protect.ProtectedAccess
 import org.rsmod.api.repo.region.RegionTemplate
-import org.rsmod.api.script.onOpLoc1
 import org.rsmod.map.CoordGrid
 import org.rsmod.api.script.onOpLoc2
 import org.rsmod.api.script.onOpLoc3
@@ -27,14 +25,9 @@ class KingBlackDragonInstance @Inject constructor(
     override fun ScriptContext.configure() {
         val row = settingsRowData()
 
-        //TODO MAKE THE LEAVER LIKE YOU PULLED IT AND CORRECT ANIM
-
         onEnterObject { enterPublicRoom(INSTANCE) }
-
-        row.enterLocObjects().forEach { loc ->
-            onOpLoc5(loc) { defaultInstanceEntry() }
-            onOpLoc2(loc) { peekPublicRoom() }
-        }
+        onOpLoc5(row.enterObject) { defaultInstanceEntry() }
+        onOpLoc2(row.enterObject) { peekPublicRoom() }
 
         onExitObject { defaultLeaveFlow() }
     }

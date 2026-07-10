@@ -4,6 +4,5 @@ plugins {
 
 dependencies {
     implementation(projects.api.pluginCommons)
-    implementation(projects.api.attr)
-    implementation(projects.api.serverConfig)
+    implementation(projects.api.scriptAdvanced)
 }

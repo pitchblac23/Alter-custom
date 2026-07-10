@@ -34,7 +34,7 @@ internal fun Player.hasGuildEntryOutfit(): Boolean {
     return false
 }
 
-internal fun Player.ownsCookingSkillcape(): Boolean =
+internal fun Player.ownsCraftingSkillcape(): Boolean =
     "obj.skillcape_crafting" in inv ||
     "obj.skillcape_crafting_trimmed" in inv ||
     "obj.skillcape_crafting" in worn ||

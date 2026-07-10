@@ -52,7 +52,6 @@ class QuestRewardBuilder {
     fun build(): QuestReward = QuestReward(_xp, _items, _extraText)
 }
 
-
 abstract class QuestScript(
     val questKey: String,
     val questVarp : String,

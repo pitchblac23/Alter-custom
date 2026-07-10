@@ -1,7 +1,5 @@
 package org.rsmod.content.quest.area.lumbridge
 
-
-import dev.openrune.types.ItemServerType
 import org.rsmod.api.player.dialogue.Dialogue
 import org.rsmod.api.player.protect.ProtectedAccess
 import org.rsmod.api.script.onOpNpc1
@@ -22,6 +20,9 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     private val GIVEN_FLOUR = quest.attribute(name = "GIVEN_FLOUR", default = false)
 
     private val potFlour = "obj.pot_flour"
+    private val egg = "obj.egg"
+    private val bucketMilk = "obj.bucket_milk"
+
 
     override fun ScriptContext.init() {
         onOpNpc1("npc.cook") { startCookDialogue(it.npc) }
@@ -69,10 +70,10 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     }
 
     private fun hasMilk(player: Player): Boolean =
-        player.inv.count("obj.bucket_milk") > 0 || GIVEN_MILK.get(player)
+        player.inv.count(bucketMilk) > 0 || GIVEN_MILK.get(player)
 
     private fun hasEgg(player: Player): Boolean =
-        player.inv.count("obj.egg") > 0 || GIVEN_EGG.get(player)
+        player.inv.count(egg) > 0 || GIVEN_EGG.get(player)
 
     private fun hasFlour(player: Player): Boolean =
         player.inv.count(potFlour) > 0 || GIVEN_FLOUR.get(player)
@@ -99,36 +100,28 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
             chatPlayer(sad, "I haven't got any of them yet, I'm still looking.")
             chatNpc(verymad, "Please get the ingredients quickly. I'm running out of time! The Duke will throw me into the streets!")
 
-            when (
-                choice2(
-                    "I'll get right on it.",
-                    1,
-                    "Can you remind me how to find these things again?",
-                    2,
-                )
-            ) {
+            when (choice2(
+                    "I'll get right on it.", 1,
+                    "Can you remind me how to find these things again?", 2
+            )) {
                 1 -> chatPlayer(happy, "I'll get right on it.")
                 2 -> showIngredientHelp(npc)
             }
             return
         }
 
-        deliverItem("obj.bucket_milk", "Here's a bucket of milk.") { GIVEN_MILK.set(player, true) }
-        deliverItem("obj.egg", "Here's a fresh egg.") { GIVEN_EGG.set(player, true) }
+        deliverItem(bucketMilk, "Here's a bucket of milk.") { GIVEN_MILK.set(player, true) }
+        deliverItem(egg, "Here's a fresh egg.") { GIVEN_EGG.set(player, true) }
         deliverItem(potFlour, "Here's a pot of flour.") { GIVEN_FLOUR.set(player, true) }
 
         if (allItemsDelivered(player)) {
             questFinishing(npc)
         } else {
             chatNpc(happy, "Thanks for the ingredients you have got so far. Please get the rest quickly - I'm running out of time! The Duke will throw me into the streets!")
-            when (
-                choice2(
-                    "I'll get right on it.",
-                    1,
-                    "Can you remind me how to find these things again?",
-                    2,
-                )
-            ) {
+            when (choice2(
+                "I'll get right on it.", 1,
+                "Can you remind me how to find these things again?", 2
+            )) {
                 1 -> chatPlayer(happy, "I'll get right on it.")
                 2 -> showIngredientHelp(npc)
             }
@@ -136,43 +129,25 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     }
 
     private suspend fun Dialogue.showIngredientHelp(npc: Npc) {
-        when (
-            choice4(
-                "Where do I find some flour?",
-                1,
-                "How about milk?",
-                2,
-                "And eggs? Where are they found?",
-                3,
-                "I've got all the information I need. Thanks.",
-                4,
-            )
-        ) {
+        when (choice4(
+            "Where do I find some flour?", 1,
+            "How about milk?", 2,
+            "And eggs? Where are they found?", 3,
+            "I've got all the information I need. Thanks.", 4
+        )) {
             1 -> {
                 if (player.inv.count("obj.pot_empty") > 0) {
-                    chatNpc(
-                        happy,
-                        "Talk to Millie, she'll help, she's a lovely girl and a fine Miller. Make sure you take a pot with you for the flour though, you've got one on you already.",
-                    )
+                    chatNpc(happy, "Talk to Millie, she'll help, she's a lovely girl and a fine Miller. Make sure you take a pot with you for the flour though, you've got one on you already.",)
                 } else {
-                    chatNpc(
-                        happy,
-                        "Talk to Millie, she'll help, she's a lovely girl and a fine Miller. Make sure you take a pot with you for the flour though, there should be one on the table in here.",
-                    )
+                    chatNpc(happy, "Talk to Millie, she'll help, she's a lovely girl and a fine Miller. Make sure you take a pot with you for the flour though, there should be one on the table in here.",)
                 }
                 showIngredientHelp(npc)
             }
             2 -> {
-                if (player.inv.count("obj.bucket_empty") > 0) {
-                    chatNpc(
-                        happy,
-                        "You'll need an empty bucket for the milk itself. I do see you've got a bucket with you already luckily!",
-                    )
+                if (player.inv.count(bucketMilk) > 0) {
+                    chatNpc(happy, "You'll need an empty bucket for the milk itself. I do see you've got a bucket with you already luckily!",)
                 } else {
-                    chatNpc(
-                        happy,
-                        "You'll need an empty bucket for the milk itself. The general store just north of the castle will sell you one for a couple of coins.",
-                    )
+                    chatNpc(happy, "You'll need an empty bucket for the milk itself. The general store just north of the castle will sell you one for a couple of coins.",)
                 }
                 showIngredientHelp(npc)
             }
@@ -197,18 +172,12 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     private suspend fun Dialogue.dialogAfterCook(npc: Npc) {
         chatNpc(happy, "How is the adventuring going, my friend?")
 
-        when (
-            choice4(
-                "Do you have any other quests for me?",
-                1,
-                "I am getting strong and mighty.",
-                2,
-                "I keep on dying.",
-                3,
-                "Can I use your range?",
-                4,
-            )
-        ) {
+        when (choice4(
+            "Do you have any other quests for me?", 1,
+            "I am getting strong and mighty.", 2,
+            "I keep on dying.", 3,
+            "Can I use your range?", 4
+        )) {
             1 -> chatNpc(sad, "I don't have anything for you to do right now, sorry.")
             2 -> {
                 chatPlayer(angry, "I am getting strong and mighty. Grrr")
@@ -232,18 +201,12 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     private suspend fun Dialogue.dialogQuestNotStarted(npc: Npc) {
         chatNpc(worried, "What am I to do?")
 
-        when (
-            choice4(
-                "What's wrong?",
-                1,
-                "Can you make me a cake?",
-                2,
-                "You don't look very happy.",
-                3,
-                "Nice hat!",
-                4,
-            )
-        ) {
+        when (choice4(
+            "What's wrong?", 1,
+            "Can you make me a cake?", 2,
+            "You don't look very happy.", 3,
+            "Nice hat!", 4
+        )) {
             1 -> cooksWhatsWrong(npc)
             2 -> {
                 chatPlayer(quiz, "You're a cook, why don't you bake me a cake?")
@@ -270,25 +233,18 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     private suspend fun Dialogue.cooksWhatsWrong(npc: Npc) {
         chatPlayer(worried, "What's wrong?")
         chatNpc(verymad, "Oh dear, oh dear, oh dear, I'm in a terrible terrible mess! It's the Duke's birthday and I should be making him a lovely big birthday cake.")
-        chatNpc(
-            sad,
-            "I've forgotten to buy the ingredients. I'll never get them in time now. He'll sack me! What will I do? I have four children and a goat to look after. Would you help me? Please?",
-        )
+        chatNpc(sad, "I've forgotten to buy the ingredients. I'll never get them in time now. He'll sack me! What will I do? I have four children and a goat to look after. Would you help me? Please?",)
 
-        when (
-            choice2(
-                "I'm always happy to help a cook in distress.",
-                1,
-                "I can't right now, maybe later.",
-                2,
-            )
-        ) {
+        when (choice2(
+            "I'm always happy to help a cook in distress.", 1,
+            "I can't right now, maybe later.", 2
+        )) {
             1 -> {
                 chatPlayer(happy, "Yes, I'll help you.")
                 quest.advanceQuestStage(access)
                 if (
-                    player.inv.count("obj.bucket_milk") > 0 &&
-                    player.inv.count("obj.egg") > 0 &&
+                    player.inv.count(bucketMilk) > 0 &&
+                    player.inv.count(egg) > 0 &&
                     player.inv.count(potFlour) > 0
                 ) {
                     chatPlayer(happy, "I have all of those ingredients on me already!")
@@ -296,8 +252,8 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
                     chatPlayer(shifty, "Not exactly. I just had an odd feeling you might be needing these ingredients. If I see a cook, I presume there's food of some kind! Lucky guess I suppose.")
                     chatNpc(happy, "Well thank you! Hand them over, please.")
 
-                    access.invDel(access.inv, "obj.bucket_milk")
-                    access.invDel(access.inv, "obj.egg")
+                    access.invDel(access.inv, bucketMilk)
+                    access.invDel(access.inv, egg)
                     access.invDel(access.inv, potFlour)
 
                     GIVEN_FLOUR.set(player, true)

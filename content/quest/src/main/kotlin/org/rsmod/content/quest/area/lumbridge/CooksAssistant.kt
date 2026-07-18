@@ -11,9 +11,15 @@ import org.rsmod.game.entity.Npc
 import org.rsmod.game.entity.Player
 import org.rsmod.plugin.scripts.ScriptContext
 
-class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rewards {
-    xp("stat.cooking", 300.0)
-}, ItemRewardDisplay("obj.cake")) {
+class CooksAssistant :
+    QuestScript(
+        "quest_cooksassistant",
+        "varp.cookquest",
+        rewards {
+            xp("stat.cooking", 300.0)
+        },
+        ItemRewardDisplay("obj.cake"))
+{
 
     private val GIVEN_EGG = quest.attribute(name = "GIVEN_EGG", default = false)
     private val GIVEN_MILK = quest.attribute(name = "GIVEN_MILK", default = false)
@@ -22,23 +28,6 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
     private val potFlour = "obj.pot_flour"
     private val egg = "obj.egg"
     private val bucketMilk = "obj.bucket_milk"
-
-
-    override fun ScriptContext.init() {
-        onOpNpc1("npc.cook") { startCookDialogue(it.npc) }
-    }
-
-    private suspend fun ProtectedAccess.startCookDialogue(npc: Npc) {
-        startDialogue(npc) { cookDialogue(npc) }
-    }
-
-    private suspend fun Dialogue.cookDialogue(npc: Npc) {
-        when {
-            quest.isQuestCompleted(player) -> dialogAfterCook(npc)
-            quest.questState(player) == QuestProgressState.IN_PROGRESS -> dialogDuringCook(npc)
-            else -> dialogQuestNotStarted(npc)
-        }
-    }
 
     override fun subTitle(): String {
         return "talking to the <col=800000>Cook</col> in <col=800000>Lumbridge Castle</col>."
@@ -67,6 +56,22 @@ class CooksAssistant : QuestScript("quest_cooksassistant", "varp.cookquest", rew
         line("It was the Duke of Lumbridge's birthday, but his cook had forgotten to buy the ingredients he needed to make him a cake.")
         line("I brought the cook an egg, some flour and some milk and the cook made a delicious-looking cake with them.")
         line("As a reward he now lets me use his high-quality range whenever I wish to cook there.")
+    }
+
+    override fun ScriptContext.init() {
+        onOpNpc1("npc.cook") { startCookDialogue(it.npc) }
+    }
+
+    private suspend fun ProtectedAccess.startCookDialogue(npc: Npc) {
+        startDialogue(npc) { cookDialogue(npc) }
+    }
+
+    private suspend fun Dialogue.cookDialogue(npc: Npc) {
+        when {
+            quest.isQuestCompleted(player) -> dialogAfterCook(npc)
+            quest.questState(player) == QuestProgressState.IN_PROGRESS -> dialogDuringCook(npc)
+            else -> dialogQuestNotStarted(npc)
+        }
     }
 
     private fun hasMilk(player: Player): Boolean =

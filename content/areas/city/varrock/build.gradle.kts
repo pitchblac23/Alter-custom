@@ -10,4 +10,6 @@ dependencies {
     implementation(projects.engine.game)
     implementation(projects.engine.map)
     implementation(projects.api.scriptAdvanced)
+    implementation(projects.content.quest)
+    implementation(projects.content.skills.runecrafting)
 }

@@ -155,6 +155,7 @@ pillory_locked=2275
 pillory_unlock=2276
 pillory_wrong=2277
 lever=2400
+drinking_potion=2401
 cleave=2529
 clobber=2531
 rampage=2538

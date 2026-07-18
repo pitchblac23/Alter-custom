@@ -14,7 +14,7 @@ internal fun buildCompletionJournal(
     builder: QuestJournalBuilder.() -> Unit,
 ): String {
     val journalBuilder = QuestJournalBuilder(access, quest, isCompletion = true).apply(builder)
-    journalBuilder.addRawLine("<br><br><col=FF0000>QUEST COMPLETE!</col>")
+    journalBuilder.addRawLine("<br><col=FF0000>QUEST COMPLETE!</col>")
     return journalBuilder.build()
 }
 

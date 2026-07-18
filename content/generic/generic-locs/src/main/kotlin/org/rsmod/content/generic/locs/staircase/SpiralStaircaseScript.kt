@@ -64,7 +64,7 @@ class SpiralStaircaseScript : PluginScript() {
                     loc.climbUpTranslation(),
                     "Climb down the stairs.",
                     loc.climbDownTranslation(),
-                    title = "Climb up or down the stairs?",
+                    title = "Which way do you want to go?",
                 )
             val dest = loc.coords.translate(translation)
             telejump(dest)

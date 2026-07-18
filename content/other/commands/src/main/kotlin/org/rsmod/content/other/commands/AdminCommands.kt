@@ -396,7 +396,7 @@ constructor(
             player.mes("You can't spawn this item!")
             return
         }
-        player.mes("Spawned inv obj `$objName` x ${spawned.completed().formatAmount}")
+        player.mes("Spawned item `$objName` x ${spawned.completed().formatAmount}")
     }
 
     private fun invClear(cheat: Cheat) = with(cheat) { player.invClear(player.inv) }

@@ -29,7 +29,10 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
     override fun ScriptContext.startup() {
         onOpNpc1("npc.aubury") { shopDialogue(it.npc) }
         onOpNpc3("npc.aubury") { player.openGeneralStore(it.npc) }
-        onOpNpc4("npc.aubury") { teleportToRuneEssenceMine(it.npc) }
+        onOpNpc4("npc.aubury") {
+            vars["varbit.essencemine_portal"] = 1
+            teleportToRuneEssenceMine(it.npc)
+        }
     }
 
     private fun Player.openGeneralStore(npc: Npc) {
@@ -90,6 +93,7 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
                     "Of course. By the way, if you end up making any " +
                         "runes from the essence you mine, I'll happily buy them " +
                         "from you.")
+                vars["varbit.essencemine_portal"] = 1
                 teleportToRuneEssenceMine(npc)
             }
             4 -> noThankYou()

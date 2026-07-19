@@ -24,7 +24,10 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
 
     override fun ScriptContext.startup() {
         onOpNpc1("npc.head_wizard") { sedridor(it.npc) }
-        onOpNpc3("npc.head_wizard") { teleportToRuneEssenceMine(it.npc) }
+        onOpNpc3("npc.head_wizard") {
+            vars["varbit.essencemine_portal"] = 0
+            teleportToRuneEssenceMine(it.npc)
+        }
     }
 
     private suspend fun ProtectedAccess.sedridor(npc: Npc) {
@@ -477,6 +480,7 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
         )) {
             1 -> {
                 chatPlayer(quiz, "Can you teleport me to the Rune Essence Mine?")
+                vars["varbit.essencemine_portal"] = 0
                 teleportToRuneEssenceMine(npc)
             }
             2 -> whoElseKnows(npc)
@@ -503,6 +507,7 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
         )) {
             1-> {
                 chatPlayer(quiz, "Can you teleport me to the Rune Essence Mine?")
+                vars["varbit.essencemine_portal"] = 0
                 teleportToRuneEssenceMine(npc)
             }
             2 -> wizardsTower(npc)
@@ -545,7 +550,10 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
             "Who else knows the teleport to the Rune Essence Mine?", 2,
             "Thanks for the information.", 3
         )) {
-            1 -> teleportToRuneEssenceMine(npc)
+            1 -> {
+                vars["varbit.essencemine_portal"] = 0
+                teleportToRuneEssenceMine(npc)
+            }
             2 -> whoElseKnows(npc)
             3 -> thanksForInfo()
         }

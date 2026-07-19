@@ -867,6 +867,10 @@ inherit = "loc.canoestation_waka"
 "param.next_loc_stage" = "loc.canoeing_waka_sinking"
 
 [[object]]
+id = "loc.blankrunestone_exit_portal"
+inherit = "loc.blankrunestone_exit_portal"
+
+[[object]]
 id = "loc.qip_cook_crate_stacked"
 inherit = "loc.qip_cook_crate_stacked"
 contentGroup = "content.empty_crate"

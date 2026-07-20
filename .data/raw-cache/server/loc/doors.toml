@@ -64,7 +64,6 @@ contentGroup = "content.opened_single_door"
 "param.closesound" = "synth.nicedoor_close"
 "param.next_loc_stage" = "loc.poshdoor"
 
-
 [[object]]
 id = "loc.poordoor_m"
 inherit = "loc.poordoor_m"
@@ -80,6 +79,57 @@ contentGroup = "content.opened_single_door"
 
 [object.params]
 "param.next_loc_stage" = "loc.poordoor_m"
+
+[[object]]
+id = "loc.elfdoor"
+inherit = "loc.elfdoor"
+contentGroup = "content.closed_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.elfdooropen"
+
+[[object]]
+id = "loc.elfdooropen"
+inherit = "loc.elfdooropen"
+contentGroup = "content.opened_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.elfdoor"
+
+[[object]]
+id = "loc.qip_sheep_shearer_poordoor"
+inherit = "loc.qip_sheep_shearer_poordoor"
+contentGroup = "content.closed_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.qip_sheep_shearer_poordooropen"
+
+[[object]]
+id = "loc.qip_sheep_shearer_poordooropen"
+inherit = "loc.qip_sheep_shearer_poordooropen"
+contentGroup = "content.opened_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.qip_sheep_shearer_poordoor"
+
+##Wizards' Tower Doors
+[[object]]
+id = "loc.fai_wiztower_poor_door"
+inherit = "loc.fai_wiztower_poor_door"
+contentGroup = "content.closed_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_wiztower_poor_door_open"
+"param.opensound" = "synth.door_open"
+
+[[object]]
+id = "loc.fai_wiztower_poor_door_open"
+inherit = "loc.fai_wiztower_poor_door_open"
+contentGroup = "content.opened_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_wiztower_poor_door"
+"param.opensound" = "synth.door_close"
 
 [[object]]
 id = "loc.fencegate_l"

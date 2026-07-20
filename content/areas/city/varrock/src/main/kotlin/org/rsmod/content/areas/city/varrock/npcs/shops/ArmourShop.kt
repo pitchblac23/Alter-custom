@@ -29,17 +29,16 @@ class ArmourShop @Inject constructor(private val shops: Shops) : PluginScript() 
         chatNpc(happy, "Hello, do you need any help?")
 
         val choice = choice2(
-            "No thanks. I'm just looking around.", 1,
-            "Do you want to trade?", 2,
+            "Do you want to trade?", 1,
+            "No thanks. I'm just looking around.", 2
         )
 
         when (choice) {
-            1 -> {
-                chatPlayer(neutral, "No thanks. I'm just looking around.")
-                chatNpc(neutral, "Well, come and see me if you're ever in need of armour!")
+            1 -> player.openSwordShop(npc)
+            2 -> {
+                chatPlayer(happy, "No thanks. I'm just looking around.")
+                chatNpc(happy, "Well, come and see me if you're ever in need of armor!")
             }
-            2 -> player.openSwordShop(npc)
         }
     }
-
 }

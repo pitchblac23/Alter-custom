@@ -79,12 +79,14 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
     private suspend fun Dialogue.postQuestStage(npc: Npc) {
         chatNpc(happy, "Do you want to buy some runes?")
 
-        when (choice4(
+        val choice = choice4(
             "Yes please!", 1,
             "Can you tell me about your cape?", 2,
             "Can you teleport me to the Rune Essence Mine?", 3,
             "No thank you.", 4
-        )) {
+        )
+
+        when (choice) {
             1 -> yesPlease(npc)
             2 -> runecraftingCape(npc)
             3 -> {
@@ -92,7 +94,8 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
                 chatNpc(happy,
                     "Of course. By the way, if you end up making any " +
                         "runes from the essence you mine, I'll happily buy them " +
-                        "from you.")
+                        "from you."
+                )
                 vars["varbit.essencemine_portal"] = 1
                 teleportToRuneEssenceMine(npc)
             }
@@ -101,11 +104,13 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
     }
 
     private suspend fun Dialogue.duringRuneMysteries(npc: Npc) {
-        when (choice3(
+        val choice = choice3(
             "I've been sent here with a package for you.", 1,
             "Yes please!", 2,
             "Oh, it's a rune shop. No thank you, then.", 3
-        )) {
+        )
+
+        when (choice) {
             1 -> packageForYou()
             2 -> yesPlease(npc)
             3 -> runeShopNoThankYou()
@@ -113,11 +118,13 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
     }
 
     private suspend fun Dialogue.progressRuneMysteries(npc: Npc) {
-        when (choice3(
+        val choice = choice3(
             "Anything useful in that package I gave you?", 1,
             "Yes please!", 2,
             "No, thank you.", 3
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(quiz, "Anything useful in that package I gave you?")
                 chatNpc(happy, "Well, let's have a look...")
@@ -129,11 +136,13 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
     }
 
     private suspend fun Dialogue.shopKeeper(npc: Npc) {
-        when (choice3(
+        val choice = choice3(
             "Yes please!", 1,
             "Can you tell me about your cape?", 2,
             "Oh, it's a rune shop. No thank you, then.", 3
-        )) {
+        )
+
+        when (choice) {
             1 -> yesPlease(npc)
             2 -> runecraftingCape(npc)
             3 -> runeShopNoThankYou()
@@ -147,7 +156,9 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
         chatNpc(shocked,
             "From Sedridor? But... surely, he can't have? Please, let " +
                 "me have it. It must be extremely important for him to " +
-                "have sent a stranger.")
+                "have sent a stranger."
+        )
+
         if (researchPackage in player.inv) {
             access.invDel(player.inv, researchPackage)
             runeMyst.quest.advanceQuestStage(access)
@@ -202,10 +213,12 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
     private suspend fun Dialogue.cupOfTea() {
         chatNpc(happy, "Before you leave, why not have a cup of tea?")
 
-        when (choice2(
+        val choice = choice2(
             "I'd love a cup of tea.", 1,
             "No, thank you.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(happy, "I'd love a cup of tea.")
                 player.anim("seq.human_eat")
@@ -220,16 +233,21 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
 
     private suspend fun Dialogue.deliverNotes(npc: Npc) {
         chatNpc(quiz, "Hello. Did you take those notes back to Sedridor?")
+
         if (researchNotes in player.inv) {
             chatPlayer(neutral, "I'm still working on it.")
             chatNpc(happy,
                 "Don't take too long. He'll be eager to see if this is " +
                     "indeed the breakthrough we were hoping for. Now, did " +
-                    "you want to buy some runes?")
-            when (choice2(
+                    "you want to buy some runes?"
+            )
+
+            val choice = choice2(
                 "Yes please!", 1,
                 "No, thank you.", 2
-            )) {
+            )
+
+            when (choice) {
                 1 -> yesPlease(npc)
                 2 -> noThankYou()
             }
@@ -255,10 +273,12 @@ class Aubury @Inject constructor(private val shops: Shops, private val runeMyst:
                 "talisman, allowing you all Runecrafting altars. Is there " +
                 "anything else I can help you with?")
 
-        when (choice2(
+        val choice = choice2(
             "I'd like to view your store please.", 1,
             "No thank you.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(happy, "I'd like to view your store please.")
                 player.openGeneralStore(npc)

@@ -1,0 +1,10 @@
+## Bankbooths
+[[object]]
+id = "loc.fai_falador_bankbooth"
+inherit = "loc.fai_falador_bankbooth"
+contentGroup = "content.bank_booth"
+
+[[object]]
+id = "loc.fai_falador_bankbooth_multi"
+inherit = "loc.fai_falador_bankbooth_multi"
+contentGroup = "content.bank_booth"

@@ -11,16 +11,17 @@ import org.rsmod.game.entity.Player
 import org.rsmod.plugin.scripts.PluginScript
 import org.rsmod.plugin.scripts.ScriptContext
 
-class FineClothesShop @Inject constructor(private val shops: Shops) : PluginScript() {
-    // TODO: More stuff needs implementing for Thessalia
+//TODO:
+// Setup interface for customizing char
 
+class FineClothesShop @Inject constructor(private val shops: Shops) : PluginScript() {
     override fun ScriptContext.startup() {
         onOpNpc1("npc.thessalia") { shopDialogue(it.npc) }
-        onOpNpc3("npc.thessalia") { player.openFineClothesShop(it.npc) }
+        onOpNpc3("npc.thessalia") { player.openFineClothesStore(it.npc) }
     }
 
-    private fun Player.openFineClothesShop(npc: Npc) {
-        shops.open(this, npc, "Thessalia's Fine Clothes", "inv.clotheshop")
+    private fun Player.openFineClothesStore(npc: Npc) {
+        shops.open(this, npc, "Thessalia's Fine Clothes.", "inv.clotheshop")
     }
 
     private suspend fun ProtectedAccess.shopDialogue(npc: Npc) =
@@ -29,28 +30,73 @@ class FineClothesShop @Inject constructor(private val shops: Shops) : PluginScri
     private suspend fun Dialogue.shopKeeper(npc: Npc) {
         chatNpc(happy, "Do you want to buy any fine clothes?")
 
-
-        val choice = choice3(
+        val choice = choice2(
             "What have you got?", 1,
-            "I'd just like to buy some clothes.", 2,
-            "No, thank you.", 3,
+            "No, thank you.", 2
         )
 
         when (choice) {
-            1 -> {
-                chatPlayer(happy, "What have you got?")
-                player.openFineClothesShop(npc)
-            }
-
-            2 -> {
-                chatPlayer(happy, "I'd just like to buy some clothes.")
-                player.openFineClothesShop(npc)
-            }
-
-            3 -> {
-                chatPlayer(neutral, "No, thank you.")
-                chatNpc(neutral, "Well, please return if you change your mind.")
-            }
+            1 -> clothingSelection(npc)
+            2 -> noThanks()
         }
+    }
+
+    private suspend fun Dialogue.clothingSelection(npc: Npc) {
+        chatPlayer(quiz,"What have you got?")
+        chatNpc(happy,
+            "Well, I have a number of fine pieces of clothing on sale " +
+                "or, if you prefer, I can offer you an exclusive total-" +
+                "clothing makeover?")
+
+        val choice = choice3(
+            "Tell me more about this makeover.", 1,
+            "I'd just like to buy some clothes.", 2,
+            "No, thank you.", 3
+        )
+
+        when (choice) {
+            1 -> makeover(npc)
+            2 -> player.openFineClothesStore(npc)
+            3 -> noThanks()
+        }
+    }
+
+    private suspend fun Dialogue.makeover(npc: Npc) {
+        chatPlayer(quiz,"Tell me more about this makeover.")
+        chatNpc(happy, "Certainly!")
+        chatNpc(happy,
+            "Here at Thessalia's fine clothing boutique, we offer a " +
+                "unique service where we will totally revamp your outfit " +
+                "to your choosing")
+
+        chatNpc(neutral,
+            "It's on the house, completely free! Tired of always " +
+                "wearing the same old outfit, day in, day out? This is " +
+                "the service for you!")
+
+        chatNpc(quiz,
+            "So what do you say? Interested? We can change either " +
+                "your top, your bottoms or your wristwear!")
+
+        val choice = choice5(
+            "I'd like to change my top please.", 1,
+            "I'd like to change my bottoms please.", 2,
+            "I'd like to buy some clothes.", 3,
+            "I'd like to change my wristwear.", 4,
+            "No, thank you.", 5
+        )
+
+        when (choice) {
+            1 -> player.openFineClothesStore(npc)
+            2 -> player.openFineClothesStore(npc)
+            3 -> player.openFineClothesStore(npc)
+            4 -> player.openFineClothesStore(npc)
+            5 -> noThanks()
+        }
+    }
+
+    private suspend fun Dialogue.noThanks() {
+        chatPlayer(neutral, "No, thank you.")
+        chatNpc(happy, "Well, please return if you change your mind.")
     }
 }

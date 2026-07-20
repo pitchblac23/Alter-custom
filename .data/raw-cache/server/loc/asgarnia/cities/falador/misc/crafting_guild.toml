@@ -1,0 +1,11 @@
+##BankChests
+[[object]]
+id = "loc.diary_guild_bankchest"
+inherit = "loc.diary_guild_bankchest"
+contentGroup = "content.bank_chest"
+
+##BankDepositBoxes
+[[object]]
+id = "loc.diary_guild_deposit_box"
+inherit = "loc.diary_guild_deposit_box"
+contentGroup = "content.bank_deposit_box"

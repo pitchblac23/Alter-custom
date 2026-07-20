@@ -41,5 +41,4 @@ class ArcheryShop @Inject constructor(private val shops: Shops) : PluginScript()
             }
         }
     }
-
 }

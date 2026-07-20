@@ -28,11 +28,15 @@ class GeneralStore @Inject constructor(private val shops: Shops) : PluginScript(
 
     private suspend fun Dialogue.shopKeeper(npc: Npc) {
         chatNpc(happy, "Can I help you at all?")
-        val choice = choice2("Yes please. What are you selling?", 1, "No thanks.", 2)
-        if (choice == 1) {
-            player.openGeneralStore(npc)
-        } else if (choice == 2) {
-            chatPlayer(neutral, "No thanks.")
+
+        val choice = choice2(
+            "Yes please. What are you selling?", 1,
+            "No thanks.", 2
+        )
+
+        when (choice) {
+            1 -> player.openGeneralStore(npc)
+            2 -> chatPlayer(neutral, "No thanks.")
         }
     }
 }

@@ -1,5 +1,68 @@
-## TODO: Straight staircases need a contentGroup then can be implemented
-## Stairs / Ladders
+## Ladders
+
+[[object]]
+id = "loc.fai_varrock_ladder"
+inherit = "loc.fai_varrock_ladder"
+contentGroup = "content.ladder_up"
+
+[[object]]
+id = "loc.fai_varrock_laddertop"
+inherit = "loc.fai_varrock_laddertop"
+contentGroup = "content.ladder_down"
+
+[[object]]
+id = "loc.fai_varrock_ladder_taller"
+inherit = "loc.fai_varrock_ladder_taller"
+contentGroup = "content.ladder_up"
+
+[[object]]
+id = "loc.fai_varrock_ladder_taller_top"
+inherit = "loc.fai_varrock_ladder_taller_top"
+contentGroup = "content.ladder_down"
+
+[[object]]
+id = "loc.25th_ladder_bottom"
+inherit = "loc.25th_ladder_bottom"
+contentGroup = "content.ladder_up"
+
+[object.params]
+"param.translate_level" = 2
+
+[[object]]
+id = "loc.25th_ladder_top"
+inherit = "loc.25th_ladder_top"
+contentGroup = "content.ladder_down"
+
+[object.params]
+"param.translate_level" = -2
+
+## Ladders end
+
+##Staircases
+
+[[object]]
+id = "loc.fai_varrock_stairs"
+inherit = "loc.fai_varrock_stairs"
+contentGroup = "content.staircase_up"
+
+[[object]]
+id = "loc.fai_varrock_stairs_top"
+inherit = "loc.fai_varrock_stairs_top"
+contentGroup = "content.staircase_down"
+
+[[object]]
+id = "loc.fai_varrock_stairs_taller_new_fix"
+inherit = "loc.fai_varrock_stairs_taller_new_fix"
+contentGroup = "content.staircase_up"
+
+[[object]]
+id = "loc.fai_varrock_stairs_taller"
+inherit = "loc.fai_varrock_stairs_taller"
+contentGroup = "content.staircase_up"
+
+## Staircases end
+
+## Spiral staircases
 
 [[object]]
 id = "loc.varrock_spiralstairs"
@@ -21,49 +84,16 @@ id = "loc.varrock_spiralstairs_taller"
 inherit = "loc.varrock_spiralstairs_taller"
 contentGroup = "content.spiralstaircase_up"
 
-[[object]]
-id = "loc.fai_varrock_ladder_taller"
-inherit = "loc.fai_varrock_ladder_taller"
-contentGroup = "content.ladder_up"
+## Spiral staircases end
 
-[[object]]
-id = "loc.fai_varrock_ladder_taller_top"
-inherit = "loc.fai_varrock_ladder_taller_top"
-contentGroup = "content.ladder_down"
-
-[[object]]
-id = "loc.fai_varrock_ladder"
-inherit = "loc.fai_varrock_ladder"
-contentGroup = "content.ladder_up"
-
-[[object]]
-id = "loc.fai_varrock_laddertop"
-inherit = "loc.fai_varrock_laddertop"
-contentGroup = "content.ladder_down"
+## Dungeon ladders
 
 [[object]]
 id = "loc.fai_varrock_bearpit_trapdoor"
 inherit = "loc.fai_varrock_bearpit_trapdoor"
 contentGroup = "content.dungeonladder_down"
 
-[[object]]
-id = "loc.25th_ladder_bottom"
-inherit = "loc.25th_ladder_bottom"
-contentGroup = "content.ladder_up"
-
-[object.params]
-"param.translate_level" = 2
-
-[[object]]
-id = "loc.25th_ladder_top"
-inherit = "loc.25th_ladder_top"
-contentGroup = "content.ladder_down"
-
-[object.params]
-"param.translate_level" = -2
-
-## Stairs / Ladders end
-
+## Dungeon ladders end
 
 ## Doors
 
@@ -99,10 +129,57 @@ contentGroup = "content.opened_single_door"
 [object.params]
 "param.next_loc_stage" = "loc.fai_varrock_door"
 
+[[object]]
+id = "loc.fai_varrock_door_taller"
+inherit = "loc.fai_varrock_door_taller"
+contentGroup = "content.closed_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_varrock_door_open_taller"
+
+[[object]]
+id = "loc.fai_varrock_door_open_taller"
+inherit = "loc.fai_varrock_door_open_taller"
+contentGroup = "content.opened_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_varrock_door_taller"
+
+[[object]]
+id = "loc.fai_varrock_poor_door"
+inherit = "loc.fai_varrock_poor_door"
+contentGroup = "content.closed_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_varrock_poor_door_open"
+
+[[object]]
+id = "loc.fai_varrock_poor_door_open"
+inherit = "loc.fai_varrock_poor_door_open"
+contentGroup = "content.opened_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_varrock_poor_door"
+
+[[object]]
+id = "loc.fai_varrock_poor_door_flipped"
+inherit = "loc.fai_varrock_poor_door_flipped"
+contentGroup = "content.closed_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_varrock_poor_door_open_flipped"
+
+[[object]]
+id = "loc.fai_varrock_poor_door_open_flipped"
+inherit = "loc.fai_varrock_poor_door_open_flipped"
+contentGroup = "content.opened_single_door"
+
+[object.params]
+"param.next_loc_stage" = "loc.fai_varrock_poor_door_flipped"
+
 ## Doors end
 
-
-# Bookcases & Shelves
+## Bookcases & Shelves
 
 [[object]]
 id = "loc.fai_varrock_bookcase"
@@ -154,10 +231,9 @@ id = "loc.fai_varrock_chemisty_shelves2"
 inherit = "loc.fai_varrock_chemisty_shelves2"
 contentGroup = "content.empty_chest"
 
-# Bookcases & Shelves end
+## Bookcases & Shelves end
 
-
-# Chests & Drawers
+## Chests & Drawers
 
 [[object]]
 id = "loc.fai_varrock_chest_closed"
@@ -207,10 +283,9 @@ contentGroup = "content.empty_chest"
 [object.params]
 "param.next_loc_stage" = "loc.fai_varrock_posh_drawers"
 
-# Chests & Drawers end
+## Chests & Drawers end
 
-
-# Cooking stuff
+## Cooking stuff
 
 [[object]]
 id = "loc.fai_varrock_posh_stove"
@@ -227,10 +302,9 @@ id = "loc.fai_varrock_range_with_pipe"
 inherit = "loc.fai_varrock_range_with_pipe"
 contentGroup = "content.cooking_range_standard"
 
-# Cooking stuff end
+## Cooking stuff end
 
-
-# Boxes & crates
+## Boxes & crates
 
 [[object]]
 id = "loc.fai_varrock_boxes"
@@ -257,7 +331,9 @@ id = "loc.fai_varrock_large_crates"
 inherit = "loc.fai_varrock_large_crates"
 contentGroup = "content.empty_boxes"
 
-# Boxes & crates end
+## Boxes & crates end
+
+## Bank booths & deposit boxes
 
 [[object]]
 id = "loc.fai_varrock_bankbooth"
@@ -265,6 +341,13 @@ inherit = "loc.fai_varrock_bankbooth"
 contentGroup = "content.bank_booth"
 
 [[object]]
+id = "loc.fai_varrock_bankbooth_multi"
+inherit = "loc.fai_varrock_bankbooth_multi"
+contentGroup = "content.bank_booth"
+
+[[object]]
 id = "loc.bank_deposit_box"
 inherit = "loc.bank_deposit_box"
 contentGroup = "content.bank_deposit_box"
+
+## Bank booths & deposit boxes end

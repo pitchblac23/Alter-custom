@@ -10,6 +10,7 @@ import jakarta.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
 import org.rsmod.annotations.InternalApi
+import org.rsmod.api.area.checker.AreaChecker
 import org.rsmod.api.death.prepareAdminDieTest
 import org.rsmod.api.death.preparePvpDeath
 import org.rsmod.api.invtx.invAdd
@@ -17,6 +18,8 @@ import org.rsmod.api.mechanics.toxins.impl.PlayerDisease
 import org.rsmod.api.mechanics.toxins.impl.PlayerPoison
 import org.rsmod.api.mechanics.toxins.impl.PlayerVenom
 import org.rsmod.api.invtx.invClear
+import org.rsmod.api.player.ironman.PlayerGamemode
+import org.rsmod.api.player.ironman.setGamemode
 import org.rsmod.api.player.output.MiscOutput
 import org.rsmod.api.player.output.mes
 import org.rsmod.api.player.cheat.adminGodMode
@@ -31,6 +34,7 @@ import org.rsmod.api.player.ui.PlayerInterfaceUpdates
 import org.rsmod.api.player.vars.VarPlayerIntMapSetter
 import org.rsmod.api.player.vars.boolVarBit
 import org.rsmod.api.player.vars.resyncVar
+import org.rsmod.api.registry.region.RegionRegistry
 import org.rsmod.api.repo.loc.LocRepository
 import org.rsmod.api.repo.npc.NpcRepository
 import org.rsmod.api.utils.format.formatAmount
@@ -64,7 +68,9 @@ constructor(
     private val locRepo: LocRepository,
     private val npcRepo: NpcRepository,
     private val update: GameUpdate,
-    ) : PluginScript() {
+    private val areaChecker: AreaChecker,
+    private val regions: RegionRegistry,
+) : PluginScript() {
     private val logger = InlineLogger()
 
     private val levenshteinMetric = StringMetrics.levenshtein()
@@ -136,7 +142,38 @@ constructor(
         onCommand("god", "Toggle god mode (invincibility)", ::god)
         onCommand("maxhit", "Toggle always max hit", ::maxhit)
         onCommand("openbank", "Open the bank", ::bank)
+        onCommand("transmog", "Transmog player to NPC appearance (no args to reset)", ::transmog) {
+            invalidArgs = "Use as ::transmog npcNameOrId (ex: goblin or 126) or ::transmog to reset"
+        }
+        onCommand("gamemode", "Set account gamemode (normal|ironman|uim|hcim)", ::gamemode) {
+            invalidArgs = "Use as ::gamemode normal|ironman|uim|hcim"
+        }
     }
+
+    private fun gamemode(cheat: Cheat) =
+        with(cheat) {
+            val mode =
+                when (args.getOrNull(0)?.lowercase()) {
+                    "normal",
+                    "main",
+                    "0" -> PlayerGamemode.NORMAL
+                    "ironman",
+                    "iron",
+                    "1" -> PlayerGamemode.IRONMAN
+                    "uim",
+                    "ultimate",
+                    "2" -> PlayerGamemode.ULTIMATE_IRONMAN
+                    "hcim",
+                    "hardcore",
+                    "3" -> PlayerGamemode.HARDCORE_IRONMAN
+                    else -> {
+                        player.mes("Use as ::gamemode normal|ironman|uim|hcim")
+                        return
+                    }
+                }
+            player.setGamemode(mode)
+            player.mes("Gamemode set to $mode (varbit.ironman synced; persists on logout).")
+        }
 
     private fun god(cheat: Cheat) = with(cheat) {
         player.adminGodMode = !player.adminGodMode
@@ -465,6 +502,28 @@ constructor(
         protectedAccess.launch(player) {
             ifOpenMainSidePair(main = "interface.bankmain", side = "interface.bankside")
         }
+    }
+
+    private fun transmog(cheat: Cheat) = with(cheat) {
+        if (args.isEmpty()) {
+            protectedAccess.launch(player) { resetTransmog() }
+            player.mes("Transmog cleared.")
+            return
+        }
+        val first = args[0]
+        val npcName =
+            if (first.toIntOrNull() != null) {
+                val resolved = RSCM.getReverseMapping(RSCMType.NPC, first.toInt())
+                if (resolved.isEmpty()) {
+                    player.mes("No NPC mapped to ID: $first")
+                    return
+                }
+                resolved
+            } else {
+                "npc.${args.asTypeName()}"
+            }
+        protectedAccess.launch(player) { transmog(npcName) }
+        player.mes("Transmog: '$npcName'")
     }
 
     private fun resolveArgTypeId(arg: String, names: Map<String, Int>): Int? {

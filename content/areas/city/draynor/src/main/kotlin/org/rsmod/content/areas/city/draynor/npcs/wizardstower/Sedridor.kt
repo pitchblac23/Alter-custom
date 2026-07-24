@@ -122,10 +122,12 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
             "Did he now? Well hand it over then, and we'll see what " +
                   "all the hubbub is about.")
 
-        when (choice2(
+        val choice = choice2(
             "Okay, here you are.", 1,
             "No, I'll only give it to Sedridor.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(happy, "Okay, here you are.")
                 giveTalisman()
@@ -190,10 +192,12 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
                   "about?")
         chatNpc(happy, "Ah, my apologies, adventurer. Allow me to fill you in.")
 
-        when (choice2(
+        val choice = choice2(
             "Go ahead.", 1,
             "Actually, I'm not interested.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> goAhead()
             2 -> {
                 chatPlayer(neutral, "Actually, I'm not Interested.")
@@ -217,10 +221,12 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
             "Well good news, for I am Sedridor! Now, hand it over " +
                 "and let me have a proper look at it, hmm?")
 
-        when (choice2(
+        val choice = choice2(
             "Okay, here you are.", 1,
             "No, I don't think you are Sedridor.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(happy, "Okay, here you are.")
                 giveTalisman()
@@ -324,10 +330,12 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
     }
 
     private suspend fun Dialogue.willingToGo() {
-        when (choice2(
+        val choice = choice2(
             "Yes, certainly.", 1,
             "No, I'm busy.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(neutral, "Yes, Certainly.")
                 runeMyst.quest.advanceQuestStage(access)
@@ -472,12 +480,14 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
     }
 
     private suspend fun Dialogue.afterRuneMysteries(npc: Npc) {
-        when (choice4(
+        val choice = choice4(
             "Can you teleport me to the Rune Essence Mine?", 1,
             "Who else knows the teleport to the Rune Essence Mine?", 2,
             "Could you tell me about the old Wizards' Tower?", 3,
             "Nothing thanks, I'm just looking around.", 4,
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(quiz, "Can you teleport me to the Rune Essence Mine?")
                 vars["varbit.essencemine_portal"] = 0
@@ -500,11 +510,13 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
                 "Tree Gnome Stronghold and Wizard Distentor in " +
                 "Yanille's Wizards' Guild.")
 
-        when (choice3(
+        val choice = choice3(
             "Can you teleport me to the Rune Essence Mine?", 1,
             "Could you tell me about the old Wizards' Tower?", 2,
             "Thanks for the information.", 3
-        )) {
+        )
+
+        when (choice) {
             1-> {
                 chatPlayer(quiz, "Can you teleport me to the Rune Essence Mine?")
                 vars["varbit.essencemine_portal"] = 0
@@ -545,11 +557,13 @@ class Sedridor @Inject constructor(private val runeMyst: RuneMysteries) : Plugin
                 "teleportation incantation to the Rune Essence Mine. " +
                 "We have you to thank for that.")
 
-        when (choice3(
+        val choice = choice3(
             "Can you teleport me to the Rune Essence Mine?", 1,
             "Who else knows the teleport to the Rune Essence Mine?", 2,
             "Thanks for the information.", 3
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 vars["varbit.essencemine_portal"] = 0
                 teleportToRuneEssenceMine(npc)

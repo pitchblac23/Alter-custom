@@ -34,10 +34,12 @@ class DukeHoracio @Inject constructor(private val runeMyst: RuneMysteries) : Plu
     private suspend fun Dialogue.startDukeHoracio() {
         chatNpc(neutral, "Greetings. Welcome to my castle.")
 
-        when (choice2(
+        val choice = choice2(
             "Have you any quests for me?", 1,
             "Where can I find Money?", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(quiz, "Have you any quests for me?")
                 if (runeMyst.quest.getQuestStage(player) <= 0) {
@@ -69,10 +71,12 @@ class DukeHoracio @Inject constructor(private val runeMyst: RuneMysteries) : Plu
                 "after.")
         chatNpc(quiz, "Would you be willing to take it to them for me?")
 
-        when (choice2(
+        val choice = choice2(
             "Yes.", 1,
             "No.", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> startRuneMysteries()
             2 -> {
                 chatPlayer(neutral, "Not right now.")
@@ -94,10 +98,12 @@ class DukeHoracio @Inject constructor(private val runeMyst: RuneMysteries) : Plu
     }
 
     private suspend fun Dialogue.duringRuneMysteries() {
-        when (choice2(
+        val choice = choice2(
             "What did you want me to do again?", 1,
             "Where can I find Money?", 2
-        )) {
+        )
+
+        when (choice) {
             1 -> {
                 chatPlayer(neutral, "What did you want me to do again?")
 
